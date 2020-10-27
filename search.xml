@@ -75,6 +75,12 @@
       </tags>
   </entry>
   <entry>
+    <title>my-first-blog</title>
+    <url>/2020/10/27/my-first-blog/</url>
+    <content><![CDATA[<p>哒哒哒哒哒哒多</p>
+]]></content>
+  </entry>
+  <entry>
     <title>ubuntu 自动挂载SD卡</title>
     <url>/2020/10/27/ubuntu-%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BDSD%E5%8D%A1/</url>
     <content><![CDATA[<p>最近开发过程中遇见了一个问题，ubuntu 16.04 自动挂载SD卡报错，<code>mounted filesystem with ordered data mode. Opts: (null)</code>以此记录一下</p>
@@ -119,11 +125,5 @@
       <tags>
         <tag>ubuntu自动挂载SD卡</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>my-first-blog</title>
-    <url>/2020/10/27/my-first-blog/</url>
-    <content><![CDATA[<p>哒哒哒哒哒哒多</p>
-]]></content>
   </entry>
 </search>
