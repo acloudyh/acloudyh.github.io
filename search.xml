@@ -24,7 +24,7 @@
 <li><p>添加以下内容(根据自己的<strong>主机ip</strong>来填</p>
   <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="number">192.168</span>.<span class="number">81.129</span>:<span class="number">3333</span></span><br><span class="line"><span class="number">192.168</span>.<span class="number">81.129</span>:<span class="number">4444</span></span><br><span class="line"><span class="number">192.168</span>.<span class="number">81.129</span>:<span class="number">4444</span></span><br></pre></td></tr></table></figure></li>
 <li><p>修改数据库文件,<strong>vim application.properties</strong></p>
-  <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">spring.datasource.platform=mysql</span><br><span class="line">db.num=<span class="number">1</span></span><br><span class="line">db.url.<span class="number">0</span>=jdbc:mysql://<span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">3306</span>/nacos_config?characterEncoding=utf8&amp;connectTimeout=<span class="number">1000</span>&amp;socketTimeout=<span class="number">3000</span>&amp;autoReconnect=true</span><br><span class="line">db.user=root</span><br><span class="line">db.password=<span class="number">6</span>yhn^YHN</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+  <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">spring.datasource.platform=mysql</span><br><span class="line">db.num=<span class="number">1</span></span><br><span class="line">db.url.<span class="number">0</span>=jdbc:mysql://<span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">3306</span>/nacos_config?characterEncoding=utf8&amp;connectTimeout=<span class="number">1000</span>&amp;socketTimeout=<span class="number">3000</span>&amp;autoReconnect=true</span><br><span class="line">db.user=root</span><br><span class="line">db.password=<span class="number">6</span>yhn^YHN</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>关闭防火墙或者开放端口（为了省事，我关闭了和防火墙）</p>
   <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">systemctl stop firewalld</span><br></pre></td></tr></table></figure>
@@ -42,10 +42,8 @@
 <ul>
 <li><p>复制<strong>startup.sh</strong></p>
   <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cp</span> startup.sh.bak startup<span class="literal">-3333</span>.sh</span><br><span class="line"><span class="built_in">cp</span> startup.sh.bak startup<span class="literal">-4444</span>.sh</span><br><span class="line"><span class="built_in">cp</span> startup.sh.bak startup<span class="literal">-5555</span>.sh</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>修改<strong>vim startup-3333.sh</strong>（一个示例，4444和5555 都按照此修改）,增加-Dserver.port=3333启动时指定端口号</li>
-</ul>
+</li>
+<li><p>修改<strong>vim startup-3333.sh</strong>（一个示例，4444和5555 都按照此修改）,增加-Dserver.port=3333启动时指定端口号</p>
 <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="comment"># start</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$JAVA</span> <span class="variable">$</span>&#123;JAVA_OPT&#125;&quot;</span> &gt; <span class="variable">$</span>&#123;BASE_DIR&#125;/logs/start.out <span class="number">2</span>&gt;&amp;<span class="number">1</span> &amp;</span><br><span class="line">nohup <span class="variable">$JAVA</span> <span class="literal">-Dserver</span>.port=<span class="number">3333</span> <span class="variable">$</span>&#123;JAVA_OPT&#125; nacos.nacos &gt;&gt; <span class="variable">$</span>&#123;BASE_DIR&#125;/logs/start.out <span class="number">2</span>&gt;&amp;<span class="number">1</span> &amp;</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;nacos is starting，you can check the <span class="variable">$</span>&#123;BASE_DIR&#125;/logs/start.out&quot;</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>启动nacos</p>
@@ -61,11 +59,9 @@
 <p> 由于我是yum安装的Nginx 配置文件 <strong>vim /etc/nginx/nginx.confg</strong></p>
 <ul>
 <li><p>设置upstream cluster</p>
-<ul>
-<li><p>设置location根路径。<strong>proxy_pass <a href="http://cluster/">http://cluster</a>;</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#gzip  on;</span><br><span class="line">upstream cluster&#123;</span><br><span class="line">    server 192.168.81.129:3333;</span><br><span class="line">    server 192.168.81.129:4444;</span><br><span class="line">    server 192.168.81.129:5555;</span><br><span class="line">&#125;</span><br><span class="line">server &#123;</span><br><span class="line">    listen       1111;</span><br><span class="line">    server_name  localhost;</span><br><span class="line"></span><br><span class="line">    #charset koi8-r;</span><br><span class="line"></span><br><span class="line">    #access_log  logs&#x2F;host.access.log  main;</span><br><span class="line"></span><br><span class="line">    location &#x2F; &#123;</span><br><span class="line">        root   html;</span><br><span class="line">        index  index.html index.htm;</span><br><span class="line">        proxy_pass http:&#x2F;&#x2F;cluster;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 </li>
-</ul>
+<li><p>设置location根路径。<strong>proxy_pass <a href="http://cluster/">http://cluster</a>;</strong></p>
+  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#gzip  on;</span><br><span class="line">upstream cluster&#123;</span><br><span class="line">    server 192.168.81.129:3333;</span><br><span class="line">    server 192.168.81.129:4444;</span><br><span class="line">    server 192.168.81.129:5555;</span><br><span class="line">&#125;</span><br><span class="line">server &#123;</span><br><span class="line">    listen       1111;</span><br><span class="line">    server_name  localhost;</span><br><span class="line"></span><br><span class="line">    #charset koi8-r;</span><br><span class="line"></span><br><span class="line">    #access_log  logs&#x2F;host.access.log  main;</span><br><span class="line"></span><br><span class="line">    location &#x2F; &#123;</span><br><span class="line">        root   html;</span><br><span class="line">        index  index.html index.htm;</span><br><span class="line">        proxy_pass http:&#x2F;&#x2F;cluster;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
@@ -76,7 +72,7 @@
 </ol>
 ]]></content>
       <tags>
-        <tag>Nacos集群,nginx</tag>
+        <tag>Nacos集群</tag>
       </tags>
   </entry>
 </search>
