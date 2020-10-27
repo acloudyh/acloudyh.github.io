@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>my-first-blog</title>
+    <url>/2020/10/27/my-first-blog/</url>
+    <content><![CDATA[<p>哒哒哒哒哒哒多</p>
+]]></content>
+  </entry>
+  <entry>
     <title>Nacos集群配置及Nginx反向代理</title>
     <url>/2020/10/27/Nacos%E9%9B%86%E7%BE%A4%E9%85%8D%E7%BD%AE%E5%8F%8ANginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/</url>
     <content><![CDATA[<h2 id="安装Nacos"><a href="#安装Nacos" class="headerlink" title="安装Nacos"></a>安装Nacos</h2><p><strong>前提是需要一个虚拟机，本文基于CentOS 7</strong></p>
@@ -73,12 +79,6 @@
         <tag>Nacos集群配置</tag>
         <tag>Nginx反向代理</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>my-first-blog</title>
-    <url>/2020/10/27/my-first-blog/</url>
-    <content><![CDATA[<p>哒哒哒哒哒哒多</p>
-]]></content>
   </entry>
   <entry>
     <title>ubuntu 自动挂载SD卡</title>
