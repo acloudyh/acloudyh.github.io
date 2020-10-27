@@ -66,8 +66,12 @@
 </li>
 </ol>
 ]]></content>
+      <categories>
+        <category>Nacos配置</category>
+      </categories>
       <tags>
-        <tag>Nacos集群</tag>
+        <tag>Nacos集群配置</tag>
+        <tag>Nginx反向代理</tag>
       </tags>
   </entry>
   <entry>
@@ -114,5 +118,11 @@
 <li>手动指定挂在文件类型<code>mount -t ext4 /dev/mmcblk0p1 /mnt/sd</code></li>
 </ol>
 ]]></content>
+      <categories>
+        <category>Ubuntu</category>
+      </categories>
+      <tags>
+        <tag>ubuntu自动挂载SD卡</tag>
+      </tags>
   </entry>
 </search>
