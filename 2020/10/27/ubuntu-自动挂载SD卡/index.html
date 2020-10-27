@@ -20,20 +20,19 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="安装Nacos前提是需要一个虚拟机，本文基于CentOS 7  下载Nacos  下载地址  配置Nacos  创建mynacos文件夹；将tar包解压到mynacos文件夹中  配置cluster.conf   12cp cluster.conf.example cluster.confvim cluster.conf  添加以下内容(根据自己的主机ip来填   123192.168.81.12">
+  <meta name="description" content="最近开发过程中遇见了一个问题，ubuntu 16.04 自动挂载SD卡报错，mounted filesystem with ordered data mode. Opts: (null)以此记录一下  查看分区  123456789101112131415 root@ubuntu16:~# fdisk -l中间省略无关东西;主要是为了挂载 &#x2F;dev&#x2F;mmcblk0p1Disk &#x2F;dev&#x2F;mmcbl">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Nacos集群配置及Nginx反向代理">
-<meta property="og:url" content="http://example.com/2020/10/27/nacos-nginx-cluster/index.html">
+<meta property="og:title" content="ubuntu 自动挂载SD卡">
+<meta property="og:url" content="http://example.com/2020/10/27/ubuntu-%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BDSD%E5%8D%A1/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="安装Nacos前提是需要一个虚拟机，本文基于CentOS 7  下载Nacos  下载地址  配置Nacos  创建mynacos文件夹；将tar包解压到mynacos文件夹中  配置cluster.conf   12cp cluster.conf.example cluster.confvim cluster.conf  添加以下内容(根据自己的主机ip来填   123192.168.81.12">
+<meta property="og:description" content="最近开发过程中遇见了一个问题，ubuntu 16.04 自动挂载SD卡报错，mounted filesystem with ordered data mode. Opts: (null)以此记录一下  查看分区  123456789101112131415 root@ubuntu16:~# fdisk -l中间省略无关东西;主要是为了挂载 &#x2F;dev&#x2F;mmcblk0p1Disk &#x2F;dev&#x2F;mmcbl">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-10-27T12:57:19.000Z">
-<meta property="article:modified_time" content="2020-10-27T13:23:35.819Z">
+<meta property="article:published_time" content="2020-10-27T13:27:55.000Z">
+<meta property="article:modified_time" content="2020-10-27T13:31:30.028Z">
 <meta property="article:author" content="acloudyh">
-<meta property="article:tag" content="Nacos集群">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/2020/10/27/nacos-nginx-cluster/">
+<link rel="canonical" href="http://example.com/2020/10/27/ubuntu-%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BDSD%E5%8D%A1/">
 
 
 <script id="page-configurations">
@@ -46,7 +45,7 @@
   };
 </script>
 
-  <title>Nacos集群配置及Nginx反向代理 | Hexo</title>
+  <title>ubuntu 自动挂载SD卡 | Hexo</title>
   
 
 
@@ -195,7 +194,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/10/27/nacos-nginx-cluster/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/10/27/ubuntu-%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BDSD%E5%8D%A1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header-photo.jpg">
@@ -208,7 +207,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Nacos集群配置及Nginx反向代理
+          ubuntu 自动挂载SD卡
         </h1>
 
         <div class="post-meta">
@@ -219,7 +218,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-10-27 20:57:19 / 修改时间：21:23:35" itemprop="dateCreated datePublished" datetime="2020-10-27T20:57:19+08:00">2020-10-27</time>
+              <time title="创建时间：2020-10-27 21:27:55 / 修改时间：21:31:30" itemprop="dateCreated datePublished" datetime="2020-10-27T21:27:55+08:00">2020-10-27</time>
             </span>
 
           
@@ -238,8 +237,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/10/27/nacos-nginx-cluster/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/10/27/nacos-nginx-cluster/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/10/27/ubuntu-%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BDSD%E5%8D%A1/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/10/27/ubuntu-%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BDSD%E5%8D%A1/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -254,66 +253,39 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="安装Nacos"><a href="#安装Nacos" class="headerlink" title="安装Nacos"></a>安装Nacos</h2><p><strong>前提是需要一个虚拟机，本文基于CentOS 7</strong></p>
+        <p>最近开发过程中遇见了一个问题，ubuntu 16.04 自动挂载SD卡报错，<code>mounted filesystem with ordered data mode. Opts: (null)</code>以此记录一下</p>
 <ol>
-<li><p>下载Nacos</p>
-<p> <a target="_blank" rel="noopener" href="https://github.com/alibaba/nacos/releases/tag/1.3.2">下载地址</a></p>
-</li>
-<li><p>配置Nacos</p>
-<ul>
-<li><p>创建mynacos文件夹；将tar包解压到mynacos文件夹中</p>
-</li>
-<li><p>配置cluster.conf</p>
-  <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cp</span> cluster.conf.example cluster.conf</span><br><span class="line">vim cluster.conf</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>添加以下内容(根据自己的<strong>主机ip</strong>来填</p>
-  <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">192.168</span>.<span class="number">81.129</span>:<span class="number">3333</span></span><br><span class="line"><span class="number">192.168</span>.<span class="number">81.129</span>:<span class="number">4444</span></span><br><span class="line"><span class="number">192.168</span>.<span class="number">81.129</span>:<span class="number">4444</span></span><br></pre></td></tr></table></figure></li>
-<li><p>修改数据库文件,<strong>vim application.properties</strong></p>
-  <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">spring.datasource.platform=mysql</span><br><span class="line">db.num=<span class="number">1</span></span><br><span class="line">db.url.<span class="number">0</span>=jdbc:mysql://<span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">3306</span>/nacos_config?characterEncoding=utf8&amp;connectTimeout=<span class="number">1000</span>&amp;socketTimeout=<span class="number">3000</span>&amp;autoReconnect=true</span><br><span class="line">db.user=root</span><br><span class="line">db.password=<span class="number">6</span>yhn^YHN</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>关闭防火墙或者开放端口（为了省事，我关闭了和防火墙）</p>
-  <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop firewalld</span><br></pre></td></tr></table></figure>
+<li><p>查看分区</p>
+ <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line">root@ubuntu16:~<span class="comment"># fdisk -l</span></span><br><span class="line"></span><br><span class="line">中间省略无关东西;主要是为了挂载 /dev/mmcblk0p1</span><br><span class="line"></span><br><span class="line">Disk /dev/mmcblk0: <span class="number">29.7</span> GiB, <span class="number">31914983424</span> bytes, <span class="number">62333952</span> sectors</span><br><span class="line">Units: sectors of <span class="number">1</span> * <span class="number">512</span> = <span class="number">512</span> bytes</span><br><span class="line">Sector size (logical/physical): <span class="number">512</span> bytes / <span class="number">512</span> bytes</span><br><span class="line">I/O size (minimum/optimal): <span class="number">512</span> bytes / <span class="number">512</span> bytes</span><br><span class="line">Disklabel <span class="built_in">type</span>: dos</span><br><span class="line">Disk identifier: <span class="number">0</span>x00000000</span><br><span class="line"></span><br><span class="line">Device         Boot <span class="built_in">Start</span>      <span class="keyword">End</span>  Sectors  Size Id <span class="built_in">Type</span></span><br><span class="line">/dev/mmcblk0p1       <span class="number">2048</span> <span class="number">62333951</span> <span class="number">62331904</span> <span class="number">29.7</span>G <span class="number">83</span> Linux</span><br><span class="line">root@ubuntu16:~<span class="comment"># </span></span><br></pre></td></tr></table></figure>
+<p> sd卡文件格式的原先是fat32位，由于内核是裁剪版，没有fsck.vfat 修复（如果有，可以直接修复），直接将其格式化成ext4 <code>记得备份里面内容</code></p>
+<a id="more"></a></li>
+<li><p>手动挂载SD卡（ 成功 ）</p>
+ <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mount</span> /dev/mmcblk0p1 /mnt/sd/</span><br></pre></td></tr></table></figure>
+ <figure class="highlight plain"><figcaption><span>-h```查看挂载成功</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#96;&#96;&#96;powershell</span><br><span class="line">root@ubuntu16:~# df -h</span><br><span class="line">Filesystem      Size  Used Avail Use% Mounted on</span><br><span class="line">ubi0:rootfs     437M  384M   54M  88% &#x2F;</span><br><span class="line">devtmpfs        121M     0  121M   0% &#x2F;dev</span><br><span class="line">tmpfs           122M     0  122M   0% &#x2F;dev&#x2F;shm</span><br><span class="line">tmpfs           122M  1.7M  120M   2% &#x2F;run</span><br><span class="line">tmpfs           5.0M  4.0K  5.0M   1% &#x2F;run&#x2F;lock</span><br><span class="line">tmpfs           122M     0  122M   0% &#x2F;sys&#x2F;fs&#x2F;cgroup</span><br><span class="line">&#x2F;dev&#x2F;mmcblk0p1   30G  153M   28G   1% &#x2F;mnt&#x2F;sd</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-</li>
-</ul>
+<p> 手动挂载SD卡可以成功，但是自动挂载却失败了</p>
 </li>
 </ol>
-<a id="more"></a>
+<h3 id="以下自动挂载过程"><a href="#以下自动挂载过程" class="headerlink" title="以下自动挂载过程"></a>以下自动挂载过程</h3><ol>
+<li><p>修改<code>/etc/fstab</code>文件（ 失败 ）</p>
+ <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">root@ubuntu16:~<span class="comment"># vim /etc/fstab </span></span><br><span class="line"><span class="comment"># &lt;file system&gt;   &lt;dir&gt;         &lt;type&gt;    &lt;options&gt;                          &lt;dump&gt; &lt;pass&gt;</span></span><br><span class="line">/dev/mmcblk0p2    /             ext4      defaults,noatime,errors=remount<span class="literal">-ro</span>   <span class="number">0</span>      <span class="number">1</span></span><br><span class="line">/dev/mmcblk0p1    /mnt/sd          ext4      defaults                             <span class="number">0</span>      <span class="number">0</span></span><br><span class="line">~                                                                                            </span><br></pre></td></tr></table></figure>
 
-
-<ol start="3">
-<li><p>启动Nacos</p>
-<p> <strong>TIPS：因为是一台机器，所以以多个实例来设置集群，以端口区分，需要启动三个nacos；如果是多台机器那就正常一个机器起一个nacos即可</strong></p>
-<ul>
-<li><p>复制<strong>startup.sh</strong></p>
-  <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cp</span> startup.sh.bak startup<span class="literal">-3333</span>.sh</span><br><span class="line"><span class="built_in">cp</span> startup.sh.bak startup<span class="literal">-4444</span>.sh</span><br><span class="line"><span class="built_in">cp</span> startup.sh.bak startup<span class="literal">-5555</span>.sh</span><br></pre></td></tr></table></figure>
+<p> 查看dmesg日志信息，报错如下（裁剪版，连syslog也没有）</p>
+ <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">24987.953468</span>] EXT4<span class="literal">-fs</span> (mmcblk0p1): mounted filesystem with ordered <span class="keyword">data</span> mode. Opts: (null)</span><br><span class="line">[<span class="number">25051.864722</span>] EXT4<span class="literal">-fs</span> (mmcblk0p1): mounted filesystem with ordered <span class="keyword">data</span> mode. Opts: (null)</span><br><span class="line">[<span class="number">25327.264935</span>] EXT4<span class="literal">-fs</span> (mmcblk0p1): mounted filesystem with ordered <span class="keyword">data</span> mode. Opts: (null)</span><br><span class="line">[<span class="number">25392.234106</span>] EXT4<span class="literal">-fs</span> (mmcblk0p1): mounted filesystem with ordered <span class="keyword">data</span> mode. Opts: (null)</span><br><span class="line">[<span class="number">171378.249554</span>] EXT4<span class="literal">-fs</span> (mmcblk0p1): mounted filesystem with ordered <span class="keyword">data</span> mode. Opts: (null)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 </li>
-<li><p>修改<strong>vim startup-3333.sh</strong>（一个示例，4444和5555 都按照此修改）,增加-Dserver.port=3333启动时指定端口号</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># start</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$JAVA</span> <span class="variable">$</span>&#123;JAVA_OPT&#125;&quot;</span> &gt; <span class="variable">$</span>&#123;BASE_DIR&#125;/logs/start.out <span class="number">2</span>&gt;&amp;<span class="number">1</span> &amp;</span><br><span class="line">nohup <span class="variable">$JAVA</span> <span class="literal">-Dserver</span>.port=<span class="number">3333</span> <span class="variable">$</span>&#123;JAVA_OPT&#125; nacos.nacos &gt;&gt; <span class="variable">$</span>&#123;BASE_DIR&#125;/logs/start.out <span class="number">2</span>&gt;&amp;<span class="number">1</span> &amp;</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;nacos is starting，you can check the <span class="variable">$</span>&#123;BASE_DIR&#125;/logs/start.out&quot;</span></span><br></pre></td></tr></table></figure>
+<li><p>修改<code>/etc/rc.local</code>文件（ 失败 ）<br> 加入以下内容</p>
+ <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mount</span> /dev/mmcblk0p1 /mnt/sd</span><br></pre></td></tr></table></figure>
+<p> 重启之后依然报上述错误</p>
 </li>
-<li><p>启动nacos</p>
-  <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./startup<span class="literal">-3333</span>.sh</span><br><span class="line">./startup<span class="literal">-4444</span>.sh</span><br><span class="line">./startup<span class="literal">-5555</span>.sh</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
+<li><p>手动指定挂在文件类型（ 成功 ）</p>
+ <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mount</span> <span class="literal">-t</span> ext4 /dev/mmcblk0p1 /mnt/sd</span><br></pre></td></tr></table></figure>
+<p> 重启机器之后，<code>df -h</code>查看挂载成功</p>
 </li>
 </ol>
-<h2 id="安装Nginx"><a href="#安装Nginx" class="headerlink" title="安装Nginx"></a>安装Nginx</h2><p>贴个安装nginx教程，并且配置stream负载均衡 <a target="_blank" rel="noopener" href="http://xiaohost.com/2754.html">转向网址</a></p>
-<ol>
-<li><p>配置Nginx</p>
-<p> 由于我是yum安装的Nginx 配置文件 <strong>vim /etc/nginx/nginx.confg</strong></p>
-<ul>
-<li><p>设置upstream cluster</p>
-</li>
-<li><p>设置location根路径。<strong>proxy_pass <a target="_blank" rel="noopener" href="http://cluster/">http://cluster</a>;</strong></p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">#gzip  on;</span><br><span class="line">upstream cluster&#123;</span><br><span class="line">    server 192.168.81.129:3333;</span><br><span class="line">    server 192.168.81.129:4444;</span><br><span class="line">    server 192.168.81.129:5555;</span><br><span class="line">&#125;</span><br><span class="line">server &#123;</span><br><span class="line">    listen       1111;</span><br><span class="line">    server_name  localhost;</span><br><span class="line"></span><br><span class="line">    #charset koi8-r;</span><br><span class="line"></span><br><span class="line">    #access_log  logs&#x2F;host.access.log  main;</span><br><span class="line"></span><br><span class="line">    location &#x2F; &#123;</span><br><span class="line">        root   html;</span><br><span class="line">        index  index.html index.htm;</span><br><span class="line">        proxy_pass http:&#x2F;&#x2F;cluster;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>启动Nginx</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start nginx.service</span><br></pre></td></tr></table></figure></li>
-<li><p>登录查看<a target="_blank" rel="noopener" href="http://192.168.81.129:1111/nacos/#/login">http://192.168.81.129:1111/nacos/#/login</a></p>
-</li>
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><ol>
+<li>文件系统有问题，可以使用<code>fsck.XX</code>参数去修复</li>
+<li>期间也尝试了在<code>/etc/fstab</code>使用UUID 来指定，依然报错</li>
+<li>手动指定挂在文件类型<code>mount -t ext4 /dev/mmcblk0p1 /mnt/sd</code></li>
 </ol>
 
     </div>
@@ -323,9 +295,6 @@
     
 
       <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/Nacos%E9%9B%86%E7%BE%A4/" rel="tag"># Nacos集群</a>
-          </div>
 
         
 
@@ -333,8 +302,8 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/10/27/my-first-blog/" rel="prev" title="my-first-blog">
-      <i class="fa fa-chevron-left"></i> my-first-blog
+    <a href="/2020/10/27/Nacos%E9%9B%86%E7%BE%A4%E9%85%8D%E7%BD%AE%E5%8F%8ANginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/" rel="prev" title="Nacos集群配置及Nginx反向代理">
+      <i class="fa fa-chevron-left"></i> Nacos集群配置及Nginx反向代理
     </a></div>
       <div class="post-nav-item"></div>
     </div>
@@ -396,7 +365,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85Nacos"><span class="nav-number">1.</span> <span class="nav-text">安装Nacos</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85Nginx"><span class="nav-number">2.</span> <span class="nav-text">安装Nginx</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A5%E4%B8%8B%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BD%E8%BF%87%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">以下自动挂载过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F"><span class="nav-number">2.</span> <span class="nav-text">注意</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -412,7 +381,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">3</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
