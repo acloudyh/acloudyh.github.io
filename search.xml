@@ -6,4 +6,77 @@
     <content><![CDATA[<p>哒哒哒哒哒哒多</p>
 ]]></content>
   </entry>
+  <entry>
+    <title>Nacos集群配置及Nginx反向代理</title>
+    <url>/2020/10/27/nacos-nginx-cluster/</url>
+    <content><![CDATA[<h2 id="安装Nacos"><a href="#安装Nacos" class="headerlink" title="安装Nacos"></a>安装Nacos</h2><p><strong>前提是需要一个虚拟机，本文基于CentOS 7</strong></p>
+<ol>
+<li><p>下载Nacos</p>
+<p> <a href="https://github.com/alibaba/nacos/releases/tag/1.3.2">下载地址</a></p>
+</li>
+<li><p>配置Nacos</p>
+<ul>
+<li><p>创建mynacos文件夹；将tar包解压到mynacos文件夹中</p>
+</li>
+<li><p>配置cluster.conf</p>
+  <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cp</span> cluster.conf.example cluster.conf</span><br><span class="line">vim cluster.conf</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加以下内容(根据自己的<strong>主机ip</strong>来填</p>
+  <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="number">192.168</span>.<span class="number">81.129</span>:<span class="number">3333</span></span><br><span class="line"><span class="number">192.168</span>.<span class="number">81.129</span>:<span class="number">4444</span></span><br><span class="line"><span class="number">192.168</span>.<span class="number">81.129</span>:<span class="number">4444</span></span><br></pre></td></tr></table></figure></li>
+<li><p>修改数据库文件,<strong>vim application.properties</strong></p>
+  <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">spring.datasource.platform=mysql</span><br><span class="line">db.num=<span class="number">1</span></span><br><span class="line">db.url.<span class="number">0</span>=jdbc:mysql://<span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">3306</span>/nacos_config?characterEncoding=utf8&amp;connectTimeout=<span class="number">1000</span>&amp;socketTimeout=<span class="number">3000</span>&amp;autoReconnect=true</span><br><span class="line">db.user=root</span><br><span class="line">db.password=<span class="number">6</span>yhn^YHN</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>关闭防火墙或者开放端口（为了省事，我关闭了和防火墙）</p>
+  <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">systemctl stop firewalld</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ol>
+<a id="more"></a>
+
+
+<ol start="3">
+<li><p>启动Nacos</p>
+<p> <strong>TIPS：因为是一台机器，所以以多个实例来设置集群，以端口区分，需要启动三个nacos；如果是多台机器那就正常一个机器起一个nacos即可</strong></p>
+<ul>
+<li><p>复制<strong>startup.sh</strong></p>
+  <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cp</span> startup.sh.bak startup<span class="literal">-3333</span>.sh</span><br><span class="line"><span class="built_in">cp</span> startup.sh.bak startup<span class="literal">-4444</span>.sh</span><br><span class="line"><span class="built_in">cp</span> startup.sh.bak startup<span class="literal">-5555</span>.sh</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>修改<strong>vim startup-3333.sh</strong>（一个示例，4444和5555 都按照此修改）,增加-Dserver.port=3333启动时指定端口号</li>
+</ul>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="comment"># start</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$JAVA</span> <span class="variable">$</span>&#123;JAVA_OPT&#125;&quot;</span> &gt; <span class="variable">$</span>&#123;BASE_DIR&#125;/logs/start.out <span class="number">2</span>&gt;&amp;<span class="number">1</span> &amp;</span><br><span class="line">nohup <span class="variable">$JAVA</span> <span class="literal">-Dserver</span>.port=<span class="number">3333</span> <span class="variable">$</span>&#123;JAVA_OPT&#125; nacos.nacos &gt;&gt; <span class="variable">$</span>&#123;BASE_DIR&#125;/logs/start.out <span class="number">2</span>&gt;&amp;<span class="number">1</span> &amp;</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;nacos is starting，you can check the <span class="variable">$</span>&#123;BASE_DIR&#125;/logs/start.out&quot;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动nacos</p>
+  <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">./startup<span class="literal">-3333</span>.sh</span><br><span class="line">./startup<span class="literal">-4444</span>.sh</span><br><span class="line">./startup<span class="literal">-5555</span>.sh</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="安装Nginx"><a href="#安装Nginx" class="headerlink" title="安装Nginx"></a>安装Nginx</h2><p>贴个安装nginx教程，并且配置stream负载均衡 <a href="http://xiaohost.com/2754.html">转向网址</a></p>
+<ol>
+<li><p>配置Nginx</p>
+<p> 由于我是yum安装的Nginx 配置文件 <strong>vim /etc/nginx/nginx.confg</strong></p>
+<ul>
+<li><p>设置upstream cluster</p>
+<ul>
+<li><p>设置location根路径。<strong>proxy_pass <a href="http://cluster/">http://cluster</a>;</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#gzip  on;</span><br><span class="line">upstream cluster&#123;</span><br><span class="line">    server 192.168.81.129:3333;</span><br><span class="line">    server 192.168.81.129:4444;</span><br><span class="line">    server 192.168.81.129:5555;</span><br><span class="line">&#125;</span><br><span class="line">server &#123;</span><br><span class="line">    listen       1111;</span><br><span class="line">    server_name  localhost;</span><br><span class="line"></span><br><span class="line">    #charset koi8-r;</span><br><span class="line"></span><br><span class="line">    #access_log  logs&#x2F;host.access.log  main;</span><br><span class="line"></span><br><span class="line">    location &#x2F; &#123;</span><br><span class="line">        root   html;</span><br><span class="line">        index  index.html index.htm;</span><br><span class="line">        proxy_pass http:&#x2F;&#x2F;cluster;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>启动Nginx</p>
+ <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">systemctl start nginx.service</span><br></pre></td></tr></table></figure></li>
+<li><p>登录查看<a href="http://192.168.81.129:1111/nacos/#/login">http://192.168.81.129:1111/nacos/#/login</a></p>
+</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>Nacos集群,nginx</tag>
+      </tags>
+  </entry>
 </search>
