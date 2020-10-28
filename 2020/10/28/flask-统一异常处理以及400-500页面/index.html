@@ -22,15 +22,15 @@
     var CONFIG = {"hostname":"acloudyh.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="Talk is cheap. Show me the code.">
+  <meta name="description" content="在flask中如何统一处理异常以及400 500页面异常类">
 <meta property="og:type" content="article">
 <meta property="og:title" content="flask 统一异常处理以及400 500页面">
 <meta property="og:url" content="https://acloudyh.github.io/2020/10/28/flask-%E7%BB%9F%E4%B8%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E4%BB%A5%E5%8F%8A400-500%E9%A1%B5%E9%9D%A2/index.html">
 <meta property="og:site_name" content="acloudyh&#39;s Blog">
-<meta property="og:description" content="Talk is cheap. Show me the code.">
+<meta property="og:description" content="在flask中如何统一处理异常以及400 500页面异常类">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-10-28T06:37:16.000Z">
-<meta property="article:modified_time" content="2020-10-28T06:37:16.063Z">
+<meta property="article:modified_time" content="2020-10-28T09:45:06.555Z">
 <meta property="article:author" content="acloudyh">
 <meta name="twitter:card" content="summary">
 
@@ -219,8 +219,18 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2020-10-28 14:37:16" itemprop="dateCreated datePublished" datetime="2020-10-28T14:37:16+08:00">2020-10-28</time>
+              <time title="创建时间：2020-10-28 14:37:16 / 修改时间：17:45:06" itemprop="dateCreated datePublished" datetime="2020-10-28T14:37:16+08:00">2020-10-28</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Flask/" itemprop="url" rel="index"><span itemprop="name">Flask</span></a>
+                </span>
             </span>
 
           
@@ -250,14 +260,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>0</span>
+              <span>1.7k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>2 分钟</span>
             </span>
 
         </div>
@@ -269,7 +279,17 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        
+        <h3 id="在flask中如何统一处理异常以及400-500页面"><a href="#在flask中如何统一处理异常以及400-500页面" class="headerlink" title="在flask中如何统一处理异常以及400 500页面"></a>在flask中如何统一处理异常以及400 500页面</h3><h4 id="异常类"><a href="#异常类" class="headerlink" title="异常类"></a>异常类</h4><a id="more"></a>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="comment"># Author  : Yang Hao</span></span><br><span class="line"><span class="comment"># File    : exception_common.py</span></span><br><span class="line"><span class="comment"># Software: PyCharm</span></span><br><span class="line"><span class="comment"># Time    : 2020/3/30 17:35</span></span><br><span class="line"><span class="comment"># Description:</span></span><br><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> jsonify, render_template</span><br><span class="line"><span class="keyword">from</span> app <span class="keyword">import</span> app</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ExceptionCommon</span>(<span class="params">Exception</span>):</span></span><br><span class="line">    <span class="comment"># 默认的返回码</span></span><br><span class="line">    status_code = <span class="number">400</span></span><br><span class="line">    <span class="comment"># 可以自己定义return_code</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, message=<span class="literal">None</span>, status_code=<span class="literal">None</span>, payload=<span class="literal">None</span></span>):</span></span><br><span class="line">        Exception.__init__(self)</span><br><span class="line">        self.message = message</span><br><span class="line">        <span class="keyword">if</span> status_code <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            self.status_code = status_code</span><br><span class="line">        self.payload = payload</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 构造要返回的错误代码和错误信息的 dict</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">to_dict</span>(<span class="params">self</span>):</span></span><br><span class="line">        rv = <span class="built_in">dict</span>(self.payload <span class="keyword">or</span> ())</span><br><span class="line">        rv[<span class="string">&#x27;status_code&#x27;</span>] = self.status_code</span><br><span class="line">        rv[<span class="string">&#x27;message&#x27;</span>] = self.message</span><br><span class="line">        <span class="keyword">return</span> rv</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.errorhandler(ExceptionCommon)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">handle_invalid_usage</span>(<span class="params">error</span>):</span></span><br><span class="line">    response = jsonify(error.to_dict())</span><br><span class="line">    response.status_code = error.status_code</span><br><span class="line">    <span class="keyword">return</span> response</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.errorhandler(500)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">handle_500</span>(<span class="params">e</span>):</span></span><br><span class="line">    <span class="keyword">return</span> render_template(<span class="string">&#x27;500.html&#x27;</span>), <span class="number">404</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.errorhandler(404)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">page_not_found</span>(<span class="params">e</span>):</span></span><br><span class="line">    <span class="keyword">return</span> render_template(<span class="string">&#x27;404.html&#x27;</span>), <span class="number">404</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@auth.route(&#x27;/logout&#x27;, methods=(&#x27;GET&#x27;, &#x27;POST&#x27;))</span></span><br><span class="line"><span class="meta">@login_required</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">logout</span>():</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    注销登录,解除会话 logout_user()</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    xxx</span><br><span class="line">    <span class="keyword">raise</span> ExceptionCommon(<span class="string">&quot;错误原因&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> redirect(url_for(<span class="string">&quot;auth.login&quot;</span>))</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="在整个web项目中使用"><a href="#在整个web项目中使用" class="headerlink" title="在整个web项目中使用"></a>在整个web项目中使用</h4><p>上述<code>@app.errorhandler</code>        这个errorhandler处理器注册在app上，只能对app使用</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.errorhandler(ExceptionCommon)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">handle_invalid_usage</span>(<span class="params">error</span>):</span></span><br><span class="line">    response = jsonify(error.to_dict())</span><br><span class="line">    response.status_code = error.status_code</span><br><span class="line">    <span class="keyword">return</span> response</span><br></pre></td></tr></table></figure>
+
+<p>修改为以下内容<code>@comm.app_errorhandler</code>需要注册comm的蓝本</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@comm.app_errorhandler(ExceptionCommon)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">handle_invalid_usage</span>(<span class="params">error</span>):</span></span><br><span class="line">    response = jsonify(error.to_dict())</span><br><span class="line">    response.status_code = error.status_code</span><br><span class="line">    <span class="keyword">return</span> response</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -367,6 +387,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8flask%E4%B8%AD%E5%A6%82%E4%BD%95%E7%BB%9F%E4%B8%80%E5%A4%84%E7%90%86%E5%BC%82%E5%B8%B8%E4%BB%A5%E5%8F%8A400-500%E9%A1%B5%E9%9D%A2"><span class="nav-number">1.</span> <span class="nav-text">在flask中如何统一处理异常以及400 500页面</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%82%E5%B8%B8%E7%B1%BB"><span class="nav-number">1.1.</span> <span class="nav-text">异常类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8"><span class="nav-number">1.2.</span> <span class="nav-text">如何使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9C%A8%E6%95%B4%E4%B8%AAweb%E9%A1%B9%E7%9B%AE%E4%B8%AD%E4%BD%BF%E7%94%A8"><span class="nav-number">1.3.</span> <span class="nav-text">在整个web项目中使用</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -389,13 +410,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -443,13 +464,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">4k</span>
+    <span title="站点总字数">9k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">3 分钟</span>
+    <span title="站点阅读时长">8 分钟</span>
 </div>
 
 
