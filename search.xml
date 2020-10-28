@@ -124,7 +124,31 @@
   <entry>
     <title>Ubuntu 16.04 使用root ssh登录</title>
     <url>/2020/10/28/Ubuntu-16-04-%E4%BD%BF%E7%94%A8root-ssh%E7%99%BB%E5%BD%95/</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<p><strong>如果你只是想登陆别的机器的SSH只需要安装openssh-client（ubuntu有默认安装，如果没有则sudoapt-get install openssh-client），如果要使本机开放SSH服务就需要安装openssh-server。</strong></p>
+<a id="more"></a>
+<ol>
+<li><p>安装openssh-server</p>
+ <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt-get install openssh-server</span><br></pre></td></tr></table></figure></li>
+<li><p>修改 root 密码</p>
+ <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo passwd root</span><br></pre></td></tr></table></figure></li>
+<li><p>修改配置文件</p>
+ <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo vi &#x2F;etc&#x2F;ssh&#x2F;sshd_config</span><br></pre></td></tr></table></figure>
+
+<p> 找到下面相关配置：</p>
+ <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># Authentication:</span><br><span class="line">LoginGraceTime 120</span><br><span class="line">PermitRootLogin prohibit-password</span><br><span class="line">StrictModes yes</span><br></pre></td></tr></table></figure>
+<p> 更改为：</p>
+ <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># Authentication:</span><br><span class="line">LoginGraceTime 120</span><br><span class="line">#PermitRootLogin prohibit-password</span><br><span class="line">PermitRootLogin yes</span><br><span class="line">StrictModes yes</span><br></pre></td></tr></table></figure></li>
+<li><p>重启ssh</p>
+ <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo service ssh restart</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Ubuntu</category>
+      </categories>
+      <tags>
+        <tag>Ubuntu</tag>
+      </tags>
   </entry>
   <entry>
     <title>Ubuntu server 如何升级内核</title>
@@ -155,7 +179,44 @@
   <entry>
     <title>Ubuntu 更换apt源、pip3源</title>
     <url>/2020/10/28/Ubuntu-%E6%9B%B4%E6%8D%A2apt%E6%BA%90%E3%80%81pip3%E6%BA%90/</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<p>Ubuntu终端下载速度过慢问题</p>
+<a id="more"></a>
+<h2 id="ubuntu-更换apt源"><a href="#ubuntu-更换apt源" class="headerlink" title="ubuntu 更换apt源"></a>ubuntu 更换apt源</h2><ol>
+<li><p>切换root </p>
+ <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo su -</span><br></pre></td></tr></table></figure></li>
+<li><p>备份源文件</p>
+ <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cd &#x2F;etc&#x2F;apt</span><br><span class="line">mv  sources.list sources.list_bak</span><br></pre></td></tr></table></figure></li>
+<li><p>新建sources.list </p>
+ <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">vim sources.list </span><br></pre></td></tr></table></figure>
+<p>拷贝以下内容</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># deb cdrom:[Ubuntu 16.04 LTS _Xenial Xerus_ - Release amd64 (20160420.1)]&#x2F; xenial main restricted</span><br><span class="line">deb-src http:&#x2F;&#x2F;archive.ubuntu.com&#x2F;ubuntu xenial main restricted #Added by software-properties</span><br><span class="line">deb http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; xenial main restricted</span><br><span class="line">deb-src http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; xenial main restricted multiverse universe #Added by software-properties</span><br><span class="line">deb http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; xenial-updates main restricted</span><br><span class="line">deb-src http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; xenial-updates main restricted multiverse universe #Added by software-properties</span><br><span class="line">deb http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; xenial universe</span><br><span class="line">deb http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; xenial-updates universe</span><br><span class="line">deb http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; xenial multiverse</span><br><span class="line">deb http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; xenial-updates multiverse</span><br><span class="line">deb http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; xenial-backports main restricted universe multiverse</span><br><span class="line">deb-src http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; xenial-backports main restricted universe multiverse #Added by software-properties</span><br><span class="line">deb http:&#x2F;&#x2F;archive.canonical.com&#x2F;ubuntu xenial partner</span><br><span class="line">deb-src http:&#x2F;&#x2F;archive.canonical.com&#x2F;ubuntu xenial partner</span><br><span class="line">deb http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; xenial-security main restricted</span><br><span class="line">deb-src http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; xenial-security main restricted multiverse universe #Added by software-properties</span><br><span class="line">deb http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; xenial-security universe</span><br><span class="line">deb http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; xenial-security multiverse</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+<ol start="4">
+<li>更新配置 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="ubuntu-更换pip3源"><a href="#ubuntu-更换pip3源" class="headerlink" title="ubuntu 更换pip3源"></a>ubuntu 更换pip3源</h2><ol>
+<li><p>切换root</p>
+ <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo su -</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装pip3</p>
+ <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">apt install python3-pip</span><br></pre></td></tr></table></figure></li>
+<li><p>创建文件</p>
+ <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mkdir ~&#x2F;.pip</span><br><span class="line"></span><br><span class="line">vim ~&#x2F;.pip&#x2F;pip.conf</span><br></pre></td></tr></table></figure></li>
+<li><p>拷贝以下内容</p>
+ <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[global]</span><br><span class="line">index-url &#x3D; https:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;pypi&#x2F;simple</span><br></pre></td></tr></table></figure></li>
+</ol>
+]]></content>
+      <categories>
+        <category>Ubuntu</category>
+      </categories>
+      <tags>
+        <tag>Ubuntu</tag>
+      </tags>
   </entry>
   <entry>
     <title>fasterxml中string字符串转对象json格式单引号错误</title>
@@ -311,27 +372,6 @@
       </tags>
   </entry>
   <entry>
-    <title>springboot websocket 注入bean失败</title>
-    <url>/2020/10/28/springboot-websocket-%E6%B3%A8%E5%85%A5bean%E5%A4%B1%E8%B4%A5/</url>
-    <content><![CDATA[<p>踩坑记录</p>
-<a id="more"></a>
-<p>第一种方式：将messageService 注入</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@ServerEndpoint(value &#x3D; &quot;&#x2F;websocket&quot;)</span><br><span class="line">@Component</span><br><span class="line">public class WebSocketServer &#123;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;这里使用静态，让 service 属于类</span><br><span class="line">    public static MessageServiceImpl messageService;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 给类的service 注入</span><br><span class="line">     * spring管理的都是单例（singleton）和 websocket （多对象）相冲突</span><br><span class="line">     *</span><br><span class="line">     * @param messageService</span><br><span class="line">     *&#x2F;</span><br><span class="line">    @Autowired</span><br><span class="line">    public void setMessageService(MessageServiceImpl messageService) &#123;</span><br><span class="line">        WebSocketServer.messageService &#x3D; messageService;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>第二种方式<br>或者将</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@Autowired</span><br><span class="line">    public void setMessageService(MessageServiceImpl messageService) &#123;</span><br><span class="line">        WebSocketServer.messageService &#x3D; messageService;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p>写在<strong>websocketConfig</strong>中</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@Configuration</span><br><span class="line">public class WebSocketConfig &#123;</span><br><span class="line"></span><br><span class="line">    @Bean</span><br><span class="line">    public ServerEndpointExporter serverEndpointExporter() &#123;</span><br><span class="line">        return new ServerEndpointExporter();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     *手动注入一个全局变量</span><br><span class="line">     * @param messageService</span><br><span class="line">     *&#x2F;</span><br><span class="line">    @Autowired</span><br><span class="line">    public void setMessageService(MessageServiceImpl messageService) &#123;</span><br><span class="line">        WebSocketServer.messageService &#x3D; messageService;</span><br><span class="line">    &#125;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>踩坑</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>ubuntu 16.04  pptp搭建服务端和客户端</title>
     <url>/2020/10/28/ubuntu-16-04-pptp%E6%90%AD%E5%BB%BA%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%92%8C%E5%AE%A2%E6%88%B7%E7%AB%AF/</url>
     <content><![CDATA[<p>本文主要是记录ubuntu 16.04安装pptp 服务端以及客户端的过程</p>
@@ -406,8 +446,29 @@
         <category>pptp</category>
       </categories>
       <tags>
-        <tag>pptp</tag>
         <tag>Ubuntu</tag>
+        <tag>pptp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>springboot websocket 注入bean失败</title>
+    <url>/2020/10/28/springboot-websocket-%E6%B3%A8%E5%85%A5bean%E5%A4%B1%E8%B4%A5/</url>
+    <content><![CDATA[<p>踩坑记录</p>
+<a id="more"></a>
+<p>第一种方式：将messageService 注入</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@ServerEndpoint(value &#x3D; &quot;&#x2F;websocket&quot;)</span><br><span class="line">@Component</span><br><span class="line">public class WebSocketServer &#123;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;这里使用静态，让 service 属于类</span><br><span class="line">    public static MessageServiceImpl messageService;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 给类的service 注入</span><br><span class="line">     * spring管理的都是单例（singleton）和 websocket （多对象）相冲突</span><br><span class="line">     *</span><br><span class="line">     * @param messageService</span><br><span class="line">     *&#x2F;</span><br><span class="line">    @Autowired</span><br><span class="line">    public void setMessageService(MessageServiceImpl messageService) &#123;</span><br><span class="line">        WebSocketServer.messageService &#x3D; messageService;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>第二种方式<br>或者将</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@Autowired</span><br><span class="line">    public void setMessageService(MessageServiceImpl messageService) &#123;</span><br><span class="line">        WebSocketServer.messageService &#x3D; messageService;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>写在<strong>websocketConfig</strong>中</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@Configuration</span><br><span class="line">public class WebSocketConfig &#123;</span><br><span class="line"></span><br><span class="line">    @Bean</span><br><span class="line">    public ServerEndpointExporter serverEndpointExporter() &#123;</span><br><span class="line">        return new ServerEndpointExporter();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     *手动注入一个全局变量</span><br><span class="line">     * @param messageService</span><br><span class="line">     *&#x2F;</span><br><span class="line">    @Autowired</span><br><span class="line">    public void setMessageService(MessageServiceImpl messageService) &#123;</span><br><span class="line">        WebSocketServer.messageService &#x3D; messageService;</span><br><span class="line">    &#125;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>踩坑</tag>
       </tags>
   </entry>
 </search>
