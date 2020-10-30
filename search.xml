@@ -151,36 +151,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Ubuntu server 如何升级内核</title>
-    <url>/2020/10/28/Ubuntu-server-%E5%A6%82%E4%BD%95%E5%8D%87%E7%BA%A7%E5%86%85%E6%A0%B8/</url>
-    <content><![CDATA[<h3 id="查看目前内核"><a href="#查看目前内核" class="headerlink" title="查看目前内核"></a>查看目前内核</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">root@ubuntu:~# uname -sr</span><br><span class="line">Linux 4.4.0-142-generic</span><br></pre></td></tr></table></figure>
-<h3 id="开始升级内核"><a href="#开始升级内核" class="headerlink" title="开始升级内核"></a>开始升级内核</h3> <a id="more"></a>
-
-<p><a href="http://kernel.ubuntu.com/~kernel-ppa/mainline/">官网镜像</a><br>选择所需要的版本下载(<em>命令下载很慢，建议直接复制连接到浏览器中直接下载</em>);随便找个目录下载下列文件 </p>
-<p><strong>64位版本</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ wget http:&#x2F;&#x2F;kernel.ubuntu.com&#x2F;~kernel-ppa&#x2F;mainline&#x2F;v4.10.1&#x2F;linux-headers-4.10.1-041001_4.10.1-041001.201702260735_all.deb </span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ wget http:&#x2F;&#x2F;kernel.ubuntu.com&#x2F;~kernel-ppa&#x2F;mainline&#x2F;v4.10.1&#x2F;linux-headers-4.10.1-041001-generic_4.10.1-041001.201702260735_amd64.deb </span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ wget http:&#x2F;&#x2F;kernel.ubuntu.com&#x2F;~kernel-ppa&#x2F;mainline&#x2F;v4.10.1&#x2F;linux-image-4.10.1-041001-generic_4.10.1-041001.201702260735_amd64.deb </span><br></pre></td></tr></table></figure>
-
-<p><strong>32位版本</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ wget http:&#x2F;&#x2F;kernel.ubuntu.com&#x2F;~kernel-ppa&#x2F;mainline&#x2F;v4.10.1&#x2F;linux-headers-4.10.1-041001_4.10.1-041001.201702260735_all.deb </span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ wget http:&#x2F;&#x2F;kernel.ubuntu.com&#x2F;~kernel-ppa&#x2F;mainline&#x2F;v4.10.1&#x2F;linux-headers-4.10.1-041001-generic_4.10.1-041001.201702260735_i386.deb </span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ wget http:&#x2F;&#x2F;kernel.ubuntu.com&#x2F;~kernel-ppa&#x2F;mainline&#x2F;v4.10.1&#x2F;linux-image-4.10.1-041001-generic_4.10.1-041001.201702260735_i386.deb</span><br></pre></td></tr></table></figure>
-<h3 id="开始解压安装"><a href="#开始解压安装" class="headerlink" title="开始解压安装"></a>开始解压安装</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ sudo dpkg -i *.deb</span><br></pre></td></tr></table></figure>
-
-<p>如下图</p>
-<p><img src="https://res.cloudinary.com/dkptw3xiz/image/upload/v1603874217/ubuntu-server_hyrt7u.png"></p>
-<p>安装完成后，重启服务器并验证是否更新新的内核</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">root@ubuntu:~# uname -sr</span><br><span class="line">Linux 4.10.1-041001-generic</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Ubuntu</category>
-      </categories>
-  </entry>
-  <entry>
     <title>Ubuntu 更换apt源、pip3源</title>
     <url>/2020/10/28/Ubuntu-%E6%9B%B4%E6%8D%A2apt%E6%BA%90%E3%80%81pip3%E6%BA%90/</url>
     <content><![CDATA[<p>Ubuntu终端下载速度过慢问题</p>
@@ -221,6 +191,36 @@
       <tags>
         <tag>Ubuntu</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Ubuntu server 如何升级内核</title>
+    <url>/2020/10/28/Ubuntu-server-%E5%A6%82%E4%BD%95%E5%8D%87%E7%BA%A7%E5%86%85%E6%A0%B8/</url>
+    <content><![CDATA[<h3 id="查看目前内核"><a href="#查看目前内核" class="headerlink" title="查看目前内核"></a>查看目前内核</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">root@ubuntu:~# uname -sr</span><br><span class="line">Linux 4.4.0-142-generic</span><br></pre></td></tr></table></figure>
+<h3 id="开始升级内核"><a href="#开始升级内核" class="headerlink" title="开始升级内核"></a>开始升级内核</h3> <a id="more"></a>
+
+<p><a href="http://kernel.ubuntu.com/~kernel-ppa/mainline/">官网镜像</a><br>选择所需要的版本下载(<em>命令下载很慢，建议直接复制连接到浏览器中直接下载</em>);随便找个目录下载下列文件 </p>
+<p><strong>64位版本</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ wget http:&#x2F;&#x2F;kernel.ubuntu.com&#x2F;~kernel-ppa&#x2F;mainline&#x2F;v4.10.1&#x2F;linux-headers-4.10.1-041001_4.10.1-041001.201702260735_all.deb </span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ wget http:&#x2F;&#x2F;kernel.ubuntu.com&#x2F;~kernel-ppa&#x2F;mainline&#x2F;v4.10.1&#x2F;linux-headers-4.10.1-041001-generic_4.10.1-041001.201702260735_amd64.deb </span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ wget http:&#x2F;&#x2F;kernel.ubuntu.com&#x2F;~kernel-ppa&#x2F;mainline&#x2F;v4.10.1&#x2F;linux-image-4.10.1-041001-generic_4.10.1-041001.201702260735_amd64.deb </span><br></pre></td></tr></table></figure>
+
+<p><strong>32位版本</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ wget http:&#x2F;&#x2F;kernel.ubuntu.com&#x2F;~kernel-ppa&#x2F;mainline&#x2F;v4.10.1&#x2F;linux-headers-4.10.1-041001_4.10.1-041001.201702260735_all.deb </span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ wget http:&#x2F;&#x2F;kernel.ubuntu.com&#x2F;~kernel-ppa&#x2F;mainline&#x2F;v4.10.1&#x2F;linux-headers-4.10.1-041001-generic_4.10.1-041001.201702260735_i386.deb </span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ wget http:&#x2F;&#x2F;kernel.ubuntu.com&#x2F;~kernel-ppa&#x2F;mainline&#x2F;v4.10.1&#x2F;linux-image-4.10.1-041001-generic_4.10.1-041001.201702260735_i386.deb</span><br></pre></td></tr></table></figure>
+<h3 id="开始解压安装"><a href="#开始解压安装" class="headerlink" title="开始解压安装"></a>开始解压安装</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ sudo dpkg -i *.deb</span><br></pre></td></tr></table></figure>
+
+<p>如下图</p>
+<p><img src="https://res.cloudinary.com/dkptw3xiz/image/upload/v1603874217/ubuntu-server_hyrt7u.png"></p>
+<p>安装完成后，重启服务器并验证是否更新新的内核</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">root@ubuntu:~# uname -sr</span><br><span class="line">Linux 4.10.1-041001-generic</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Ubuntu</category>
+      </categories>
   </entry>
   <entry>
     <title>fasterxml中string字符串转对象json格式单引号错误</title>
@@ -443,10 +443,13 @@
 
 <h2 id="客户端配置"><a href="#客户端配置" class="headerlink" title="客户端配置"></a>客户端配置</h2><p>在另一个服务器（本文是用的是两个虚拟机）中执行以下内容</p>
 <h3 id="安装pptp客户端"><a href="#安装pptp客户端" class="headerlink" title="安装pptp客户端"></a>安装pptp客户端</h3><figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">sudo apt<span class="literal">-get</span> install pptp<span class="literal">-linux</span></span><br></pre></td></tr></table></figure>
+
 <h3 id="初始化一个连接通道：mypptp"><a href="#初始化一个连接通道：mypptp" class="headerlink" title="初始化一个连接通道：mypptp"></a>初始化一个连接通道：mypptp</h3><p>使用服务端设置的账号密码<code>neo/6yhn^YHN</code></p>
 <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">sudo pptpsetup -<span class="literal">-create</span> mypptp -<span class="literal">-server</span> xxx.xxx.xxx.xxx -<span class="literal">-username</span> neo -<span class="literal">-password</span> <span class="number">6</span>yhn^YHN -<span class="literal">-encrypt</span> -<span class="literal">-start</span></span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plain"><figcaption><span>mypptp服务端的ip地址 根据实际情况填写（以下示例）</span></figcaption><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">&#96;&#96;&#96;powershell</span><br><span class="line">root@ubuntu:~# sudo pptpsetup --create mypptp --server 172.31.1.112 --username neo --password 6yhn^YHN --encrypt --start</span><br><span class="line">Using interface ppp0</span><br><span class="line">Connect: ppp0 &lt;--&gt; &#x2F;dev&#x2F;pts&#x2F;2</span><br><span class="line"></span><br><span class="line">CHAP authentication succeeded</span><br><span class="line">MPPE 128-bit stateless compression enabled</span><br><span class="line">local  IP address 192.168.0.234</span><br><span class="line">remote IP address 192.168.0.1</span><br><span class="line">root@ubuntu:~# </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><strong>xxx.xxx.xxx.xxx</strong> 是pptp mypptp服务端的ip地址 根据实际情况填写<br>（以下示例）</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">root@ubuntu:~# sudo pptpsetup --create mypptp --server 172.31.1.112 --username neo --password 6yhn^YHN --encrypt --start</span><br><span class="line">Using interface ppp0</span><br><span class="line">Connect: ppp0 &lt;--&gt; &#x2F;dev&#x2F;pts&#x2F;2</span><br><span class="line"></span><br><span class="line">CHAP authentication succeeded</span><br><span class="line">MPPE 128-bit stateless compression enabled</span><br><span class="line">local  IP address 192.168.0.234</span><br><span class="line">remote IP address 192.168.0.1</span><br><span class="line">root@ubuntu:~# </span><br></pre></td></tr></table></figure>
+
 
 <h3 id="查看连接是否成功"><a href="#查看连接是否成功" class="headerlink" title="查看连接是否成功"></a>查看连接是否成功</h3><figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">root@ubuntu:~<span class="comment"># ip addr show</span></span><br><span class="line"><span class="number">1</span>: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu <span class="number">65536</span> qdisc noqueue state UNKNOWN <span class="built_in">group</span> default qlen <span class="number">1</span></span><br><span class="line">    link/loopback <span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span> brd <span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span></span><br><span class="line">    inet <span class="number">127.0</span>.<span class="number">0.1</span>/<span class="number">8</span> scope host lo</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">    inet6 ::<span class="number">1</span>/<span class="number">128</span> scope host </span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line"><span class="number">2</span>: ens33: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="number">1500</span> qdisc pfifo_fast state UP <span class="built_in">group</span> default qlen <span class="number">1000</span></span><br><span class="line">    link/ether <span class="number">00</span>:<span class="number">0</span>c:<span class="number">29</span>:xx:<span class="number">86</span>:<span class="number">5</span>f brd ff:ff:ff:ff:ff:ff</span><br><span class="line">    inet .<span class="number">31.1</span>.<span class="number">113</span>/<span class="number">24</span> brd xxx.<span class="number">31.1</span>.<span class="number">2</span>xxx5 scope global ens33</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">    inet6 fxx0::<span class="number">20</span>c:<span class="number">29</span>ff:fxx3e:<span class="number">8</span>xxf/<span class="number">64</span> scope link </span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line"><span class="number">8</span>: ppp0: &lt;POINTOPOINT,MULTICAST,NOARP,UP,LOWER_UP&gt; mtu <span class="number">1496</span> qdisc pfifo_fast state UNKNOWN <span class="built_in">group</span> default qlen <span class="number">3</span></span><br><span class="line">    link/ppp </span><br><span class="line">    inet <span class="number">192.168</span>.<span class="number">0.234</span> peer <span class="number">192.168</span>.<span class="number">0.1</span>/<span class="number">32</span> scope global ppp0</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">root@ubuntu:~<span class="comment"># </span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
