@@ -151,32 +151,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Ubuntu server 如何升级内核</title>
-    <url>/2020/10/28/Ubuntu-server-%E5%A6%82%E4%BD%95%E5%8D%87%E7%BA%A7%E5%86%85%E6%A0%B8/</url>
-    <content><![CDATA[<h3 id="查看目前内核"><a href="#查看目前内核" class="headerlink" title="查看目前内核"></a>查看目前内核</h3><pre><code><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">root@ubuntu:~# uname -sr</span><br><span class="line">Linux 4.4.0-142-generic</span><br></pre></td></tr></table></figure></code></pre>
-<h3 id="开始升级内核"><a href="#开始升级内核" class="headerlink" title="开始升级内核"></a>开始升级内核</h3> <a id="more"></a>
-
-<p><a href="http://kernel.ubuntu.com/~kernel-ppa/mainline/">官网镜像</a><br>选择所需要的版本下载(<em>命令下载很慢，建议直接复制连接到浏览器中直接下载</em>);随便找个目录下载下列文件 </p>
-<p><strong>64位版本</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ wget http:&#x2F;&#x2F;kernel.ubuntu.com&#x2F;~kernel-ppa&#x2F;mainline&#x2F;v4.10.1&#x2F;linux-headers-4.10.1-041001_4.10.1-041001.201702260735_all.deb </span><br><span class="line">&#96;&#96;&#96;	</span><br></pre></td></tr></table></figure>
-<p>$ wget <a href="http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.10.1/linux-headers-4.10.1-041001-generic_4.10.1-041001.201702260735_amd64.deb">http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.10.1/linux-headers-4.10.1-041001-generic_4.10.1-041001.201702260735_amd64.deb</a> </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#96;&#96;&#96;</span><br><span class="line">$ wget http:&#x2F;&#x2F;kernel.ubuntu.com&#x2F;~kernel-ppa&#x2F;mainline&#x2F;v4.10.1&#x2F;linux-image-4.10.1-041001-generic_4.10.1-041001.201702260735_amd64.deb </span><br></pre></td></tr></table></figure>
-
-<p><strong>32位版本</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ wget http:&#x2F;&#x2F;kernel.ubuntu.com&#x2F;~kernel-ppa&#x2F;mainline&#x2F;v4.10.1&#x2F;linux-headers-4.10.1-041001_4.10.1-041001.201702260735_all.deb </span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ wget http:&#x2F;&#x2F;kernel.ubuntu.com&#x2F;~kernel-ppa&#x2F;mainline&#x2F;v4.10.1&#x2F;linux-headers-4.10.1-041001-generic_4.10.1-041001.201702260735_i386.deb </span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ wget http:&#x2F;&#x2F;kernel.ubuntu.com&#x2F;~kernel-ppa&#x2F;mainline&#x2F;v4.10.1&#x2F;linux-image-4.10.1-041001-generic_4.10.1-041001.201702260735_i386.deb</span><br></pre></td></tr></table></figure>
-<h3 id="开始解压安装"><a href="#开始解压安装" class="headerlink" title="开始解压安装"></a>开始解压安装</h3><pre><code><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ sudo dpkg -i *.deb</span><br></pre></td></tr></table></figure></code></pre>
-<p>如下图</p>
-<p><img src="https://res.cloudinary.com/dkptw3xiz/image/upload/v1603874217/ubuntu-server_hyrt7u.png"></p>
-<p>安装完成后，重启服务器并验证是否更新新的内核</p>
-<pre><code><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">root@ubuntu:~# uname -sr</span><br><span class="line">Linux 4.10.1-041001-generic</span><br></pre></td></tr></table></figure></code></pre>
-]]></content>
-      <categories>
-        <category>Ubuntu</category>
-      </categories>
-  </entry>
-  <entry>
     <title>Ubuntu 更换apt源、pip3源</title>
     <url>/2020/10/28/Ubuntu-%E6%9B%B4%E6%8D%A2apt%E6%BA%90%E3%80%81pip3%E6%BA%90/</url>
     <content><![CDATA[<p>Ubuntu终端下载速度过慢问题</p>
@@ -219,79 +193,30 @@
       </tags>
   </entry>
   <entry>
-    <title>fasterxml中string字符串转对象json格式单引号错误</title>
-    <url>/2020/10/28/fasterxml%E4%B8%ADstring%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E5%AF%B9%E8%B1%A1json%E6%A0%BC%E5%BC%8F%E5%8D%95%E5%BC%95%E5%8F%B7%E9%94%99%E8%AF%AF/</url>
-    <content><![CDATA[<p>在处理fasterxml中string字符串转对象json格式，标准的json都是双引号 （” “）;由于数据是单引号(‘ ‘)格式。导致了如下报错，特此记录</p>
-<p><strong>com.fasterxml.jackson.core.JsonParseException:  Unexpected character (‘s’ (code 115)): was     expecting double-quote to start field name</strong></p>
-<a id="more"></a>
+    <title>Ubuntu server 如何升级内核</title>
+    <url>/2020/10/28/Ubuntu-server-%E5%A6%82%E4%BD%95%E5%8D%87%E7%BA%A7%E5%86%85%E6%A0%B8/</url>
+    <content><![CDATA[<h3 id="查看目前内核"><a href="#查看目前内核" class="headerlink" title="查看目前内核"></a>查看目前内核</h3><pre><code><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">root@ubuntu:~# uname -sr</span><br><span class="line">Linux 4.4.0-142-generic</span><br></pre></td></tr></table></figure></code></pre>
+<h3 id="开始升级内核"><a href="#开始升级内核" class="headerlink" title="开始升级内核"></a>开始升级内核</h3> <a id="more"></a>
 
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">com.fasterxml.jackson.databind.ObjectMapper </span><br><span class="line">mapper &#x3D; new ObjectMapper();</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;增加这行配置</span><br><span class="line">&#x2F;&#x2F;允许使用单引号，默认是false </span><br><span class="line">mapper.configure(Feature.ALLOW_SINGLE_QUOTES, true);</span><br><span class="line"></span><br><span class="line">mapper.readValue(payload, bean.class);</span><br></pre></td></tr></table></figure>
+<p><a href="http://kernel.ubuntu.com/~kernel-ppa/mainline/">官网镜像</a><br>选择所需要的版本下载(<em>命令下载很慢，建议直接复制连接到浏览器中直接下载</em>);随便找个目录下载下列文件 </p>
+<p><strong>64位版本</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ wget http:&#x2F;&#x2F;kernel.ubuntu.com&#x2F;~kernel-ppa&#x2F;mainline&#x2F;v4.10.1&#x2F;linux-headers-4.10.1-041001_4.10.1-041001.201702260735_all.deb </span><br><span class="line">&#96;&#96;&#96;	</span><br></pre></td></tr></table></figure>
+<p>$ wget <a href="http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.10.1/linux-headers-4.10.1-041001-generic_4.10.1-041001.201702260735_amd64.deb">http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.10.1/linux-headers-4.10.1-041001-generic_4.10.1-041001.201702260735_amd64.deb</a> </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#96;&#96;&#96;</span><br><span class="line">$ wget http:&#x2F;&#x2F;kernel.ubuntu.com&#x2F;~kernel-ppa&#x2F;mainline&#x2F;v4.10.1&#x2F;linux-image-4.10.1-041001-generic_4.10.1-041001.201702260735_amd64.deb </span><br></pre></td></tr></table></figure>
 
-<p>除了<strong>ALLOW_UNQUOTED_FIELD_NAMES，ALLOW_SINGLE_QUOTES</strong>还有其它的设置，有用到试试。</p>
+<p><strong>32位版本</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ wget http:&#x2F;&#x2F;kernel.ubuntu.com&#x2F;~kernel-ppa&#x2F;mainline&#x2F;v4.10.1&#x2F;linux-headers-4.10.1-041001_4.10.1-041001.201702260735_all.deb </span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ wget http:&#x2F;&#x2F;kernel.ubuntu.com&#x2F;~kernel-ppa&#x2F;mainline&#x2F;v4.10.1&#x2F;linux-headers-4.10.1-041001-generic_4.10.1-041001.201702260735_i386.deb </span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ wget http:&#x2F;&#x2F;kernel.ubuntu.com&#x2F;~kernel-ppa&#x2F;mainline&#x2F;v4.10.1&#x2F;linux-image-4.10.1-041001-generic_4.10.1-041001.201702260735_i386.deb</span><br></pre></td></tr></table></figure>
+<h3 id="开始解压安装"><a href="#开始解压安装" class="headerlink" title="开始解压安装"></a>开始解压安装</h3><pre><code><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ sudo dpkg -i *.deb</span><br></pre></td></tr></table></figure></code></pre>
+<p>如下图</p>
+<p><img src="https://res.cloudinary.com/dkptw3xiz/image/upload/v1603874217/ubuntu-server_hyrt7u.png"></p>
+<p>安装完成后，重启服务器并验证是否更新新的内核</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">root@ubuntu:~# uname -sr</span><br><span class="line">Linux 4.10.1-041001-generic</span><br></pre></td></tr></table></figure></code></pre>
 ]]></content>
       <categories>
-        <category>Java</category>
+        <category>Ubuntu</category>
       </categories>
-      <tags>
-        <tag>踩坑</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>flask 统一异常处理以及400 500页面</title>
-    <url>/2020/10/28/flask-%E7%BB%9F%E4%B8%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E4%BB%A5%E5%8F%8A400-500%E9%A1%B5%E9%9D%A2/</url>
-    <content><![CDATA[<h3 id="在flask中如何统一处理异常以及400-500页面"><a href="#在flask中如何统一处理异常以及400-500页面" class="headerlink" title="在flask中如何统一处理异常以及400 500页面"></a>在flask中如何统一处理异常以及400 500页面</h3><h4 id="异常类"><a href="#异常类" class="headerlink" title="异常类"></a>异常类</h4><a id="more"></a>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="comment"># Author  : Yang Hao</span></span><br><span class="line"><span class="comment"># File    : exception_common.py</span></span><br><span class="line"><span class="comment"># Software: PyCharm</span></span><br><span class="line"><span class="comment"># Time    : 2020/3/30 17:35</span></span><br><span class="line"><span class="comment"># Description:</span></span><br><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> jsonify, render_template</span><br><span class="line"><span class="keyword">from</span> app <span class="keyword">import</span> app</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ExceptionCommon</span>(<span class="params">Exception</span>):</span></span><br><span class="line">    <span class="comment"># 默认的返回码</span></span><br><span class="line">    status_code = <span class="number">400</span></span><br><span class="line">    <span class="comment"># 可以自己定义return_code</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, message=<span class="literal">None</span>, status_code=<span class="literal">None</span>, payload=<span class="literal">None</span></span>):</span></span><br><span class="line">        Exception.__init__(self)</span><br><span class="line">        self.message = message</span><br><span class="line">        <span class="keyword">if</span> status_code <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            self.status_code = status_code</span><br><span class="line">        self.payload = payload</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 构造要返回的错误代码和错误信息的 dict</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">to_dict</span>(<span class="params">self</span>):</span></span><br><span class="line">        rv = <span class="built_in">dict</span>(self.payload <span class="keyword">or</span> ())</span><br><span class="line">        rv[<span class="string">&#x27;status_code&#x27;</span>] = self.status_code</span><br><span class="line">        rv[<span class="string">&#x27;message&#x27;</span>] = self.message</span><br><span class="line">        <span class="keyword">return</span> rv</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.errorhandler(ExceptionCommon)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">handle_invalid_usage</span>(<span class="params">error</span>):</span></span><br><span class="line">    response = jsonify(error.to_dict())</span><br><span class="line">    response.status_code = error.status_code</span><br><span class="line">    <span class="keyword">return</span> response</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.errorhandler(500)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">handle_500</span>(<span class="params">e</span>):</span></span><br><span class="line">    <span class="keyword">return</span> render_template(<span class="string">&#x27;500.html&#x27;</span>), <span class="number">404</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.errorhandler(404)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">page_not_found</span>(<span class="params">e</span>):</span></span><br><span class="line">    <span class="keyword">return</span> render_template(<span class="string">&#x27;404.html&#x27;</span>), <span class="number">404</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@auth.route(&#x27;/logout&#x27;, methods=(&#x27;GET&#x27;, &#x27;POST&#x27;))</span></span><br><span class="line"><span class="meta">@login_required</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">logout</span>():</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    注销登录,解除会话 logout_user()</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    xxx</span><br><span class="line">    <span class="keyword">raise</span> ExceptionCommon(<span class="string">&quot;错误原因&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> redirect(url_for(<span class="string">&quot;auth.login&quot;</span>))</span><br></pre></td></tr></table></figure>
-
-
-<h4 id="在整个web项目中使用"><a href="#在整个web项目中使用" class="headerlink" title="在整个web项目中使用"></a>在整个web项目中使用</h4><p>上述<code>@app.errorhandler</code>        这个errorhandler处理器注册在app上，只能对app使用</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">@app.errorhandler(ExceptionCommon)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">handle_invalid_usage</span>(<span class="params">error</span>):</span></span><br><span class="line">    response = jsonify(error.to_dict())</span><br><span class="line">    response.status_code = error.status_code</span><br><span class="line">    <span class="keyword">return</span> response</span><br></pre></td></tr></table></figure>
-
-<p>修改为以下内容<code>@comm.app_errorhandler</code>需要注册comm的蓝本</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">@comm.app_errorhandler(ExceptionCommon)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">handle_invalid_usage</span>(<span class="params">error</span>):</span></span><br><span class="line">    response = jsonify(error.to_dict())</span><br><span class="line">    response.status_code = error.status_code</span><br><span class="line">    <span class="keyword">return</span> response</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Flask</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>flask登陆之后跳转回原先的页面</title>
-    <url>/2020/10/28/flask%E7%99%BB%E9%99%86%E4%B9%8B%E5%90%8E%E8%B7%B3%E8%BD%AC%E5%9B%9E%E5%8E%9F%E5%85%88%E7%9A%84%E9%A1%B5%E9%9D%A2/</url>
-    <content><![CDATA[<p>在使用Flask_login，使用装饰器@login_required时，如果没有登录，会跳转登录页面登陆之后不会返回原来的页面</p>
-<a id="more"></a>
-<ul>
-<li><p>在登录函数中，redirect更换以下代码</p>
-  <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">next_page_url = request.args.get(<span class="string">&#x27;next&#x27;</span>)</span><br><span class="line"> <span class="comment"># 如果 next_page_url 为空，直接返回首页</span></span><br><span class="line"> <span class="keyword">if</span> <span class="keyword">not</span> next_page_url <span class="keyword">or</span> url_parse(next_page_url).netloc != <span class="string">&#x27;&#x27;</span>:</span><br><span class="line">     <span class="keyword">return</span> redirect(next_page_url(<span class="string">&#x27;首页&#x27;</span>))</span><br><span class="line"> <span class="keyword">else</span>:</span><br><span class="line">     <span class="keyword">return</span> redirect(next_page_url)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>html中也需要修改，在url_for中增加<code>next=request.args.next</code></p>
-  <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">&lt;form <span class="string">&quot; method=&quot;</span>POST<span class="string">&quot; action=&quot;</span>&#123;&#123;url_for(<span class="string">&#x27;auth.login&#x27;</span>,<span class="built_in">next</span>=request.args.<span class="built_in">next</span>)&#125;&#125;<span class="string">&quot;&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Flask</category>
-      </categories>
-      <tags>
-        <tag>踩坑</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mysql 5.7 返回json数据 中文乱码问题</title>
-    <url>/2020/10/28/mysql-5-7-%E8%BF%94%E5%9B%9Ejson%E6%95%B0%E6%8D%AE-%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<p>mysql版本为5.7，通过navicat查看json格式的数据是正常显示，但是查询出来是乱码， 读取其他字段都是正常的，也没有特殊设置json格式的字符集</p>
-<a id="more"></a>
-<p>mysql驱动jdbc是这个版本</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">	&lt;groupId&gt;mysql&lt;&#x2F;groupId&gt;</span><br><span class="line">	&lt;artifactId&gt;mysql-connector-java&lt;&#x2F;artifactId&gt;</span><br><span class="line">	&lt;version&gt;5.1.36&lt;&#x2F;version&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br></pre></td></tr></table></figure>
-
-<p>查资料才发现要jdbc 5.1.40以上，<br>更新依赖解决</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;mysql&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;mysql-connector-java&lt;&#x2F;artifactId&gt;</span><br><span class="line">    &lt;version&gt;5.1.40&lt;&#x2F;version&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Mysql</category>
-      </categories>
-      <tags>
-        <tag>踩坑</tag>
-      </tags>
   </entry>
   <entry>
     <title>macOS brew安装mongo遇见的一些坑和报错</title>
@@ -366,6 +291,27 @@
       </tags>
   </entry>
   <entry>
+    <title>flask登陆之后跳转回原先的页面</title>
+    <url>/2020/10/28/flask%E7%99%BB%E9%99%86%E4%B9%8B%E5%90%8E%E8%B7%B3%E8%BD%AC%E5%9B%9E%E5%8E%9F%E5%85%88%E7%9A%84%E9%A1%B5%E9%9D%A2/</url>
+    <content><![CDATA[<p>在使用Flask_login，使用装饰器@login_required时，如果没有登录，会跳转登录页面登陆之后不会返回原来的页面</p>
+<a id="more"></a>
+<ul>
+<li><p>在登录函数中，redirect更换以下代码</p>
+  <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">next_page_url = request.args.get(<span class="string">&#x27;next&#x27;</span>)</span><br><span class="line"> <span class="comment"># 如果 next_page_url 为空，直接返回首页</span></span><br><span class="line"> <span class="keyword">if</span> <span class="keyword">not</span> next_page_url <span class="keyword">or</span> url_parse(next_page_url).netloc != <span class="string">&#x27;&#x27;</span>:</span><br><span class="line">     <span class="keyword">return</span> redirect(next_page_url(<span class="string">&#x27;首页&#x27;</span>))</span><br><span class="line"> <span class="keyword">else</span>:</span><br><span class="line">     <span class="keyword">return</span> redirect(next_page_url)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>html中也需要修改，在url_for中增加<code>next=request.args.next</code></p>
+  <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">&lt;form <span class="string">&quot; method=&quot;</span>POST<span class="string">&quot; action=&quot;</span>&#123;&#123;url_for(<span class="string">&#x27;auth.login&#x27;</span>,<span class="built_in">next</span>=request.args.<span class="built_in">next</span>)&#125;&#125;<span class="string">&quot;&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Flask</category>
+      </categories>
+      <tags>
+        <tag>踩坑</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>springboot websocket 注入bean失败</title>
     <url>/2020/10/28/springboot-websocket-%E6%B3%A8%E5%85%A5bean%E5%A4%B1%E8%B4%A5/</url>
     <content><![CDATA[<p>踩坑记录</p>
@@ -385,6 +331,60 @@
       <tags>
         <tag>踩坑</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>fasterxml中string字符串转对象json格式单引号错误</title>
+    <url>/2020/10/28/fasterxml%E4%B8%ADstring%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E5%AF%B9%E8%B1%A1json%E6%A0%BC%E5%BC%8F%E5%8D%95%E5%BC%95%E5%8F%B7%E9%94%99%E8%AF%AF/</url>
+    <content><![CDATA[<p>在处理fasterxml中string字符串转对象json格式，标准的json都是双引号 （” “）;由于数据是单引号(‘ ‘)格式。导致了如下报错，特此记录</p>
+<p><strong>com.fasterxml.jackson.core.JsonParseException:  Unexpected character (‘s’ (code 115)): was     expecting double-quote to start field name</strong></p>
+<a id="more"></a>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">com.fasterxml.jackson.databind.ObjectMapper </span><br><span class="line">mapper &#x3D; new ObjectMapper();</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;增加这行配置</span><br><span class="line">&#x2F;&#x2F;允许使用单引号，默认是false </span><br><span class="line">mapper.configure(Feature.ALLOW_SINGLE_QUOTES, true);</span><br><span class="line"></span><br><span class="line">mapper.readValue(payload, bean.class);</span><br></pre></td></tr></table></figure>
+
+<p>除了<strong>ALLOW_UNQUOTED_FIELD_NAMES，ALLOW_SINGLE_QUOTES</strong>还有其它的设置，有用到试试。</p>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>踩坑</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mysql 5.7 返回json数据 中文乱码问题</title>
+    <url>/2020/10/28/mysql-5-7-%E8%BF%94%E5%9B%9Ejson%E6%95%B0%E6%8D%AE-%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<p>mysql版本为5.7，通过navicat查看json格式的数据是正常显示，但是查询出来是乱码， 读取其他字段都是正常的，也没有特殊设置json格式的字符集</p>
+<a id="more"></a>
+<p>mysql驱动jdbc是这个版本</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">	&lt;groupId&gt;mysql&lt;&#x2F;groupId&gt;</span><br><span class="line">	&lt;artifactId&gt;mysql-connector-java&lt;&#x2F;artifactId&gt;</span><br><span class="line">	&lt;version&gt;5.1.36&lt;&#x2F;version&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br></pre></td></tr></table></figure>
+
+<p>查资料才发现要jdbc 5.1.40以上，<br>更新依赖解决</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;mysql&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;mysql-connector-java&lt;&#x2F;artifactId&gt;</span><br><span class="line">    &lt;version&gt;5.1.40&lt;&#x2F;version&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Mysql</category>
+      </categories>
+      <tags>
+        <tag>踩坑</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>flask 统一异常处理以及400 500页面</title>
+    <url>/2020/10/28/flask-%E7%BB%9F%E4%B8%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E4%BB%A5%E5%8F%8A400-500%E9%A1%B5%E9%9D%A2/</url>
+    <content><![CDATA[<h3 id="在flask中如何统一处理异常以及400-500页面"><a href="#在flask中如何统一处理异常以及400-500页面" class="headerlink" title="在flask中如何统一处理异常以及400 500页面"></a>在flask中如何统一处理异常以及400 500页面</h3><h4 id="异常类"><a href="#异常类" class="headerlink" title="异常类"></a>异常类</h4><a id="more"></a>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="comment"># Author  : Yang Hao</span></span><br><span class="line"><span class="comment"># File    : exception_common.py</span></span><br><span class="line"><span class="comment"># Software: PyCharm</span></span><br><span class="line"><span class="comment"># Time    : 2020/3/30 17:35</span></span><br><span class="line"><span class="comment"># Description:</span></span><br><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> jsonify, render_template</span><br><span class="line"><span class="keyword">from</span> app <span class="keyword">import</span> app</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ExceptionCommon</span>(<span class="params">Exception</span>):</span></span><br><span class="line">    <span class="comment"># 默认的返回码</span></span><br><span class="line">    status_code = <span class="number">400</span></span><br><span class="line">    <span class="comment"># 可以自己定义return_code</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, message=<span class="literal">None</span>, status_code=<span class="literal">None</span>, payload=<span class="literal">None</span></span>):</span></span><br><span class="line">        Exception.__init__(self)</span><br><span class="line">        self.message = message</span><br><span class="line">        <span class="keyword">if</span> status_code <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            self.status_code = status_code</span><br><span class="line">        self.payload = payload</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 构造要返回的错误代码和错误信息的 dict</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">to_dict</span>(<span class="params">self</span>):</span></span><br><span class="line">        rv = <span class="built_in">dict</span>(self.payload <span class="keyword">or</span> ())</span><br><span class="line">        rv[<span class="string">&#x27;status_code&#x27;</span>] = self.status_code</span><br><span class="line">        rv[<span class="string">&#x27;message&#x27;</span>] = self.message</span><br><span class="line">        <span class="keyword">return</span> rv</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.errorhandler(ExceptionCommon)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">handle_invalid_usage</span>(<span class="params">error</span>):</span></span><br><span class="line">    response = jsonify(error.to_dict())</span><br><span class="line">    response.status_code = error.status_code</span><br><span class="line">    <span class="keyword">return</span> response</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.errorhandler(500)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">handle_500</span>(<span class="params">e</span>):</span></span><br><span class="line">    <span class="keyword">return</span> render_template(<span class="string">&#x27;500.html&#x27;</span>), <span class="number">404</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.errorhandler(404)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">page_not_found</span>(<span class="params">e</span>):</span></span><br><span class="line">    <span class="keyword">return</span> render_template(<span class="string">&#x27;404.html&#x27;</span>), <span class="number">404</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@auth.route(&#x27;/logout&#x27;, methods=(&#x27;GET&#x27;, &#x27;POST&#x27;))</span></span><br><span class="line"><span class="meta">@login_required</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">logout</span>():</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    注销登录,解除会话 logout_user()</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    xxx</span><br><span class="line">    <span class="keyword">raise</span> ExceptionCommon(<span class="string">&quot;错误原因&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> redirect(url_for(<span class="string">&quot;auth.login&quot;</span>))</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="在整个web项目中使用"><a href="#在整个web项目中使用" class="headerlink" title="在整个web项目中使用"></a>在整个web项目中使用</h4><p>上述<code>@app.errorhandler</code>        这个errorhandler处理器注册在app上，只能对app使用</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">@app.errorhandler(ExceptionCommon)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">handle_invalid_usage</span>(<span class="params">error</span>):</span></span><br><span class="line">    response = jsonify(error.to_dict())</span><br><span class="line">    response.status_code = error.status_code</span><br><span class="line">    <span class="keyword">return</span> response</span><br></pre></td></tr></table></figure>
+
+<p>修改为以下内容<code>@comm.app_errorhandler</code>需要注册comm的蓝本</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">@comm.app_errorhandler(ExceptionCommon)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">handle_invalid_usage</span>(<span class="params">error</span>):</span></span><br><span class="line">    response = jsonify(error.to_dict())</span><br><span class="line">    response.status_code = error.status_code</span><br><span class="line">    <span class="keyword">return</span> response</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Flask</category>
+      </categories>
   </entry>
   <entry>
     <title>ubuntu 16.04  pptp搭建服务端和客户端</title>
