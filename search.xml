@@ -75,32 +75,34 @@
       </tags>
   </entry>
   <entry>
-    <title>Ubuntu 16.04 使用root ssh登录</title>
-    <url>/2020/10/28/Ubuntu-16-04-%E4%BD%BF%E7%94%A8root-ssh%E7%99%BB%E5%BD%95/</url>
-    <content><![CDATA[<p><strong>如果你只是想登陆别的机器的SSH只需要安装openssh-client（ubuntu有默认安装，如果没有则sudoapt-get install openssh-client），如果要使本机开放SSH服务就需要安装openssh-server。</strong></p>
+    <title>ThreadLocal内存泄露</title>
+    <url>/2021/04/25/ThreadLocal%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2/</url>
+    <content><![CDATA[<h2 id="ThreadLocal-简介"><a href="#ThreadLocal-简介" class="headerlink" title="ThreadLocal 简介"></a>ThreadLocal 简介</h2><p>ThreadLocal提供了线程的局部变量，每个线程都可以通过set()和get()来对这个局部变量进行操作，但不会和其他线程的局部变量进行冲突，从而避免了线程安全问题。</p>
+<p>简而言之：ThreadLocal保证了各个线程的数据互不干扰。</p>
 <a id="more"></a>
-<ol>
-<li><p>安装openssh-server</p>
- <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt-get install openssh-server</span><br></pre></td></tr></table></figure></li>
-<li><p>修改 root 密码</p>
- <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo passwd root</span><br></pre></td></tr></table></figure></li>
-<li><p>修改配置文件</p>
- <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo vi &#x2F;etc&#x2F;ssh&#x2F;sshd_config</span><br></pre></td></tr></table></figure>
 
-<p> 找到下面相关配置：</p>
- <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># Authentication:</span><br><span class="line">LoginGraceTime 120</span><br><span class="line">PermitRootLogin prohibit-password</span><br><span class="line">StrictModes yes</span><br></pre></td></tr></table></figure>
-<p> 更改为：</p>
- <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># Authentication:</span><br><span class="line">LoginGraceTime 120</span><br><span class="line">#PermitRootLogin prohibit-password</span><br><span class="line">PermitRootLogin yes</span><br><span class="line">StrictModes yes</span><br></pre></td></tr></table></figure></li>
-<li><p>重启ssh</p>
- <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo service ssh restart</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-]]></content>
+<h2 id="ThreadLocal-原理"><a href="#ThreadLocal-原理" class="headerlink" title="ThreadLocal 原理"></a>ThreadLocal 原理</h2><p>从 <code>Thread</code>类源代码入手。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Thread</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line"> ......</span><br><span class="line"><span class="comment">//与此线程有关的ThreadLocal值。由ThreadLocal类维护</span></span><br><span class="line">ThreadLocal.ThreadLocalMap threadLocals = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//与此线程有关的InheritableThreadLocal值。由InheritableThreadLocal类维护</span></span><br><span class="line">ThreadLocal.ThreadLocalMap inheritableThreadLocals = <span class="keyword">null</span>;</span><br><span class="line"> ......</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>从上面<code>Thread</code>类 源代码可以看出<code>Thread</code> 类中有一个 <code>threadLocals</code> 和 一个 <code>inheritableThreadLocals</code> 变量，它们都是 <code>ThreadLocalMap</code> 类型的变量,我们可以把 <code>ThreadLocalMap</code> 理解为<code>ThreadLocal</code> 类实现的定制化的 <code>HashMap</code>。默认情况下这两个变量都是 null，只有当前线程调用 <code>ThreadLocal</code> 类的 <code>set</code>或<code>get</code>方法时才创建它们，实际上调用这两个方法的时候，我们调用的是<code>ThreadLocalMap</code>类对应的 <code>get()</code>、<code>set()</code>方法。</p>
+<p><code>ThreadLocal</code>类的<code>set()</code>方法</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">set</span><span class="params">(T value)</span> </span>&#123;</span><br><span class="line">    Thread t = Thread.currentThread();</span><br><span class="line">    ThreadLocalMap map = getMap(t);</span><br><span class="line">    <span class="keyword">if</span> (map != <span class="keyword">null</span>)</span><br><span class="line">        map.set(<span class="keyword">this</span>, value);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        createMap(t, value);</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line"><span class="function">ThreadLocalMap <span class="title">getMap</span><span class="params">(Thread t)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> t.threadLocals;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最终的变量是放在了当前线程的 <code>ThreadLocalMap</code> 中，并不是存在 <code>ThreadLocal</code> 上，<code>ThreadLocal</code> 可以理解为只是<code>ThreadLocalMap</code>的封装，传递了变量值。 <code>ThrealLocal</code> 类中可以通过<code>Thread.currentThread()</code>获取到当前线程对象后，直接通过<code>getMap(Thread t)</code>可以访问到该线程的<code>ThreadLocalMap</code>对象。</p>
+<p><strong>每个<code>Thread</code>中都有一个<code>ThreadLocalMap</code>，而<code>ThreadLocalMap</code>可以存储以<code>ThreadLocal</code>为 key ，Object 对象为 value 的键值对；采用类似hashmap机制</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ThreadLocalMap(ThreadLocal&lt;?&gt; firstKey, Object firstValue) &#123;</span><br><span class="line"> ......</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="ThreadLocal-内存泄露原因"><a href="#ThreadLocal-内存泄露原因" class="headerlink" title="ThreadLocal 内存泄露原因"></a>ThreadLocal 内存泄露原因</h2><p>ThreadLocal可能导致内存泄漏，为什么？</p>
+<p>先看看Entry的实现：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Entry</span> <span class="keyword">extends</span> <span class="title">WeakReference</span>&lt;<span class="title">ThreadLocal</span>&lt;?&gt;&gt; </span>&#123;</span><br><span class="line">    <span class="comment">/** The value associated with this ThreadLocal. */</span></span><br><span class="line">    Object value;</span><br><span class="line"></span><br><span class="line">    Entry(ThreadLocal&lt;?&gt; k, Object v) &#123;</span><br><span class="line">        <span class="keyword">super</span>(k);</span><br><span class="line">        value = v;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong><code>ThreadLocalMap</code> 中使用的 key 为 <code>ThreadLocal</code> 的弱引用,而 value 是强引用。所以，如果 <code>ThreadLocal</code> 没有被外部强引用的情况下，在垃圾回收的时候，key 会被清理掉，而 value 不会被清理掉。这样一来，<code>ThreadLocalMap</code> 中就会出现 key 为 null 的 <code>Entry</code>。假如我们不做任何措施的话，value 永远无法被 GC 回收，这个时候就可能会产生内存泄露</strong></p>
+<h2 id="如何避免-ThreadLocal-内存泄露"><a href="#如何避免-ThreadLocal-内存泄露" class="headerlink" title="如何避免 ThreadLocal 内存泄露"></a>如何避免 ThreadLocal 内存泄露</h2><p>如果使用ThreadLocal的set方法之后，记得调用<code>remove()</code>方法</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ThreadLocal&lt;String&gt; localName = <span class="keyword">new</span> ThreadLocal();</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    localName.set(<span class="string">&quot;xxx&quot;</span>);</span><br><span class="line">    <span class="comment">// 业务逻辑</span></span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    <span class="comment">//调用remove()</span></span><br><span class="line">    localName.remove();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
-        <category>Ubuntu</category>
+        <category>Java</category>
       </categories>
       <tags>
-        <tag>Ubuntu</tag>
+        <tag>多线程</tag>
       </tags>
   </entry>
   <entry>
@@ -152,34 +154,33 @@
       </tags>
   </entry>
   <entry>
-    <title>Ubuntu server 如何升级内核</title>
-    <url>/2020/10/28/Ubuntu-server-%E5%A6%82%E4%BD%95%E5%8D%87%E7%BA%A7%E5%86%85%E6%A0%B8/</url>
-    <content><![CDATA[<h3 id="查看目前内核"><a href="#查看目前内核" class="headerlink" title="查看目前内核"></a>查看目前内核</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">root@ubuntu:~# uname -sr</span><br><span class="line">Linux 4.4.0-142-generic</span><br></pre></td></tr></table></figure>
-<h3 id="开始升级内核"><a href="#开始升级内核" class="headerlink" title="开始升级内核"></a>开始升级内核</h3> <a id="more"></a>
+    <title>Ubuntu 16.04 使用root ssh登录</title>
+    <url>/2020/10/28/Ubuntu-16-04-%E4%BD%BF%E7%94%A8root-ssh%E7%99%BB%E5%BD%95/</url>
+    <content><![CDATA[<p><strong>如果你只是想登陆别的机器的SSH只需要安装openssh-client（ubuntu有默认安装，如果没有则sudoapt-get install openssh-client），如果要使本机开放SSH服务就需要安装openssh-server。</strong></p>
+<a id="more"></a>
+<ol>
+<li><p>安装openssh-server</p>
+ <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt-get install openssh-server</span><br></pre></td></tr></table></figure></li>
+<li><p>修改 root 密码</p>
+ <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo passwd root</span><br></pre></td></tr></table></figure></li>
+<li><p>修改配置文件</p>
+ <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo vi &#x2F;etc&#x2F;ssh&#x2F;sshd_config</span><br></pre></td></tr></table></figure>
 
-<p><a href="http://kernel.ubuntu.com/~kernel-ppa/mainline/">官网镜像</a><br>选择所需要的版本下载(<em>命令下载很慢，建议直接复制连接到浏览器中直接下载</em>);随便找个目录下载下列文件 </p>
-<p><strong>64位版本</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ wget http:&#x2F;&#x2F;kernel.ubuntu.com&#x2F;~kernel-ppa&#x2F;mainline&#x2F;v4.10.1&#x2F;linux-headers-4.10.1-041001_4.10.1-041001.201702260735_all.deb </span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ wget http:&#x2F;&#x2F;kernel.ubuntu.com&#x2F;~kernel-ppa&#x2F;mainline&#x2F;v4.10.1&#x2F;linux-headers-4.10.1-041001-generic_4.10.1-041001.201702260735_amd64.deb </span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ wget http:&#x2F;&#x2F;kernel.ubuntu.com&#x2F;~kernel-ppa&#x2F;mainline&#x2F;v4.10.1&#x2F;linux-image-4.10.1-041001-generic_4.10.1-041001.201702260735_amd64.deb </span><br></pre></td></tr></table></figure>
-
-<p><strong>32位版本</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ wget http:&#x2F;&#x2F;kernel.ubuntu.com&#x2F;~kernel-ppa&#x2F;mainline&#x2F;v4.10.1&#x2F;linux-headers-4.10.1-041001_4.10.1-041001.201702260735_all.deb </span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ wget http:&#x2F;&#x2F;kernel.ubuntu.com&#x2F;~kernel-ppa&#x2F;mainline&#x2F;v4.10.1&#x2F;linux-headers-4.10.1-041001-generic_4.10.1-041001.201702260735_i386.deb </span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ wget http:&#x2F;&#x2F;kernel.ubuntu.com&#x2F;~kernel-ppa&#x2F;mainline&#x2F;v4.10.1&#x2F;linux-image-4.10.1-041001-generic_4.10.1-041001.201702260735_i386.deb</span><br></pre></td></tr></table></figure>
-<h3 id="开始解压安装"><a href="#开始解压安装" class="headerlink" title="开始解压安装"></a>开始解压安装</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ sudo dpkg -i *.deb</span><br></pre></td></tr></table></figure>
-
-<p>如下图</p>
-<p><img src="https://res.cloudinary.com/dkptw3xiz/image/upload/v1603874217/ubuntu-server_hyrt7u.png"></p>
-<p>安装完成后，重启服务器并验证是否更新新的内核</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">root@ubuntu:~# uname -sr</span><br><span class="line">Linux 4.10.1-041001-generic</span><br></pre></td></tr></table></figure>]]></content>
+<p> 找到下面相关配置：</p>
+ <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># Authentication:</span><br><span class="line">LoginGraceTime 120</span><br><span class="line">PermitRootLogin prohibit-password</span><br><span class="line">StrictModes yes</span><br></pre></td></tr></table></figure>
+<p> 更改为：</p>
+ <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># Authentication:</span><br><span class="line">LoginGraceTime 120</span><br><span class="line">#PermitRootLogin prohibit-password</span><br><span class="line">PermitRootLogin yes</span><br><span class="line">StrictModes yes</span><br></pre></td></tr></table></figure></li>
+<li><p>重启ssh</p>
+ <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo service ssh restart</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+]]></content>
       <categories>
         <category>Ubuntu</category>
       </categories>
+      <tags>
+        <tag>Ubuntu</tag>
+      </tags>
   </entry>
   <entry>
     <title>Ubuntu 更换apt源、pip3源</title>
@@ -224,6 +225,24 @@
       </tags>
   </entry>
   <entry>
+    <title>fasterxml中string字符串转对象json格式单引号错误</title>
+    <url>/2020/10/28/fasterxml%E4%B8%ADstring%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E5%AF%B9%E8%B1%A1json%E6%A0%BC%E5%BC%8F%E5%8D%95%E5%BC%95%E5%8F%B7%E9%94%99%E8%AF%AF/</url>
+    <content><![CDATA[<p>在处理fasterxml中string字符串转对象json格式，标准的json都是双引号 （” “）;由于数据是单引号(‘ ‘)格式。导致了如下报错，特此记录</p>
+<p><strong>com.fasterxml.jackson.core.JsonParseException:  Unexpected character (‘s’ (code 115)): was     expecting double-quote to start field name</strong></p>
+<a id="more"></a>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">com.fasterxml.jackson.databind.ObjectMapper </span><br><span class="line">mapper &#x3D; new ObjectMapper();</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;增加这行配置</span><br><span class="line">&#x2F;&#x2F;允许使用单引号，默认是false </span><br><span class="line">mapper.configure(Feature.ALLOW_SINGLE_QUOTES, true);</span><br><span class="line"></span><br><span class="line">mapper.readValue(payload, bean.class);</span><br></pre></td></tr></table></figure>
+
+<p>除了<strong>ALLOW_UNQUOTED_FIELD_NAMES，ALLOW_SINGLE_QUOTES</strong>还有其它的设置，有用到试试。</p>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>踩坑</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>flask 统一异常处理以及400 500页面</title>
     <url>/2020/10/28/flask-%E7%BB%9F%E4%B8%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E4%BB%A5%E5%8F%8A400-500%E9%A1%B5%E9%9D%A2/</url>
     <content><![CDATA[<h3 id="在flask中如何统一处理异常以及400-500页面"><a href="#在flask中如何统一处理异常以及400-500页面" class="headerlink" title="在flask中如何统一处理异常以及400 500页面"></a>在flask中如何统一处理异常以及400 500页面</h3><h4 id="异常类"><a href="#异常类" class="headerlink" title="异常类"></a>异常类</h4><a id="more"></a>
@@ -242,22 +261,34 @@
       </categories>
   </entry>
   <entry>
-    <title>fasterxml中string字符串转对象json格式单引号错误</title>
-    <url>/2020/10/28/fasterxml%E4%B8%ADstring%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E5%AF%B9%E8%B1%A1json%E6%A0%BC%E5%BC%8F%E5%8D%95%E5%BC%95%E5%8F%B7%E9%94%99%E8%AF%AF/</url>
-    <content><![CDATA[<p>在处理fasterxml中string字符串转对象json格式，标准的json都是双引号 （” “）;由于数据是单引号(‘ ‘)格式。导致了如下报错，特此记录</p>
-<p><strong>com.fasterxml.jackson.core.JsonParseException:  Unexpected character (‘s’ (code 115)): was     expecting double-quote to start field name</strong></p>
-<a id="more"></a>
+    <title>Ubuntu server 如何升级内核</title>
+    <url>/2020/10/28/Ubuntu-server-%E5%A6%82%E4%BD%95%E5%8D%87%E7%BA%A7%E5%86%85%E6%A0%B8/</url>
+    <content><![CDATA[<h3 id="查看目前内核"><a href="#查看目前内核" class="headerlink" title="查看目前内核"></a>查看目前内核</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">root@ubuntu:~# uname -sr</span><br><span class="line">Linux 4.4.0-142-generic</span><br></pre></td></tr></table></figure>
+<h3 id="开始升级内核"><a href="#开始升级内核" class="headerlink" title="开始升级内核"></a>开始升级内核</h3> <a id="more"></a>
 
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">com.fasterxml.jackson.databind.ObjectMapper </span><br><span class="line">mapper &#x3D; new ObjectMapper();</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;增加这行配置</span><br><span class="line">&#x2F;&#x2F;允许使用单引号，默认是false </span><br><span class="line">mapper.configure(Feature.ALLOW_SINGLE_QUOTES, true);</span><br><span class="line"></span><br><span class="line">mapper.readValue(payload, bean.class);</span><br></pre></td></tr></table></figure>
+<p><a href="http://kernel.ubuntu.com/~kernel-ppa/mainline/">官网镜像</a><br>选择所需要的版本下载(<em>命令下载很慢，建议直接复制连接到浏览器中直接下载</em>);随便找个目录下载下列文件 </p>
+<p><strong>64位版本</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ wget http:&#x2F;&#x2F;kernel.ubuntu.com&#x2F;~kernel-ppa&#x2F;mainline&#x2F;v4.10.1&#x2F;linux-headers-4.10.1-041001_4.10.1-041001.201702260735_all.deb </span><br></pre></td></tr></table></figure>
 
-<p>除了<strong>ALLOW_UNQUOTED_FIELD_NAMES，ALLOW_SINGLE_QUOTES</strong>还有其它的设置，有用到试试。</p>
-]]></content>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ wget http:&#x2F;&#x2F;kernel.ubuntu.com&#x2F;~kernel-ppa&#x2F;mainline&#x2F;v4.10.1&#x2F;linux-headers-4.10.1-041001-generic_4.10.1-041001.201702260735_amd64.deb </span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ wget http:&#x2F;&#x2F;kernel.ubuntu.com&#x2F;~kernel-ppa&#x2F;mainline&#x2F;v4.10.1&#x2F;linux-image-4.10.1-041001-generic_4.10.1-041001.201702260735_amd64.deb </span><br></pre></td></tr></table></figure>
+
+<p><strong>32位版本</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ wget http:&#x2F;&#x2F;kernel.ubuntu.com&#x2F;~kernel-ppa&#x2F;mainline&#x2F;v4.10.1&#x2F;linux-headers-4.10.1-041001_4.10.1-041001.201702260735_all.deb </span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ wget http:&#x2F;&#x2F;kernel.ubuntu.com&#x2F;~kernel-ppa&#x2F;mainline&#x2F;v4.10.1&#x2F;linux-headers-4.10.1-041001-generic_4.10.1-041001.201702260735_i386.deb </span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ wget http:&#x2F;&#x2F;kernel.ubuntu.com&#x2F;~kernel-ppa&#x2F;mainline&#x2F;v4.10.1&#x2F;linux-image-4.10.1-041001-generic_4.10.1-041001.201702260735_i386.deb</span><br></pre></td></tr></table></figure>
+<h3 id="开始解压安装"><a href="#开始解压安装" class="headerlink" title="开始解压安装"></a>开始解压安装</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ sudo dpkg -i *.deb</span><br></pre></td></tr></table></figure>
+
+<p>如下图</p>
+<p><img src="https://res.cloudinary.com/dkptw3xiz/image/upload/v1603874217/ubuntu-server_hyrt7u.png"></p>
+<p>安装完成后，重启服务器并验证是否更新新的内核</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">root@ubuntu:~# uname -sr</span><br><span class="line">Linux 4.10.1-041001-generic</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
-        <category>Java</category>
+        <category>Ubuntu</category>
       </categories>
-      <tags>
-        <tag>踩坑</tag>
-      </tags>
   </entry>
   <entry>
     <title>flask登陆之后跳转回原先的页面</title>
@@ -279,6 +310,19 @@
       <tags>
         <tag>踩坑</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>lambda表达式对对象集合进行分组并求和</title>
+    <url>/2020/12/14/lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%88%86%E7%BB%84%E5%B9%B6%E6%B1%82%E5%92%8C-md/</url>
+    <content><![CDATA[<p>最近业务需求，要求对集合按照多个属性分组，并且对某一个属性求和，利用lambda表达式进行分组求和；示例如下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">list.parallelStream()</span><br><span class="line">            .collect(Collectors.groupingBy(o -&gt; (o.getName() + o.getAge()), Collectors.toList()))</span><br><span class="line">            .forEach((id, transfer) -&gt; transfer.stream().reduce((a, b) -&gt; new StudentDemo(a.getName(), a.getAge(), a.getScore() + b.getScore())).ifPresent(studentDemoList::add));</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">package com.yang.springboot.lamda.groupBy;</span><br><span class="line"></span><br><span class="line">import java.util.ArrayList;</span><br><span class="line">import java.util.List;</span><br><span class="line">import java.util.stream.Collectors;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * @author Yang Hao</span><br><span class="line"> * @date 2020-11-19 19:41</span><br><span class="line"> *&#x2F;</span><br><span class="line">public class Demo &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line"></span><br><span class="line">        &#x2F;**</span><br><span class="line">         * lambda表达式: 根据姓名和年龄分组之后再求和总分</span><br><span class="line">         *</span><br><span class="line">         * [                                                           [</span><br><span class="line">         *      StudentDemo(name&#x3D;张三, age&#x3D;20, score&#x3D;12),                 StudentDemo(name&#x3D;张三, age&#x3D;20, score&#x3D;92),</span><br><span class="line">         *      StudentDemo(name&#x3D;张三, age&#x3D;20, score&#x3D;80),    &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&gt;   StudentDemo(name&#x3D;王五, age&#x3D;20, score&#x3D;33),</span><br><span class="line">         *      StudentDemo(name&#x3D;王五, age&#x3D;20, score&#x3D;33),    &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&gt;   StudentDemo(name&#x3D;李四, age&#x3D;29, score&#x3D;90),</span><br><span class="line">         *      StudentDemo(name&#x3D;李四, age&#x3D;18, score&#x3D;50),                 StudentDemo(name&#x3D;李四, age&#x3D;18, score&#x3D;50)</span><br><span class="line">         *      StudentDemo(name&#x3D;李四, age&#x3D;29, score&#x3D;90)                ]</span><br><span class="line">         * ]</span><br><span class="line">         *&#x2F;</span><br><span class="line"></span><br><span class="line">        List&lt;StudentDemo&gt; list &#x3D; new ArrayList&lt;&gt;();</span><br><span class="line">        list.add(new StudentDemo(&quot;张三&quot;, &quot;20&quot;, 12));</span><br><span class="line">        list.add(new StudentDemo(&quot;张三&quot;, &quot;20&quot;, 80));</span><br><span class="line">        list.add(new StudentDemo(&quot;王五&quot;, &quot;20&quot;, 33));</span><br><span class="line">        list.add(new StudentDemo(&quot;李四&quot;, &quot;18&quot;, 50));</span><br><span class="line">        list.add(new StudentDemo(&quot;李四&quot;, &quot;29&quot;, 90));</span><br><span class="line">        System.out.println(&quot;分组求和之前 &quot; + list);</span><br><span class="line"></span><br><span class="line">        List&lt;StudentDemo&gt; studentDemoList &#x3D; new ArrayList&lt;&gt;();</span><br><span class="line">        list.parallelStream()</span><br><span class="line">                .collect(Collectors.groupingBy(o -&gt; (o.getName() + o.getAge()), Collectors.toList()))</span><br><span class="line">                .forEach((id, transfer) -&gt; transfer.stream().reduce((a, b) -&gt; new StudentDemo(a.getName(), a.getAge(), a.getScore() + b.getScore())).ifPresent(studentDemoList::add));</span><br><span class="line">        System.out.println(&quot;分组求和之后 &quot; + studentDemoList);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
   </entry>
   <entry>
     <title>macOS brew安装mongo遇见的一些坑和报错</title>
@@ -472,18 +516,5 @@
         <tag>Ubuntu</tag>
         <tag>PPTP</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>lambda表达式对对象集合进行分组并求和</title>
-    <url>/2020/12/14/lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%88%86%E7%BB%84%E5%B9%B6%E6%B1%82%E5%92%8C-md/</url>
-    <content><![CDATA[<p>最近业务需求，要求对集合按照多个属性分组，并且对某一个属性求和，利用lambda表达式进行分组求和；示例如下</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">list.parallelStream()</span><br><span class="line">            .collect(Collectors.groupingBy(o -&gt; (o.getName() + o.getAge()), Collectors.toList()))</span><br><span class="line">            .forEach((id, transfer) -&gt; transfer.stream().reduce((a, b) -&gt; new StudentDemo(a.getName(), a.getAge(), a.getScore() + b.getScore())).ifPresent(studentDemoList::add));</span><br></pre></td></tr></table></figure>
-
-<a id="more"></a>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">package com.yang.springboot.lamda.groupBy;</span><br><span class="line"></span><br><span class="line">import java.util.ArrayList;</span><br><span class="line">import java.util.List;</span><br><span class="line">import java.util.stream.Collectors;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * @author Yang Hao</span><br><span class="line"> * @date 2020-11-19 19:41</span><br><span class="line"> *&#x2F;</span><br><span class="line">public class Demo &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line"></span><br><span class="line">        &#x2F;**</span><br><span class="line">         * lambda表达式: 根据姓名和年龄分组之后再求和总分</span><br><span class="line">         *</span><br><span class="line">         * [                                                           [</span><br><span class="line">         *      StudentDemo(name&#x3D;张三, age&#x3D;20, score&#x3D;12),                 StudentDemo(name&#x3D;张三, age&#x3D;20, score&#x3D;92),</span><br><span class="line">         *      StudentDemo(name&#x3D;张三, age&#x3D;20, score&#x3D;80),    &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&gt;   StudentDemo(name&#x3D;王五, age&#x3D;20, score&#x3D;33),</span><br><span class="line">         *      StudentDemo(name&#x3D;王五, age&#x3D;20, score&#x3D;33),    &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&gt;   StudentDemo(name&#x3D;李四, age&#x3D;29, score&#x3D;90),</span><br><span class="line">         *      StudentDemo(name&#x3D;李四, age&#x3D;18, score&#x3D;50),                 StudentDemo(name&#x3D;李四, age&#x3D;18, score&#x3D;50)</span><br><span class="line">         *      StudentDemo(name&#x3D;李四, age&#x3D;29, score&#x3D;90)                ]</span><br><span class="line">         * ]</span><br><span class="line">         *&#x2F;</span><br><span class="line"></span><br><span class="line">        List&lt;StudentDemo&gt; list &#x3D; new ArrayList&lt;&gt;();</span><br><span class="line">        list.add(new StudentDemo(&quot;张三&quot;, &quot;20&quot;, 12));</span><br><span class="line">        list.add(new StudentDemo(&quot;张三&quot;, &quot;20&quot;, 80));</span><br><span class="line">        list.add(new StudentDemo(&quot;王五&quot;, &quot;20&quot;, 33));</span><br><span class="line">        list.add(new StudentDemo(&quot;李四&quot;, &quot;18&quot;, 50));</span><br><span class="line">        list.add(new StudentDemo(&quot;李四&quot;, &quot;29&quot;, 90));</span><br><span class="line">        System.out.println(&quot;分组求和之前 &quot; + list);</span><br><span class="line"></span><br><span class="line">        List&lt;StudentDemo&gt; studentDemoList &#x3D; new ArrayList&lt;&gt;();</span><br><span class="line">        list.parallelStream()</span><br><span class="line">                .collect(Collectors.groupingBy(o -&gt; (o.getName() + o.getAge()), Collectors.toList()))</span><br><span class="line">                .forEach((id, transfer) -&gt; transfer.stream().reduce((a, b) -&gt; new StudentDemo(a.getName(), a.getAge(), a.getScore() + b.getScore())).ifPresent(studentDemoList::add));</span><br><span class="line">        System.out.println(&quot;分组求和之后 &quot; + studentDemoList);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
   </entry>
 </search>
