@@ -77,8 +77,8 @@
   <entry>
     <title>ThreadLocal内存泄露</title>
     <url>/2021/04/25/ThreadLocal%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2/</url>
-    <content><![CDATA[<h2 id="ThreadLocal-简介"><a href="#ThreadLocal-简介" class="headerlink" title="ThreadLocal 简介"></a>ThreadLocal 简介</h2><p>ThreadLocal提供了线程的局部变量，每个线程都可以通过set()和get()来对这个局部变量进行操作，但不会和其他线程的局部变量进行冲突，从而避免了线程安全问题。</p>
-<p>简而言之：ThreadLocal保证了各个线程的数据互不干扰。</p>
+    <content><![CDATA[<h2 id="ThreadLocal-简介"><a href="#ThreadLocal-简介" class="headerlink" title="ThreadLocal 简介"></a>ThreadLocal 简介</h2><p><code>ThreadLocal</code>提供了线程的局部变量，每个线程都可以通过<code>set()</code>和<code>get()</code>来对这个局部变量进行操作，但不会和其他线程的局部变量进行冲突，从而避免了线程安全问题。</p>
+<p>简而言之：<code>ThreadLocal</code>保证了各个线程的数据互不干扰。</p>
 <a id="more"></a>
 
 <h2 id="ThreadLocal-原理"><a href="#ThreadLocal-原理" class="headerlink" title="ThreadLocal 原理"></a>ThreadLocal 原理</h2><p>从 <code>Thread</code>类源代码入手。</p>
