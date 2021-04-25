@@ -602,6 +602,7 @@
 <li><code>@ConditionalOnNotWebApplication</code>：当前项目不是 Web 项目的条件下</li>
 <li><code>@ConditionalOnWebApplication</code>：当前项目是 Web 项 目的条件下</li>
 </ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><strong><code>Spring Boot</code> 通过<code>@EnableAutoConfiguration</code>开启自动装配，通过 <code>SpringFactoriesLoader</code> 最终加载<code>META-INF/spring.factories</code>中的自动配置类实现自动装配，自动配置类其实就是通过<code>@Conditional</code>按需加载的配置类，想要其生效必须引入<code>spring-boot-starter-xxx</code>包实现起步依赖</strong></p>
 ]]></content>
       <categories>
         <category>Java</category>
