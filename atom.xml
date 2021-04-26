@@ -64,16 +64,12 @@
     <link href="https://acloudyh.github.io/2021/03/26/ConcurrentHashMap%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/"/>
     <id>https://acloudyh.github.io/2021/03/26/ConcurrentHashMap%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</id>
     <published>2021-03-26T07:13:36.000Z</published>
-    <updated>2021-04-26T08:29:05.310Z</updated>
+    <updated>2021-04-26T08:29:57.352Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html"></summary>
-        
-      
+    <summary type="html">&lt;p&gt;前一篇文章是关于HashMap源码分析 &lt;a href=&quot;/2021/02/26/HashMap%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/&quot; title=&quot;HashMap源码分析&quot;&gt;HashMap源码分析&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;h3 id=&quot;为什么要用ConcurrentHashMap&quot;&gt;&lt;a href=&quot;#为什么要用ConcurrentHashMap&quot; class=&quot;headerlink&quot; title=&quot;为什么要用ConcurrentHashMap?&quot;&gt;&lt;/a&gt;为什么要用ConcurrentHashMap?&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;1. 线程不安全的HashMap&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;在多线程环境下，使用HashMap的put操作会引起死循环，原因是多线程会导致HashMap的Entry链表形成环形数据结构，导致Entry的next节点永远不为空，就会产生死循环获取Entry&lt;/p&gt;</summary>
     
     
     
@@ -156,14 +152,16 @@
     <link href="https://acloudyh.github.io/2020/10/28/mysql-5-7-%E8%BF%94%E5%9B%9Ejson%E6%95%B0%E6%8D%AE-%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/"/>
     <id>https://acloudyh.github.io/2020/10/28/mysql-5-7-%E8%BF%94%E5%9B%9Ejson%E6%95%B0%E6%8D%AE-%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/</id>
     <published>2020-10-28T06:38:35.000Z</published>
-    <updated>2020-10-28T13:11:23.002Z</updated>
+    <updated>2021-04-26T08:31:21.160Z</updated>
     
     
     <summary type="html">&lt;p&gt;mysql版本为5.7，通过navicat查看json格式的数据是正常显示，但是查询出来是乱码， 读取其他字段都是正常的，也没有特殊设置json格式的字符集&lt;/p&gt;</summary>
     
     
     
-    <category term="Mysql" scheme="https://acloudyh.github.io/categories/Mysql/"/>
+    <category term="Java" scheme="https://acloudyh.github.io/categories/Java/"/>
+    
+    <category term="Mysql" scheme="https://acloudyh.github.io/categories/Java/Mysql/"/>
     
     
     <category term="踩坑" scheme="https://acloudyh.github.io/tags/%E8%B8%A9%E5%9D%91/"/>
@@ -215,14 +213,16 @@
     <link href="https://acloudyh.github.io/2020/10/28/flask-%E7%BB%9F%E4%B8%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E4%BB%A5%E5%8F%8A400-500%E9%A1%B5%E9%9D%A2/"/>
     <id>https://acloudyh.github.io/2020/10/28/flask-%E7%BB%9F%E4%B8%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E4%BB%A5%E5%8F%8A400-500%E9%A1%B5%E9%9D%A2/</id>
     <published>2020-10-28T06:37:16.000Z</published>
-    <updated>2020-10-28T13:12:29.520Z</updated>
+    <updated>2021-04-26T08:31:41.558Z</updated>
     
     
     <summary type="html">&lt;h3 id=&quot;在flask中如何统一处理异常以及400-500页面&quot;&gt;&lt;a href=&quot;#在flask中如何统一处理异常以及400-500页面&quot; class=&quot;headerlink&quot; title=&quot;在flask中如何统一处理异常以及400 500页面&quot;&gt;&lt;/a&gt;在flask中如何统一处理异常以及400 500页面&lt;/h3&gt;&lt;h4 id=&quot;异常类&quot;&gt;&lt;a href=&quot;#异常类&quot; class=&quot;headerlink&quot; title=&quot;异常类&quot;&gt;&lt;/a&gt;异常类&lt;/h4&gt;</summary>
     
     
     
-    <category term="Flask" scheme="https://acloudyh.github.io/categories/Flask/"/>
+    <category term="Python" scheme="https://acloudyh.github.io/categories/Python/"/>
+    
+    <category term="Flask" scheme="https://acloudyh.github.io/categories/Python/Flask/"/>
     
     
   </entry>
@@ -232,14 +232,16 @@
     <link href="https://acloudyh.github.io/2020/10/28/flask%E7%99%BB%E9%99%86%E4%B9%8B%E5%90%8E%E8%B7%B3%E8%BD%AC%E5%9B%9E%E5%8E%9F%E5%85%88%E7%9A%84%E9%A1%B5%E9%9D%A2/"/>
     <id>https://acloudyh.github.io/2020/10/28/flask%E7%99%BB%E9%99%86%E4%B9%8B%E5%90%8E%E8%B7%B3%E8%BD%AC%E5%9B%9E%E5%8E%9F%E5%85%88%E7%9A%84%E9%A1%B5%E9%9D%A2/</id>
     <published>2020-10-28T06:36:52.000Z</published>
-    <updated>2020-10-28T13:12:26.240Z</updated>
+    <updated>2021-04-26T08:31:52.138Z</updated>
     
     
     <summary type="html">&lt;p&gt;在使用Flask_login，使用装饰器@login_required时，如果没有登录，会跳转登录页面登陆之后不会返回原来的页面&lt;/p&gt;</summary>
     
     
     
-    <category term="Flask" scheme="https://acloudyh.github.io/categories/Flask/"/>
+    <category term="Python" scheme="https://acloudyh.github.io/categories/Python/"/>
+    
+    <category term="Flask" scheme="https://acloudyh.github.io/categories/Python/Flask/"/>
     
     
     <category term="踩坑" scheme="https://acloudyh.github.io/tags/%E8%B8%A9%E5%9D%91/"/>

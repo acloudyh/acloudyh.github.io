@@ -257,6 +257,7 @@
 <p>修改为以下内容<code>@comm.app_errorhandler</code>需要注册comm的蓝本</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">@comm.app_errorhandler(ExceptionCommon)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">handle_invalid_usage</span>(<span class="params">error</span>):</span></span><br><span class="line">    response = jsonify(error.to_dict())</span><br><span class="line">    response.status_code = error.status_code</span><br><span class="line">    <span class="keyword">return</span> response</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
+        <category>Python</category>
         <category>Flask</category>
       </categories>
   </entry>
@@ -305,6 +306,7 @@
 </ul>
 ]]></content>
       <categories>
+        <category>Python</category>
         <category>Flask</category>
       </categories>
       <tags>
@@ -408,6 +410,7 @@
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;mysql&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;mysql-connector-java&lt;&#x2F;artifactId&gt;</span><br><span class="line">    &lt;version&gt;5.1.40&lt;&#x2F;version&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
+        <category>Java</category>
         <category>Mysql</category>
       </categories>
       <tags>
@@ -707,6 +710,7 @@
     <content><![CDATA[<p>前一篇文章是关于HashMap源码分析 <a href="/2021/02/26/HashMap%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" title="HashMap源码分析">HashMap源码分析</a></p>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h3 id="为什么要用ConcurrentHashMap"><a href="#为什么要用ConcurrentHashMap" class="headerlink" title="为什么要用ConcurrentHashMap?"></a>为什么要用ConcurrentHashMap?</h3><p><strong>1. 线程不安全的HashMap</strong></p>
 <p>在多线程环境下，使用HashMap的put操作会引起死循环，原因是多线程会导致HashMap的Entry链表形成环形数据结构，导致Entry的next节点永远不为空，就会产生死循环获取Entry</p>
+<a id="more"></a>
 <p><strong>2. 效率低下的HashTable</strong></p>
 <p>HashTable容器使用sychronized来保证线程安全，采取锁住整个表结构来达到同步目的，在线程竞争激烈的情况下，当一个线程访问HashTable的同步方法，其他线程也访问同步方法时，会进入阻塞或轮询状态；如线程1使用put方法时，其他线程既不能使用put方法，也不能使用get方法，效率非常低下。</p>
 <p><strong>3. ConcurrentHashMap的锁分段技术可提升并发访问效率</strong></p>
