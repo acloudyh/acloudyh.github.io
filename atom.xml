@@ -66,10 +66,10 @@
     <link href="https://acloudyh.github.io/2021/03/10/ConcurrentHashMap%20%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/"/>
     <id>https://acloudyh.github.io/2021/03/10/ConcurrentHashMap%20%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</id>
     <published>2021-03-10T07:13:36.000Z</published>
-    <updated>2021-04-26T09:08:15.635Z</updated>
+    <updated>2021-04-26T09:09:04.107Z</updated>
     
     
-    <summary type="html">&lt;p&gt;这一篇文章是关于HashMap源码分析 &lt;a href=&quot;/2021/02/26/HashMap%20%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/&quot; title=&quot;HashMap 源码分析&quot;&gt;HashMap 源码分析&lt;/a&gt;&lt;/p&gt;
+    <summary type="html">&lt;p&gt;这一篇文章是关于HashMap 源码分析 &lt;a href=&quot;/2021/02/26/HashMap%20%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/&quot; title=&quot;HashMap 源码分析&quot;&gt;HashMap 源码分析&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;h3 id=&quot;为什么要用ConcurrentHashMap&quot;&gt;&lt;a href=&quot;#为什么要用ConcurrentHashMap&quot; class=&quot;headerlink&quot; title=&quot;为什么要用ConcurrentHashMap?&quot;&gt;&lt;/a&gt;为什么要用ConcurrentHashMap?&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;1. 线程不安全的HashMap&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;在多线程环境下，使用HashMap的put操作会引起死循环，原因是多线程会导致HashMap的Entry链表形成环形数据结构，导致Entry的next节点永远不为空，就会产生死循环获取Entry&lt;/p&gt;</summary>
     
@@ -89,10 +89,10 @@
     <link href="https://acloudyh.github.io/2021/02/26/HashMap%20%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/"/>
     <id>https://acloudyh.github.io/2021/02/26/HashMap%20%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</id>
     <published>2021-02-26T02:26:44.000Z</published>
-    <updated>2021-04-26T09:07:33.955Z</updated>
+    <updated>2021-04-26T09:09:04.107Z</updated>
     
     
-    <summary type="html">&lt;p&gt;这一篇文章是关于ConcurrentHashMap源码分析 &lt;a href=&quot;/2021/03/10/ConcurrentHashMap%20%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/&quot; title=&quot;ConcurrentHashMap 源码分析&quot;&gt;ConcurrentHashMap 源码分析&lt;/a&gt;&lt;/p&gt;
+    <summary type="html">&lt;p&gt;这一篇文章是关于ConcurrentHashMap 源码分析 &lt;a href=&quot;/2021/03/10/ConcurrentHashMap%20%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/&quot; title=&quot;ConcurrentHashMap 源码分析&quot;&gt;ConcurrentHashMap 源码分析&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&quot;HashMap简介&quot;&gt;&lt;a href=&quot;#HashMap简介&quot; class=&quot;headerlink&quot; title=&quot;HashMap简介&quot;&gt;&lt;/a&gt;HashMap简介&lt;/h2&gt;&lt;p&gt;JDK1.8 之前 &lt;code&gt;HashMap&lt;/code&gt; 由 数组+链表 组成的, 数组是 &lt;code&gt;HashMap&lt;/code&gt; 的主体, 链表则是主要为了解决哈希冲突而存在的(“拉链法”解决冲突)。&lt;/p&gt;
 &lt;p&gt;JDK1.8 之后 &lt;code&gt;HashMap&lt;/code&gt; 的组成多了红黑树, 在满足下面两个条件之后, 会执行链表转红黑树操作, 以此来加快搜索速度。&lt;/p&gt;
 &lt;ul&gt;
