@@ -6,7 +6,7 @@
   <link href="https://acloudyh.github.io/atom.xml" rel="self"/>
   
   <link href="https://acloudyh.github.io/"/>
-  <updated>2021-04-25T09:09:08.997Z</updated>
+  <updated>2021-04-26T03:33:03.871Z</updated>
   <id>https://acloudyh.github.io/</id>
   
   <author>
@@ -17,11 +17,38 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>HashMap源码分析</title>
+    <link href="https://acloudyh.github.io/2021/04/26/HashMap%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/"/>
+    <id>https://acloudyh.github.io/2021/04/26/HashMap%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</id>
+    <published>2021-04-26T02:26:44.000Z</published>
+    <updated>2021-04-26T03:33:03.871Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;HashMap简介&quot;&gt;&lt;a href=&quot;#HashMap简介&quot; class=&quot;headerlink&quot; title=&quot;HashMap简介&quot;&gt;&lt;/a&gt;HashMap简介&lt;/h2&gt;&lt;p&gt;JDK1.8 之前 &lt;code&gt;HashMap&lt;/code&gt; 由 数组+链表 组成的，数组是 &lt;code&gt;HashMap&lt;/code&gt; 的主体，链表则是主要为了解决哈希冲突而存在的（“拉链法”解决冲突）。&lt;/p&gt;
+&lt;p&gt;JDK1.8 之后 &lt;code&gt;HashMap&lt;/code&gt; 的组成多了红黑树，在满足下面两个条件之后，会执行链表转红黑树操作，以此来加快搜索速度。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;链表长度大于阈值（默认为 8）&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;HashMap&lt;/code&gt; 数组长度超过 64&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;HashMap底层数据结构分析&quot;&gt;&lt;a href=&quot;#HashMap底层数据结构分析&quot; class=&quot;headerlink&quot; title=&quot;HashMap底层数据结构分析&quot;&gt;&lt;/a&gt;HashMap底层数据结构分析&lt;/h2&gt;&lt;h3 id=&quot;JDK1-8-之前&quot;&gt;&lt;a href=&quot;#JDK1-8-之前&quot; class=&quot;headerlink&quot; title=&quot;JDK1.8 之前&quot;&gt;&lt;/a&gt;JDK1.8 之前&lt;/h3&gt;</summary>
+    
+    
+    
+    <category term="Java" scheme="https://acloudyh.github.io/categories/Java/"/>
+    
+    <category term="源码分析" scheme="https://acloudyh.github.io/categories/Java/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/"/>
+    
+    
+    <category term="源码分析" scheme="https://acloudyh.github.io/tags/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/"/>
+    
+  </entry>
+  
+  <entry>
     <title>SpringBoot 自动装配原理</title>
     <link href="https://acloudyh.github.io/2021/04/25/SpringBoot-%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D%E5%8E%9F%E7%90%86/"/>
     <id>https://acloudyh.github.io/2021/04/25/SpringBoot-%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D%E5%8E%9F%E7%90%86/</id>
     <published>2021-04-25T08:15:50.000Z</published>
-    <updated>2021-04-25T09:09:08.997Z</updated>
+    <updated>2021-04-26T02:31:34.026Z</updated>
     
     
     <summary type="html">&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;使用过 &lt;code&gt;Spring&lt;/code&gt; 的小伙伴，一定有被 XML 配置统治的恐惧。即使 Spring 后面引入了基于注解的配置，我们在开启某些 &lt;code&gt;Spring&lt;/code&gt; 特性或者引入第三方依赖的时候，还是需要用 XML 或 Java 进行显式配置。&lt;/p&gt;
@@ -34,6 +61,8 @@
     
     <category term="SpringBoot" scheme="https://acloudyh.github.io/categories/Java/SpringBoot/"/>
     
+    
+    <category term="源码分析" scheme="https://acloudyh.github.io/tags/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/"/>
     
   </entry>
   
