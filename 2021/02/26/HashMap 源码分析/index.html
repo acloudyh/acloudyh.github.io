@@ -27,20 +27,20 @@
   <meta name="description" content="HashMap简介JDK1.8 之前 HashMap 由 数组+链表 组成的, 数组是 HashMap 的主体, 链表则是主要为了解决哈希冲突而存在的(“拉链法”解决冲突)。 JDK1.8 之后 HashMap 的组成多了红黑树, 在满足下面两个条件之后, 会执行链表转红黑树操作, 以此来加快搜索速度。  链表长度大于阈值(默认为 8) HashMap 数组长度超过 64  HashMap底层数据">
 <meta property="og:type" content="article">
 <meta property="og:title" content="HashMap源码分析">
-<meta property="og:url" content="https://acloudyh.github.io/2021/02/26/HashMap%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/index.html">
+<meta property="og:url" content="https://acloudyh.github.io/2021/02/26/HashMap%20%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/index.html">
 <meta property="og:site_name" content="acloudyh&#39;s Blog">
 <meta property="og:description" content="HashMap简介JDK1.8 之前 HashMap 由 数组+链表 组成的, 数组是 HashMap 的主体, 链表则是主要为了解决哈希冲突而存在的(“拉链法”解决冲突)。 JDK1.8 之后 HashMap 的组成多了红黑树, 在满足下面两个条件之后, 会执行链表转红黑树操作, 以此来加快搜索速度。  链表长度大于阈值(默认为 8) HashMap 数组长度超过 64  HashMap底层数据">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://acloudyh.github.io/2021/02/26/HashMap%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/JDK1.8%E4%B9%8B%E5%89%8D%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.jpg">
-<meta property="og:image" content="https://acloudyh.github.io/2021/02/26/HashMap%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/JDK1.8%E4%B9%8B%E5%90%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9B%BE.jpg">
+<meta property="og:image" content="https://acloudyh.github.io/2021/02/26/HashMap%20%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/JDK1.8%E4%B9%8B%E5%89%8D%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.jpg">
+<meta property="og:image" content="https://acloudyh.github.io/2021/02/26/HashMap%20%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/JDK1.8%E4%B9%8B%E5%90%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9B%BE.jpg">
 <meta property="article:published_time" content="2021-02-26T02:26:44.000Z">
 <meta property="article:modified_time" content="2021-04-26T07:22:05.270Z">
 <meta property="article:author" content="acloudyh">
 <meta property="article:tag" content="源码分析">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://acloudyh.github.io/2021/02/26/HashMap%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/JDK1.8%E4%B9%8B%E5%89%8D%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.jpg">
+<meta name="twitter:image" content="https://acloudyh.github.io/2021/02/26/HashMap%20%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/JDK1.8%E4%B9%8B%E5%89%8D%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.jpg">
 
-<link rel="canonical" href="https://acloudyh.github.io/2021/02/26/HashMap%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">
+<link rel="canonical" href="https://acloudyh.github.io/2021/02/26/HashMap%20%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">
 
 
 <script id="page-configurations">
@@ -203,7 +203,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://acloudyh.github.io/2021/02/26/HashMap%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">
+    <link itemprop="mainEntityOfPage" href="https://acloudyh.github.io/2021/02/26/HashMap%20%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header-photo.jpg">
@@ -265,8 +265,8 @@
       </span>
       <span class="post-meta-item-text">评论数：</span>
     
-    <a title="valine" href="/2021/02/26/HashMap%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/02/26/HashMap%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/02/26/HashMap%20%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/02/26/HashMap%20%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -386,7 +386,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://acloudyh.github.io/2021/02/26/HashMap%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" title="HashMap源码分析">https://acloudyh.github.io/2021/02/26/HashMap源码分析/</a>
+    <a href="https://acloudyh.github.io/2021/02/26/HashMap%20%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" title="HashMap源码分析">https://acloudyh.github.io/2021/02/26/HashMap 源码分析/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -429,7 +429,7 @@
       <i class="fa fa-chevron-left"></i> lambda表达式对对象集合进行分组并求和
     </a></div>
       <div class="post-nav-item">
-    <a href="/2021/03/10/ConcurrentHashMap%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" rel="next" title="ConcurrentHashMap源码分析">
+    <a href="/2021/03/10/ConcurrentHashMap%20%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" rel="next" title="ConcurrentHashMap源码分析">
       ConcurrentHashMap源码分析 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
