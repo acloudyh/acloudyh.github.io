@@ -153,11 +153,11 @@
   </entry>
   
   <entry>
-    <title>mysql 5.7 返回json数据 中文乱码问题</title>
-    <link href="https://acloudyh.github.io/2020/10/28/mysql-5-7-%E8%BF%94%E5%9B%9Ejson%E6%95%B0%E6%8D%AE-%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/"/>
-    <id>https://acloudyh.github.io/2020/10/28/mysql-5-7-%E8%BF%94%E5%9B%9Ejson%E6%95%B0%E6%8D%AE-%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/</id>
+    <title>MySQL 5.7 返回json数据 中文乱码问题</title>
+    <link href="https://acloudyh.github.io/2020/10/28/MySQL%205.7%20%E8%BF%94%E5%9B%9Ejson%E6%95%B0%E6%8D%AE-%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/"/>
+    <id>https://acloudyh.github.io/2020/10/28/MySQL%205.7%20%E8%BF%94%E5%9B%9Ejson%E6%95%B0%E6%8D%AE-%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/</id>
     <published>2020-10-28T06:38:35.000Z</published>
-    <updated>2021-04-26T08:31:21.160Z</updated>
+    <updated>2021-04-30T01:23:33.119Z</updated>
     
     
     <summary type="html">&lt;p&gt;mysql版本为5.7，通过navicat查看json格式的数据是正常显示，但是查询出来是乱码， 读取其他字段都是正常的，也没有特殊设置json格式的字符集&lt;/p&gt;</summary>
@@ -174,14 +174,16 @@
   </entry>
   
   <entry>
-    <title>springboot websocket 注入bean失败</title>
-    <link href="https://acloudyh.github.io/2020/10/28/springboot-websocket-%E6%B3%A8%E5%85%A5bean%E5%A4%B1%E8%B4%A5/"/>
-    <id>https://acloudyh.github.io/2020/10/28/springboot-websocket-%E6%B3%A8%E5%85%A5bean%E5%A4%B1%E8%B4%A5/</id>
+    <title>SpringBoot Websocket 注入bean失败</title>
+    <link href="https://acloudyh.github.io/2020/10/28/SpringBoot%20Websocket%20%E6%B3%A8%E5%85%A5bean%E5%A4%B1%E8%B4%A5/"/>
+    <id>https://acloudyh.github.io/2020/10/28/SpringBoot%20Websocket%20%E6%B3%A8%E5%85%A5bean%E5%A4%B1%E8%B4%A5/</id>
     <published>2020-10-28T06:38:08.000Z</published>
-    <updated>2021-04-26T08:32:48.579Z</updated>
+    <updated>2021-04-30T01:21:55.660Z</updated>
     
     
-    <summary type="html">&lt;p&gt;踩坑记录&lt;/p&gt;</summary>
+    <summary type="html">&lt;p&gt;踩坑记录&lt;/p&gt;
+&lt;p&gt;第一种方式：将messageService 注入&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;@ServerEndpoint(value &amp;#x3D; &amp;quot;&amp;#x2F;websocket&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;@Component&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;public class WebSocketServer &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#x2F;&amp;#x2F;这里使用静态，让 service 属于类&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    public static MessageServiceImpl messageService;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#x2F;**&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     * 给类的service 注入&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     * spring管理的都是单例（singleton）和 websocket （多对象）相冲突&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     *&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     * @param messageService&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     *&amp;#x2F;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    @Autowired&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    public void setMessageService(MessageServiceImpl messageService) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        WebSocketServer.messageService &amp;#x3D; messageService;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</summary>
     
     
     
@@ -195,11 +197,11 @@
   </entry>
   
   <entry>
-    <title>ubuntu 16.04  pptp搭建服务端和客户端</title>
-    <link href="https://acloudyh.github.io/2020/10/28/ubuntu-16-04-pptp%E6%90%AD%E5%BB%BA%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%92%8C%E5%AE%A2%E6%88%B7%E7%AB%AF/"/>
-    <id>https://acloudyh.github.io/2020/10/28/ubuntu-16-04-pptp%E6%90%AD%E5%BB%BA%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%92%8C%E5%AE%A2%E6%88%B7%E7%AB%AF/</id>
+    <title>Ubuntu 16.04  pptp搭建服务端和客户端</title>
+    <link href="https://acloudyh.github.io/2020/10/28/Ubuntu%2016.04%20PPTP%E6%90%AD%E5%BB%BA%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%92%8C%E5%AE%A2%E6%88%B7%E7%AB%AF/"/>
+    <id>https://acloudyh.github.io/2020/10/28/Ubuntu%2016.04%20PPTP%E6%90%AD%E5%BB%BA%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%92%8C%E5%AE%A2%E6%88%B7%E7%AB%AF/</id>
     <published>2020-10-28T06:37:35.000Z</published>
-    <updated>2021-04-26T08:33:06.872Z</updated>
+    <updated>2021-04-30T01:24:13.824Z</updated>
     
     
     <summary type="html">&lt;p&gt;本文主要是记录ubuntu 16.04安装pptp 服务端以及客户端的过程&lt;/p&gt;</summary>
@@ -219,8 +221,8 @@
   
   <entry>
     <title>flask 统一异常处理以及400 500页面</title>
-    <link href="https://acloudyh.github.io/2020/10/28/flask-%E7%BB%9F%E4%B8%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E4%BB%A5%E5%8F%8A400-500%E9%A1%B5%E9%9D%A2/"/>
-    <id>https://acloudyh.github.io/2020/10/28/flask-%E7%BB%9F%E4%B8%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E4%BB%A5%E5%8F%8A400-500%E9%A1%B5%E9%9D%A2/</id>
+    <link href="https://acloudyh.github.io/2020/10/28/Flask%20%E7%BB%9F%E4%B8%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E4%BB%A5%E5%8F%8A400-500%E9%A1%B5%E9%9D%A2/"/>
+    <id>https://acloudyh.github.io/2020/10/28/Flask%20%E7%BB%9F%E4%B8%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E4%BB%A5%E5%8F%8A400-500%E9%A1%B5%E9%9D%A2/</id>
     <published>2020-10-28T06:37:16.000Z</published>
     <updated>2021-04-26T08:31:41.558Z</updated>
     
@@ -259,8 +261,8 @@
   
   <entry>
     <title>macOS brew安装mongo遇见的一些坑和报错</title>
-    <link href="https://acloudyh.github.io/2020/10/28/macOS-brew%E5%AE%89%E8%A3%85mongo%E9%81%87%E8%A7%81%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9D%91%E5%92%8C%E6%8A%A5%E9%94%99/"/>
-    <id>https://acloudyh.github.io/2020/10/28/macOS-brew%E5%AE%89%E8%A3%85mongo%E9%81%87%E8%A7%81%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9D%91%E5%92%8C%E6%8A%A5%E9%94%99/</id>
+    <link href="https://acloudyh.github.io/2020/10/28/macOS%20brew%E5%AE%89%E8%A3%85mongo%E9%81%87%E8%A7%81%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9D%91%E5%92%8C%E6%8A%A5%E9%94%99/"/>
+    <id>https://acloudyh.github.io/2020/10/28/macOS%20brew%E5%AE%89%E8%A3%85mongo%E9%81%87%E8%A7%81%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9D%91%E5%92%8C%E6%8A%A5%E9%94%99/</id>
     <published>2020-10-28T06:36:33.000Z</published>
     <updated>2020-10-28T13:12:22.313Z</updated>
     
@@ -284,8 +286,8 @@
   
   <entry>
     <title>Ubuntu server 如何升级内核</title>
-    <link href="https://acloudyh.github.io/2020/10/28/Ubuntu-server-%E5%A6%82%E4%BD%95%E5%8D%87%E7%BA%A7%E5%86%85%E6%A0%B8/"/>
-    <id>https://acloudyh.github.io/2020/10/28/Ubuntu-server-%E5%A6%82%E4%BD%95%E5%8D%87%E7%BA%A7%E5%86%85%E6%A0%B8/</id>
+    <link href="https://acloudyh.github.io/2020/10/28/Ubuntu%20server%20%E5%A6%82%E4%BD%95%E5%8D%87%E7%BA%A7%E5%86%85%E6%A0%B8/"/>
+    <id>https://acloudyh.github.io/2020/10/28/Ubuntu%20server%20%E5%A6%82%E4%BD%95%E5%8D%87%E7%BA%A7%E5%86%85%E6%A0%B8/</id>
     <published>2020-10-28T06:36:16.000Z</published>
     <updated>2021-04-26T08:33:31.209Z</updated>
     
@@ -304,8 +306,8 @@
   
   <entry>
     <title>Ubuntu 16.04 使用root ssh登录</title>
-    <link href="https://acloudyh.github.io/2020/10/28/Ubuntu-16-04-%E4%BD%BF%E7%94%A8root-ssh%E7%99%BB%E5%BD%95/"/>
-    <id>https://acloudyh.github.io/2020/10/28/Ubuntu-16-04-%E4%BD%BF%E7%94%A8root-ssh%E7%99%BB%E5%BD%95/</id>
+    <link href="https://acloudyh.github.io/2020/10/28/Ubuntu%2016.04%20%E4%BD%BF%E7%94%A8root%20ssh%E7%99%BB%E5%BD%95/"/>
+    <id>https://acloudyh.github.io/2020/10/28/Ubuntu%2016.04%20%E4%BD%BF%E7%94%A8root%20ssh%E7%99%BB%E5%BD%95/</id>
     <published>2020-10-28T06:36:05.000Z</published>
     <updated>2020-10-28T13:12:03.561Z</updated>
     
@@ -323,8 +325,8 @@
   
   <entry>
     <title>Ubuntu 更换apt源、pip3源</title>
-    <link href="https://acloudyh.github.io/2020/10/28/Ubuntu-%E6%9B%B4%E6%8D%A2apt%E6%BA%90%E3%80%81pip3%E6%BA%90/"/>
-    <id>https://acloudyh.github.io/2020/10/28/Ubuntu-%E6%9B%B4%E6%8D%A2apt%E6%BA%90%E3%80%81pip3%E6%BA%90/</id>
+    <link href="https://acloudyh.github.io/2020/10/28/Ubuntu%20%E6%9B%B4%E6%8D%A2apt%E6%BA%90%E3%80%81pip3%E6%BA%90/"/>
+    <id>https://acloudyh.github.io/2020/10/28/Ubuntu%20%E6%9B%B4%E6%8D%A2apt%E6%BA%90%E3%80%81pip3%E6%BA%90/</id>
     <published>2020-10-28T06:35:15.000Z</published>
     <updated>2020-10-28T13:11:53.489Z</updated>
     
