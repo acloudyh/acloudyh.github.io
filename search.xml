@@ -852,9 +852,10 @@
   <entry>
     <title>BeyondCompare 无限试用</title>
     <url>/2020/10/06/BeyondCompare%20%E6%97%A0%E9%99%90%E8%AF%95%E7%94%A8/</url>
-    <content><![CDATA[<h2 id="beyondCompare-无限试用"><a href="#beyondCompare-无限试用" class="headerlink" title="beyondCompare 无限试用"></a>beyondCompare 无限试用</h2><h3 id="找到安装的目录"><a href="#找到安装的目录" class="headerlink" title="找到安装的目录"></a>找到安装的目录</h3><p>我的安装目录是在这个下面</p>
+    <content><![CDATA[<h2 id="beyondCompare-无限试用"><a href="#beyondCompare-无限试用" class="headerlink" title="beyondCompare 无限试用"></a>beyondCompare 无限试用</h2><p>一次设置,一直有效,以后不需要修改,每次打开都是30天</p>
+<h3 id="找到安装的目录"><a href="#找到安装的目录" class="headerlink" title="找到安装的目录"></a>找到安装的目录</h3><p>我的安装目录是在这个下面</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /Applications/Beyond\ Compare.app/Contents/MacOS/</span><br></pre></td></tr></table></figure>
-
+<a id="more"></a>
 <h3 id="备份-BCompare"><a href="#备份-BCompare" class="headerlink" title="备份 BCompare"></a>备份 <code>BCompare</code></h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mv BCompare BCompare.real </span><br></pre></td></tr></table></figure>
 
 <h3 id="创建并编辑-BCompare"><a href="#创建并编辑-BCompare" class="headerlink" title="创建并编辑 BCompare"></a>创建并编辑 <code>BCompare</code></h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">touch BCompare</span><br></pre></td></tr></table></figure>
