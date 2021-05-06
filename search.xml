@@ -852,7 +852,16 @@
   <entry>
     <title>BeyondCompare 无限试用</title>
     <url>/2020/10/06/BeyondCompare%20%E6%97%A0%E9%99%90%E8%AF%95%E7%94%A8/</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<h2 id="beyondCompare-无限试用"><a href="#beyondCompare-无限试用" class="headerlink" title="beyondCompare 无限试用"></a>beyondCompare 无限试用</h2><h3 id="找到安装的目录"><a href="#找到安装的目录" class="headerlink" title="找到安装的目录"></a>找到安装的目录</h3><p>我的安装目录是在这个下面</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /Applications/Beyond\ Compare.app/Contents/MacOS/</span><br></pre></td></tr></table></figure>
+
+<h3 id="备份-BCompare"><a href="#备份-BCompare" class="headerlink" title="备份 BCompare"></a>备份 <code>BCompare</code></h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mv BCompare BCompare.real </span><br></pre></td></tr></table></figure>
+
+<h3 id="创建并编辑-BCompare"><a href="#创建并编辑-BCompare" class="headerlink" title="创建并编辑 BCompare"></a>创建并编辑 <code>BCompare</code></h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">touch BCompare</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vim BCompare </span><br></pre></td></tr></table></figure>
+
+<h3 id="增加以下内容-无限期试用"><a href="#增加以下内容-无限期试用" class="headerlink" title="增加以下内容 (无限期试用)"></a>增加以下内容 (无限期试用)</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#!&#x2F;bin&#x2F;bash</span><br><span class="line">rm &quot;&#x2F;Users&#x2F;neo&#x2F;Library&#x2F;Application Support&#x2F;Beyond Compare&#x2F;registry.dat&quot;</span><br><span class="line">&quot;&#96;dirname &quot;$0&quot;&#96;&quot;&#x2F;BCompare.real $@</span><br></pre></td></tr></table></figure>
+<h3 id="赋予权限"><a href="#赋予权限" class="headerlink" title="赋予权限"></a>赋予权限</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">chmod a+x BCompare</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>工具</category>
       </categories>
