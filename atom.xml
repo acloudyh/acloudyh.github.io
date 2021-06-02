@@ -113,6 +113,25 @@
   </entry>
   
   <entry>
+    <title>Ubuntu 自动挂载SD卡</title>
+    <link href="https://acloudyh.github.io/2020/12/27/Ubuntu%20%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BDSD%E5%8D%A1/"/>
+    <id>https://acloudyh.github.io/2020/12/27/Ubuntu%20%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BDSD%E5%8D%A1/</id>
+    <published>2020-12-27T13:27:55.000Z</published>
+    <updated>2021-06-02T06:29:33.906Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;最近开发过程中遇见了一个问题，Ubuntu 16.04 自动挂载SD卡报错，&lt;code&gt;mounted filesystem with ordered data mode. Opts: (null)&lt;/code&gt;以此记录一下&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Ubuntu" scheme="https://acloudyh.github.io/categories/Ubuntu/"/>
+    
+    
+    <category term="Ubuntu挂载SD卡" scheme="https://acloudyh.github.io/tags/Ubuntu%E6%8C%82%E8%BD%BDSD%E5%8D%A1/"/>
+    
+  </entry>
+  
+  <entry>
     <title>lambda表达式对对象集合进行分组并求和</title>
     <link href="https://acloudyh.github.io/2020/12/14/lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%88%86%E7%BB%84%E5%B9%B6%E6%B1%82%E5%92%8C-md/"/>
     <id>https://acloudyh.github.io/2020/12/14/lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%88%86%E7%BB%84%E5%B9%B6%E6%B1%82%E5%92%8C-md/</id>
@@ -129,6 +148,51 @@
     
     <category term="lambda" scheme="https://acloudyh.github.io/categories/Java/lambda/"/>
     
+    
+  </entry>
+  
+  <entry>
+    <title>Ubuntu server 如何升级内核</title>
+    <link href="https://acloudyh.github.io/2020/12/13/Ubuntu%20server%20%E5%A6%82%E4%BD%95%E5%8D%87%E7%BA%A7%E5%86%85%E6%A0%B8/"/>
+    <id>https://acloudyh.github.io/2020/12/13/Ubuntu%20server%20%E5%A6%82%E4%BD%95%E5%8D%87%E7%BA%A7%E5%86%85%E6%A0%B8/</id>
+    <published>2020-12-13T06:36:16.000Z</published>
+    <updated>2021-06-02T06:29:20.659Z</updated>
+    
+    
+    <summary type="html">&lt;h3 id=&quot;查看目前内核&quot;&gt;&lt;a href=&quot;#查看目前内核&quot; class=&quot;headerlink&quot; title=&quot;查看目前内核&quot;&gt;&lt;/a&gt;查看目前内核&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;root@ubuntu:~# uname -sr&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Linux 4.4.0-142-generic&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;开始升级内核&quot;&gt;&lt;a href=&quot;#开始升级内核&quot; class=&quot;headerlink&quot; title=&quot;开始升级内核&quot;&gt;&lt;/a&gt;开始升级内核&lt;/h3&gt;</summary>
+    
+    
+    
+    <category term="Ubuntu" scheme="https://acloudyh.github.io/categories/Ubuntu/"/>
+    
+    
+    <category term="Ubuntu" scheme="https://acloudyh.github.io/tags/Ubuntu/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>macOS brew安装mongo遇见的一些坑和报错</title>
+    <link href="https://acloudyh.github.io/2020/11/29/macOS%20brew%E5%AE%89%E8%A3%85mongo%E9%81%87%E8%A7%81%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9D%91%E5%92%8C%E6%8A%A5%E9%94%99/"/>
+    <id>https://acloudyh.github.io/2020/11/29/macOS%20brew%E5%AE%89%E8%A3%85mongo%E9%81%87%E8%A7%81%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9D%91%E5%92%8C%E6%8A%A5%E9%94%99/</id>
+    <published>2020-11-29T06:36:33.000Z</published>
+    <updated>2021-06-02T06:29:50.975Z</updated>
+    
+    
+    <summary type="html">&lt;h3 id=&quot;brew-安装mongo&quot;&gt;&lt;a href=&quot;#brew-安装mongo&quot; class=&quot;headerlink&quot; title=&quot;brew 安装mongo&quot;&gt;&lt;/a&gt;brew 安装mongo&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;brew 安装mongo 遇见的一些坑和报错&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;1. WiredTiger  Permission denied&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;2. Found an invalid featureCompatibilityVersion document&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;   &lt;strong&gt;3. Data directory /data/db not found., terminating&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    <category term="Java" scheme="https://acloudyh.github.io/categories/Java/"/>
+    
+    
+    <category term="踩坑" scheme="https://acloudyh.github.io/tags/%E8%B8%A9%E5%9D%91/"/>
     
   </entry>
   
@@ -239,51 +303,6 @@
   </entry>
   
   <entry>
-    <title>macOS brew安装mongo遇见的一些坑和报错</title>
-    <link href="https://acloudyh.github.io/2020/10/28/macOS%20brew%E5%AE%89%E8%A3%85mongo%E9%81%87%E8%A7%81%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9D%91%E5%92%8C%E6%8A%A5%E9%94%99/"/>
-    <id>https://acloudyh.github.io/2020/10/28/macOS%20brew%E5%AE%89%E8%A3%85mongo%E9%81%87%E8%A7%81%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9D%91%E5%92%8C%E6%8A%A5%E9%94%99/</id>
-    <published>2020-10-28T06:36:33.000Z</published>
-    <updated>2020-10-28T13:12:22.313Z</updated>
-    
-    
-    <summary type="html">&lt;h3 id=&quot;brew-安装mongo&quot;&gt;&lt;a href=&quot;#brew-安装mongo&quot; class=&quot;headerlink&quot; title=&quot;brew 安装mongo&quot;&gt;&lt;/a&gt;brew 安装mongo&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;brew 安装mongo 遇见的一些坑和报错&lt;/p&gt;
-&lt;p&gt;  &lt;strong&gt;1. WiredTiger  Permission denied&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;  &lt;strong&gt;2. Found an invalid featureCompatibilityVersion document&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;   &lt;strong&gt;3. Data directory /data/db not found., terminating&lt;/strong&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;</summary>
-    
-    
-    
-    <category term="Java" scheme="https://acloudyh.github.io/categories/Java/"/>
-    
-    
-    <category term="踩坑" scheme="https://acloudyh.github.io/tags/%E8%B8%A9%E5%9D%91/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Ubuntu server 如何升级内核</title>
-    <link href="https://acloudyh.github.io/2020/10/28/Ubuntu%20server%20%E5%A6%82%E4%BD%95%E5%8D%87%E7%BA%A7%E5%86%85%E6%A0%B8/"/>
-    <id>https://acloudyh.github.io/2020/10/28/Ubuntu%20server%20%E5%A6%82%E4%BD%95%E5%8D%87%E7%BA%A7%E5%86%85%E6%A0%B8/</id>
-    <published>2020-10-28T06:36:16.000Z</published>
-    <updated>2021-04-26T08:33:31.209Z</updated>
-    
-    
-    <summary type="html">&lt;h3 id=&quot;查看目前内核&quot;&gt;&lt;a href=&quot;#查看目前内核&quot; class=&quot;headerlink&quot; title=&quot;查看目前内核&quot;&gt;&lt;/a&gt;查看目前内核&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;root@ubuntu:~# uname -sr&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Linux 4.4.0-142-generic&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;开始升级内核&quot;&gt;&lt;a href=&quot;#开始升级内核&quot; class=&quot;headerlink&quot; title=&quot;开始升级内核&quot;&gt;&lt;/a&gt;开始升级内核&lt;/h3&gt;</summary>
-    
-    
-    
-    <category term="Ubuntu" scheme="https://acloudyh.github.io/categories/Ubuntu/"/>
-    
-    
-    <category term="Ubuntu" scheme="https://acloudyh.github.io/tags/Ubuntu/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Ubuntu 16.04 使用root ssh登录</title>
     <link href="https://acloudyh.github.io/2020/10/28/Ubuntu%2016.04%20%E4%BD%BF%E7%94%A8root%20ssh%E7%99%BB%E5%BD%95/"/>
     <id>https://acloudyh.github.io/2020/10/28/Ubuntu%2016.04%20%E4%BD%BF%E7%94%A8root%20ssh%E7%99%BB%E5%BD%95/</id>
@@ -303,30 +322,11 @@
   </entry>
   
   <entry>
-    <title>Ubuntu 自动挂载SD卡</title>
-    <link href="https://acloudyh.github.io/2020/10/27/Ubuntu%20%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BDSD%E5%8D%A1/"/>
-    <id>https://acloudyh.github.io/2020/10/27/Ubuntu%20%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BDSD%E5%8D%A1/</id>
-    <published>2020-10-27T13:27:55.000Z</published>
-    <updated>2020-10-30T07:30:29.350Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;最近开发过程中遇见了一个问题，Ubuntu 16.04 自动挂载SD卡报错，&lt;code&gt;mounted filesystem with ordered data mode. Opts: (null)&lt;/code&gt;以此记录一下&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="Ubuntu" scheme="https://acloudyh.github.io/categories/Ubuntu/"/>
-    
-    
-    <category term="Ubuntu挂载SD卡" scheme="https://acloudyh.github.io/tags/Ubuntu%E6%8C%82%E8%BD%BDSD%E5%8D%A1/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Nacos集群配置及Nginx反向代理</title>
-    <link href="https://acloudyh.github.io/2020/10/27/Nacos%E9%9B%86%E7%BE%A4%E9%85%8D%E7%BD%AE%E5%8F%8ANginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/"/>
-    <id>https://acloudyh.github.io/2020/10/27/Nacos%E9%9B%86%E7%BE%A4%E9%85%8D%E7%BD%AE%E5%8F%8ANginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/</id>
-    <published>2020-10-27T12:57:19.000Z</published>
-    <updated>2021-04-26T08:33:53.662Z</updated>
+    <link href="https://acloudyh.github.io/2020/10/20/Nacos%E9%9B%86%E7%BE%A4%E9%85%8D%E7%BD%AE%E5%8F%8ANginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/"/>
+    <id>https://acloudyh.github.io/2020/10/20/Nacos%E9%9B%86%E7%BE%A4%E9%85%8D%E7%BD%AE%E5%8F%8ANginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/</id>
+    <published>2020-10-20T12:57:19.000Z</published>
+    <updated>2021-06-02T06:28:59.855Z</updated>
     
     
     <summary type="html">&lt;p&gt;Nacos集群配置以及Nginx反向代理的一些配置&lt;/p&gt;</summary>
@@ -386,10 +386,10 @@
   
   <entry>
     <title>BeyondCompare 无限试用</title>
-    <link href="https://acloudyh.github.io/2020/10/06/BeyondCompare%20%E6%97%A0%E9%99%90%E8%AF%95%E7%94%A8/"/>
-    <id>https://acloudyh.github.io/2020/10/06/BeyondCompare%20%E6%97%A0%E9%99%90%E8%AF%95%E7%94%A8/</id>
-    <published>2020-10-06T06:54:49.000Z</published>
-    <updated>2021-05-06T07:11:12.262Z</updated>
+    <link href="https://acloudyh.github.io/2020/09/06/BeyondCompare%20%E6%97%A0%E9%99%90%E8%AF%95%E7%94%A8/"/>
+    <id>https://acloudyh.github.io/2020/09/06/BeyondCompare%20%E6%97%A0%E9%99%90%E8%AF%95%E7%94%A8/</id>
+    <published>2020-09-06T06:54:49.000Z</published>
+    <updated>2021-06-02T06:28:38.871Z</updated>
     
     
     <summary type="html">&lt;h2 id=&quot;beyondCompare-无限试用&quot;&gt;&lt;a href=&quot;#beyondCompare-无限试用&quot; class=&quot;headerlink&quot; title=&quot;beyondCompare 无限试用&quot;&gt;&lt;/a&gt;beyondCompare 无限试用&lt;/h2&gt;&lt;p&gt;一次设置,一直有效,以后不需要修改,每次打开都是30天&lt;/p&gt;
