@@ -125,7 +125,7 @@
   </entry>
   <entry>
     <title>fasterxml中string字符串转对象json格式单引号错误</title>
-    <url>/2020/10/28/fasterxml%E4%B8%ADstring%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E5%AF%B9%E8%B1%A1json%E6%A0%BC%E5%BC%8F%E5%8D%95%E5%BC%95%E5%8F%B7%E9%94%99%E8%AF%AF/</url>
+    <url>/2021/01/28/fasterxml%E4%B8%ADstring%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E5%AF%B9%E8%B1%A1json%E6%A0%BC%E5%BC%8F%E5%8D%95%E5%BC%95%E5%8F%B7%E9%94%99%E8%AF%AF/</url>
     <content><![CDATA[<p>在处理fasterxml中string字符串转对象json格式，标准的json都是双引号 （” “）;由于数据是单引号(‘ ‘)格式。导致了如下报错，特此记录</p>
 <p><strong>com.fasterxml.jackson.core.JsonParseException:  Unexpected character (‘s’ (code 115)): was     expecting double-quote to start field name</strong></p>
 <a id="more"></a>
@@ -551,7 +551,7 @@
   </entry>
   <entry>
     <title>SpringBoot Websocket 注入bean失败</title>
-    <url>/2020/10/28/SpringBoot%20Websocket%20%E6%B3%A8%E5%85%A5bean%E5%A4%B1%E8%B4%A5/</url>
+    <url>/2020/09/19/SpringBoot%20Websocket%20%E6%B3%A8%E5%85%A5bean%E5%A4%B1%E8%B4%A5/</url>
     <content><![CDATA[<p>踩坑记录</p>
 <p>第一种方式：将messageService 注入</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@ServerEndpoint(value &#x3D; &quot;&#x2F;websocket&quot;)</span><br><span class="line">@Component</span><br><span class="line">public class WebSocketServer &#123;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;这里使用静态，让 service 属于类</span><br><span class="line">    public static MessageServiceImpl messageService;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 给类的service 注入</span><br><span class="line">     * spring管理的都是单例（singleton）和 websocket （多对象）相冲突</span><br><span class="line">     *</span><br><span class="line">     * @param messageService</span><br><span class="line">     *&#x2F;</span><br><span class="line">    @Autowired</span><br><span class="line">    public void setMessageService(MessageServiceImpl messageService) &#123;</span><br><span class="line">        WebSocketServer.messageService &#x3D; messageService;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -573,7 +573,7 @@
   </entry>
   <entry>
     <title>MySQL 5.7 返回json数据 中文乱码问题</title>
-    <url>/2020/10/28/MySQL%205.7%20%E8%BF%94%E5%9B%9Ejson%E6%95%B0%E6%8D%AE-%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/</url>
+    <url>/2021/01/11/MySQL%205.7%20%E8%BF%94%E5%9B%9Ejson%E6%95%B0%E6%8D%AE-%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<p>mysql版本为5.7，通过navicat查看json格式的数据是正常显示，但是查询出来是乱码， 读取其他字段都是正常的，也没有特殊设置json格式的字符集</p>
 <a id="more"></a>
 <p>mysql驱动jdbc是这个版本</p>
@@ -851,7 +851,7 @@
   </entry>
   <entry>
     <title>BeyondCompare 无限试用</title>
-    <url>/2020/09/06/BeyondCompare%20%E6%97%A0%E9%99%90%E8%AF%95%E7%94%A8/</url>
+    <url>/2020/08/06/BeyondCompare%20%E6%97%A0%E9%99%90%E8%AF%95%E7%94%A8/</url>
     <content><![CDATA[<h2 id="beyondCompare-无限试用"><a href="#beyondCompare-无限试用" class="headerlink" title="beyondCompare 无限试用"></a>beyondCompare 无限试用</h2><p>一次设置,一直有效,以后不需要修改,每次打开都是30天</p>
 <h3 id="找到安装的目录"><a href="#找到安装的目录" class="headerlink" title="找到安装的目录"></a>找到安装的目录</h3><p>我的安装目录是在这个下面</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /Applications/Beyond\ Compare.app/Contents/MacOS/</span><br></pre></td></tr></table></figure>

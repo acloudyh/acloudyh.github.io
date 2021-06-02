@@ -113,6 +113,47 @@
   </entry>
   
   <entry>
+    <title>fasterxml中string字符串转对象json格式单引号错误</title>
+    <link href="https://acloudyh.github.io/2021/01/28/fasterxml%E4%B8%ADstring%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E5%AF%B9%E8%B1%A1json%E6%A0%BC%E5%BC%8F%E5%8D%95%E5%BC%95%E5%8F%B7%E9%94%99%E8%AF%AF/"/>
+    <id>https://acloudyh.github.io/2021/01/28/fasterxml%E4%B8%ADstring%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E5%AF%B9%E8%B1%A1json%E6%A0%BC%E5%BC%8F%E5%8D%95%E5%BC%95%E5%8F%B7%E9%94%99%E8%AF%AF/</id>
+    <published>2021-01-28T06:38:54.000Z</published>
+    <updated>2021-06-02T09:26:07.032Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;在处理fasterxml中string字符串转对象json格式，标准的json都是双引号 （” “）;由于数据是单引号(‘ ‘)格式。导致了如下报错，特此记录&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;com.fasterxml.jackson.core.JsonParseException:  Unexpected character (‘s’ (code 115)): was     expecting double-quote to start field name&lt;/strong&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Java" scheme="https://acloudyh.github.io/categories/Java/"/>
+    
+    
+    <category term="踩坑" scheme="https://acloudyh.github.io/tags/%E8%B8%A9%E5%9D%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MySQL 5.7 返回json数据 中文乱码问题</title>
+    <link href="https://acloudyh.github.io/2021/01/11/MySQL%205.7%20%E8%BF%94%E5%9B%9Ejson%E6%95%B0%E6%8D%AE-%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/"/>
+    <id>https://acloudyh.github.io/2021/01/11/MySQL%205.7%20%E8%BF%94%E5%9B%9Ejson%E6%95%B0%E6%8D%AE-%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/</id>
+    <published>2021-01-11T06:38:35.000Z</published>
+    <updated>2021-06-02T09:25:32.170Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;mysql版本为5.7，通过navicat查看json格式的数据是正常显示，但是查询出来是乱码， 读取其他字段都是正常的，也没有特殊设置json格式的字符集&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Java" scheme="https://acloudyh.github.io/categories/Java/"/>
+    
+    <category term="Mysql" scheme="https://acloudyh.github.io/categories/Java/Mysql/"/>
+    
+    
+    <category term="踩坑" scheme="https://acloudyh.github.io/tags/%E8%B8%A9%E5%9D%91/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Ubuntu 自动挂载SD卡</title>
     <link href="https://acloudyh.github.io/2020/12/27/Ubuntu%20%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BDSD%E5%8D%A1/"/>
     <id>https://acloudyh.github.io/2020/12/27/Ubuntu%20%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BDSD%E5%8D%A1/</id>
@@ -239,70 +280,6 @@
   </entry>
   
   <entry>
-    <title>fasterxml中string字符串转对象json格式单引号错误</title>
-    <link href="https://acloudyh.github.io/2020/10/28/fasterxml%E4%B8%ADstring%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E5%AF%B9%E8%B1%A1json%E6%A0%BC%E5%BC%8F%E5%8D%95%E5%BC%95%E5%8F%B7%E9%94%99%E8%AF%AF/"/>
-    <id>https://acloudyh.github.io/2020/10/28/fasterxml%E4%B8%ADstring%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E5%AF%B9%E8%B1%A1json%E6%A0%BC%E5%BC%8F%E5%8D%95%E5%BC%95%E5%8F%B7%E9%94%99%E8%AF%AF/</id>
-    <published>2020-10-28T06:38:54.000Z</published>
-    <updated>2020-10-28T13:12:33.911Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;在处理fasterxml中string字符串转对象json格式，标准的json都是双引号 （” “）;由于数据是单引号(‘ ‘)格式。导致了如下报错，特此记录&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;com.fasterxml.jackson.core.JsonParseException:  Unexpected character (‘s’ (code 115)): was     expecting double-quote to start field name&lt;/strong&gt;&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="Java" scheme="https://acloudyh.github.io/categories/Java/"/>
-    
-    
-    <category term="踩坑" scheme="https://acloudyh.github.io/tags/%E8%B8%A9%E5%9D%91/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MySQL 5.7 返回json数据 中文乱码问题</title>
-    <link href="https://acloudyh.github.io/2020/10/28/MySQL%205.7%20%E8%BF%94%E5%9B%9Ejson%E6%95%B0%E6%8D%AE-%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/"/>
-    <id>https://acloudyh.github.io/2020/10/28/MySQL%205.7%20%E8%BF%94%E5%9B%9Ejson%E6%95%B0%E6%8D%AE-%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/</id>
-    <published>2020-10-28T06:38:35.000Z</published>
-    <updated>2021-04-30T01:23:33.119Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;mysql版本为5.7，通过navicat查看json格式的数据是正常显示，但是查询出来是乱码， 读取其他字段都是正常的，也没有特殊设置json格式的字符集&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="Java" scheme="https://acloudyh.github.io/categories/Java/"/>
-    
-    <category term="Mysql" scheme="https://acloudyh.github.io/categories/Java/Mysql/"/>
-    
-    
-    <category term="踩坑" scheme="https://acloudyh.github.io/tags/%E8%B8%A9%E5%9D%91/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SpringBoot Websocket 注入bean失败</title>
-    <link href="https://acloudyh.github.io/2020/10/28/SpringBoot%20Websocket%20%E6%B3%A8%E5%85%A5bean%E5%A4%B1%E8%B4%A5/"/>
-    <id>https://acloudyh.github.io/2020/10/28/SpringBoot%20Websocket%20%E6%B3%A8%E5%85%A5bean%E5%A4%B1%E8%B4%A5/</id>
-    <published>2020-10-28T06:38:08.000Z</published>
-    <updated>2021-04-30T01:21:55.660Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;踩坑记录&lt;/p&gt;
-&lt;p&gt;第一种方式：将messageService 注入&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;@ServerEndpoint(value &amp;#x3D; &amp;quot;&amp;#x2F;websocket&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;@Component&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;public class WebSocketServer &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#x2F;&amp;#x2F;这里使用静态，让 service 属于类&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    public static MessageServiceImpl messageService;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#x2F;**&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     * 给类的service 注入&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     * spring管理的都是单例（singleton）和 websocket （多对象）相冲突&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     *&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     * @param messageService&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     *&amp;#x2F;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    @Autowired&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    public void setMessageService(MessageServiceImpl messageService) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        WebSocketServer.messageService &amp;#x3D; messageService;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</summary>
-    
-    
-    
-    <category term="Java" scheme="https://acloudyh.github.io/categories/Java/"/>
-    
-    <category term="SpringBoot" scheme="https://acloudyh.github.io/categories/Java/SpringBoot/"/>
-    
-    
-    <category term="踩坑" scheme="https://acloudyh.github.io/tags/%E8%B8%A9%E5%9D%91/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Nacos集群配置及Nginx反向代理</title>
     <link href="https://acloudyh.github.io/2020/10/20/Nacos%E9%9B%86%E7%BE%A4%E9%85%8D%E7%BD%AE%E5%8F%8ANginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/"/>
     <id>https://acloudyh.github.io/2020/10/20/Nacos%E9%9B%86%E7%BE%A4%E9%85%8D%E7%BD%AE%E5%8F%8ANginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/</id>
@@ -385,11 +362,34 @@
   </entry>
   
   <entry>
+    <title>SpringBoot Websocket 注入bean失败</title>
+    <link href="https://acloudyh.github.io/2020/09/19/SpringBoot%20Websocket%20%E6%B3%A8%E5%85%A5bean%E5%A4%B1%E8%B4%A5/"/>
+    <id>https://acloudyh.github.io/2020/09/19/SpringBoot%20Websocket%20%E6%B3%A8%E5%85%A5bean%E5%A4%B1%E8%B4%A5/</id>
+    <published>2020-09-19T06:38:08.000Z</published>
+    <updated>2021-06-02T09:24:41.309Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;踩坑记录&lt;/p&gt;
+&lt;p&gt;第一种方式：将messageService 注入&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;@ServerEndpoint(value &amp;#x3D; &amp;quot;&amp;#x2F;websocket&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;@Component&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;public class WebSocketServer &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#x2F;&amp;#x2F;这里使用静态，让 service 属于类&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    public static MessageServiceImpl messageService;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#x2F;**&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     * 给类的service 注入&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     * spring管理的都是单例（singleton）和 websocket （多对象）相冲突&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     *&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     * @param messageService&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     *&amp;#x2F;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    @Autowired&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    public void setMessageService(MessageServiceImpl messageService) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        WebSocketServer.messageService &amp;#x3D; messageService;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</summary>
+    
+    
+    
+    <category term="Java" scheme="https://acloudyh.github.io/categories/Java/"/>
+    
+    <category term="SpringBoot" scheme="https://acloudyh.github.io/categories/Java/SpringBoot/"/>
+    
+    
+    <category term="踩坑" scheme="https://acloudyh.github.io/tags/%E8%B8%A9%E5%9D%91/"/>
+    
+  </entry>
+  
+  <entry>
     <title>BeyondCompare 无限试用</title>
-    <link href="https://acloudyh.github.io/2020/09/06/BeyondCompare%20%E6%97%A0%E9%99%90%E8%AF%95%E7%94%A8/"/>
-    <id>https://acloudyh.github.io/2020/09/06/BeyondCompare%20%E6%97%A0%E9%99%90%E8%AF%95%E7%94%A8/</id>
-    <published>2020-09-06T06:54:49.000Z</published>
-    <updated>2021-06-02T06:28:38.871Z</updated>
+    <link href="https://acloudyh.github.io/2020/08/06/BeyondCompare%20%E6%97%A0%E9%99%90%E8%AF%95%E7%94%A8/"/>
+    <id>https://acloudyh.github.io/2020/08/06/BeyondCompare%20%E6%97%A0%E9%99%90%E8%AF%95%E7%94%A8/</id>
+    <published>2020-08-06T06:54:49.000Z</published>
+    <updated>2021-06-02T09:23:52.391Z</updated>
     
     
     <summary type="html">&lt;h2 id=&quot;beyondCompare-无限试用&quot;&gt;&lt;a href=&quot;#beyondCompare-无限试用&quot; class=&quot;headerlink&quot; title=&quot;beyondCompare 无限试用&quot;&gt;&lt;/a&gt;beyondCompare 无限试用&lt;/h2&gt;&lt;p&gt;一次设置,一直有效,以后不需要修改,每次打开都是30天&lt;/p&gt;
