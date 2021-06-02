@@ -216,6 +216,29 @@
   </entry>
   
   <entry>
+    <title>Ubuntu 16.04  pptp搭建服务端和客户端</title>
+    <link href="https://acloudyh.github.io/2020/11/19/Ubuntu%2016.04%20PPTP%E6%90%AD%E5%BB%BA%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%92%8C%E5%AE%A2%E6%88%B7%E7%AB%AF/"/>
+    <id>https://acloudyh.github.io/2020/11/19/Ubuntu%2016.04%20PPTP%E6%90%AD%E5%BB%BA%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%92%8C%E5%AE%A2%E6%88%B7%E7%AB%AF/</id>
+    <published>2020-11-19T06:37:35.000Z</published>
+    <updated>2021-06-02T06:35:52.893Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;本文主要是记录ubuntu 16.04安装pptp 服务端以及客户端的过程&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Ubuntu" scheme="https://acloudyh.github.io/categories/Ubuntu/"/>
+    
+    <category term="PPTP" scheme="https://acloudyh.github.io/categories/Ubuntu/PPTP/"/>
+    
+    
+    <category term="Ubuntu" scheme="https://acloudyh.github.io/tags/Ubuntu/"/>
+    
+    <category term="PPTP" scheme="https://acloudyh.github.io/tags/PPTP/"/>
+    
+  </entry>
+  
+  <entry>
     <title>fasterxml中string字符串转对象json格式单引号错误</title>
     <link href="https://acloudyh.github.io/2020/10/28/fasterxml%E4%B8%ADstring%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E5%AF%B9%E8%B1%A1json%E6%A0%BC%E5%BC%8F%E5%8D%95%E5%BC%95%E5%8F%B7%E9%94%99%E8%AF%AF/"/>
     <id>https://acloudyh.github.io/2020/10/28/fasterxml%E4%B8%ADstring%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E5%AF%B9%E8%B1%A1json%E6%A0%BC%E5%BC%8F%E5%8D%95%E5%BC%95%E5%8F%B7%E9%94%99%E8%AF%AF/</id>
@@ -280,48 +303,6 @@
   </entry>
   
   <entry>
-    <title>Ubuntu 16.04  pptp搭建服务端和客户端</title>
-    <link href="https://acloudyh.github.io/2020/10/28/Ubuntu%2016.04%20PPTP%E6%90%AD%E5%BB%BA%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%92%8C%E5%AE%A2%E6%88%B7%E7%AB%AF/"/>
-    <id>https://acloudyh.github.io/2020/10/28/Ubuntu%2016.04%20PPTP%E6%90%AD%E5%BB%BA%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%92%8C%E5%AE%A2%E6%88%B7%E7%AB%AF/</id>
-    <published>2020-10-28T06:37:35.000Z</published>
-    <updated>2021-04-30T01:24:13.824Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;本文主要是记录ubuntu 16.04安装pptp 服务端以及客户端的过程&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="Ubuntu" scheme="https://acloudyh.github.io/categories/Ubuntu/"/>
-    
-    <category term="PPTP" scheme="https://acloudyh.github.io/categories/Ubuntu/PPTP/"/>
-    
-    
-    <category term="Ubuntu" scheme="https://acloudyh.github.io/tags/Ubuntu/"/>
-    
-    <category term="PPTP" scheme="https://acloudyh.github.io/tags/PPTP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Ubuntu 16.04 使用root ssh登录</title>
-    <link href="https://acloudyh.github.io/2020/10/28/Ubuntu%2016.04%20%E4%BD%BF%E7%94%A8root%20ssh%E7%99%BB%E5%BD%95/"/>
-    <id>https://acloudyh.github.io/2020/10/28/Ubuntu%2016.04%20%E4%BD%BF%E7%94%A8root%20ssh%E7%99%BB%E5%BD%95/</id>
-    <published>2020-10-28T06:36:05.000Z</published>
-    <updated>2020-10-28T13:12:03.561Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;&lt;strong&gt;如果你只是想登陆别的机器的SSH只需要安装openssh-client（ubuntu有默认安装，如果没有则sudoapt-get install openssh-client），如果要使本机开放SSH服务就需要安装openssh-server。&lt;/strong&gt;&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="Ubuntu" scheme="https://acloudyh.github.io/categories/Ubuntu/"/>
-    
-    
-    <category term="Ubuntu" scheme="https://acloudyh.github.io/tags/Ubuntu/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Nacos集群配置及Nginx反向代理</title>
     <link href="https://acloudyh.github.io/2020/10/20/Nacos%E9%9B%86%E7%BE%A4%E9%85%8D%E7%BD%AE%E5%8F%8ANginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/"/>
     <id>https://acloudyh.github.io/2020/10/20/Nacos%E9%9B%86%E7%BE%A4%E9%85%8D%E7%BD%AE%E5%8F%8ANginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/</id>
@@ -381,6 +362,25 @@
     
     <category term="Flask" scheme="https://acloudyh.github.io/categories/Python/Flask/"/>
     
+    
+  </entry>
+  
+  <entry>
+    <title>Ubuntu 16.04 使用root ssh登录</title>
+    <link href="https://acloudyh.github.io/2020/09/28/Ubuntu%2016.04%20%E4%BD%BF%E7%94%A8root%20ssh%E7%99%BB%E5%BD%95/"/>
+    <id>https://acloudyh.github.io/2020/09/28/Ubuntu%2016.04%20%E4%BD%BF%E7%94%A8root%20ssh%E7%99%BB%E5%BD%95/</id>
+    <published>2020-09-28T06:36:05.000Z</published>
+    <updated>2021-06-02T06:35:42.238Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;strong&gt;如果你只是想登陆别的机器的SSH只需要安装openssh-client（ubuntu有默认安装，如果没有则sudoapt-get install openssh-client），如果要使本机开放SSH服务就需要安装openssh-server。&lt;/strong&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Ubuntu" scheme="https://acloudyh.github.io/categories/Ubuntu/"/>
+    
+    
+    <category term="Ubuntu" scheme="https://acloudyh.github.io/tags/Ubuntu/"/>
     
   </entry>
   

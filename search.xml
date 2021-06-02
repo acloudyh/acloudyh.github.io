@@ -592,7 +592,7 @@
   </entry>
   <entry>
     <title>Ubuntu 16.04  pptp搭建服务端和客户端</title>
-    <url>/2020/10/28/Ubuntu%2016.04%20PPTP%E6%90%AD%E5%BB%BA%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%92%8C%E5%AE%A2%E6%88%B7%E7%AB%AF/</url>
+    <url>/2020/11/19/Ubuntu%2016.04%20PPTP%E6%90%AD%E5%BB%BA%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%92%8C%E5%AE%A2%E6%88%B7%E7%AB%AF/</url>
     <content><![CDATA[<p>本文主要是记录ubuntu 16.04安装pptp 服务端以及客户端的过程</p>
 <a id="more"></a>
 <h2 id="服务端配置"><a href="#服务端配置" class="headerlink" title="服务端配置"></a>服务端配置</h2><h3 id="安装pptp"><a href="#安装pptp" class="headerlink" title="安装pptp"></a>安装pptp</h3><figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">sudo apt<span class="literal">-get</span> install pptpd</span><br></pre></td></tr></table></figure>
@@ -675,7 +675,7 @@
   </entry>
   <entry>
     <title>Ubuntu 16.04 使用root ssh登录</title>
-    <url>/2020/10/28/Ubuntu%2016.04%20%E4%BD%BF%E7%94%A8root%20ssh%E7%99%BB%E5%BD%95/</url>
+    <url>/2020/09/28/Ubuntu%2016.04%20%E4%BD%BF%E7%94%A8root%20ssh%E7%99%BB%E5%BD%95/</url>
     <content><![CDATA[<p><strong>如果你只是想登陆别的机器的SSH只需要安装openssh-client（ubuntu有默认安装，如果没有则sudoapt-get install openssh-client），如果要使本机开放SSH服务就需要安装openssh-server。</strong></p>
 <a id="more"></a>
 <ol>
