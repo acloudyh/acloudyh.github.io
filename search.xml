@@ -867,4 +867,27 @@
         <category>工具</category>
       </categories>
   </entry>
+  <entry>
+    <title>SpringBoot @Valid 注解不生效</title>
+    <url>/2021/08/21/Springboot-Valid-%E6%B3%A8%E8%A7%A3%E4%B8%8D%E7%94%9F%E6%95%88/</url>
+    <content><![CDATA[<h3 id="踩坑记录"><a href="#踩坑记录" class="headerlink" title="踩坑记录"></a>踩坑记录</h3><p><code>SpringBoot</code> 使用<code>@Valid</code>注解 参数校验不生效的问题</p>
+<p>代码省略, 直接看解决方案</p>
+<a id="more"></a>
+
+<h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><p><code>springboot-2.3.x</code>之前的版本只需要引入 web 依赖就可以</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-web&lt;&#x2F;artifactId&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br></pre></td></tr></table></figure>
+
+<p>但是从<code>springboot-2.3.x</code>版本开始，校验包被独立成了一个<code>starter</code>组件，所以需要引入如下<code>validation</code>依赖( <strong><em>参见官方文档</em></strong> <a href="https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.3-Release-Notes#validation-starter-no-longer-included-in-web-starters">Validation Starter no longer included in web starters</a> )</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-validation&lt;&#x2F;artifactId&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-web&lt;&#x2F;artifactId&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br></pre></td></tr></table></figure>
+
+<p>完事收工…</p>
+]]></content>
+      <categories>
+        <category>Java</category>
+        <category>SpringBoot</category>
+      </categories>
+      <tags>
+        <tag>踩坑</tag>
+      </tags>
+  </entry>
 </search>
