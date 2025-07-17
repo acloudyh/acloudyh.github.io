@@ -891,8 +891,16 @@
       </tags>
   </entry>
   <entry>
-    <title>测试博客</title>
+    <title>解决git ssh key Permission denied (publickey).</title>
     <url>/2025/07/17/%E6%B5%8B%E8%AF%95%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<p>本地配置了ssh key，测试访问github权限拒绝<br><img src="permission-denied.png"></p>
+]]></content>
+      <categories>
+        <category>git</category>
+        <category>踩坑</category>
+      </categories>
+      <tags>
+        <tag>踩坑</tag>
+      </tags>
   </entry>
 </search>

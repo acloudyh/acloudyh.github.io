@@ -6,7 +6,7 @@
   <link href="https://acloudyh.github.io/atom.xml" rel="self"/>
   
   <link href="https://acloudyh.github.io/"/>
-  <updated>2025-07-17T02:51:53.413Z</updated>
+  <updated>2025-07-17T03:40:21.488Z</updated>
   <id>https://acloudyh.github.io/</id>
   
   <author>
@@ -17,15 +17,29 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>测试博客</title>
+    <title>解决git ssh key Permission denied (publickey).</title>
     <link href="https://acloudyh.github.io/2025/07/17/%E6%B5%8B%E8%AF%95%E5%8D%9A%E5%AE%A2/"/>
     <id>https://acloudyh.github.io/2025/07/17/%E6%B5%8B%E8%AF%95%E5%8D%9A%E5%AE%A2/</id>
     <published>2025-07-17T02:51:53.000Z</published>
-    <updated>2025-07-17T02:51:53.413Z</updated>
+    <updated>2025-07-17T03:40:21.488Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
     
     
     
+    <category term="git" scheme="https://acloudyh.github.io/categories/git/"/>
     
+    <category term="踩坑" scheme="https://acloudyh.github.io/categories/git/%E8%B8%A9%E5%9D%91/"/>
+    
+    
+    <category term="踩坑" scheme="https://acloudyh.github.io/tags/%E8%B8%A9%E5%9D%91/"/>
     
   </entry>
   
