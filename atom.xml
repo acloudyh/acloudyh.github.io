@@ -6,7 +6,7 @@
   <link href="https://acloudyh.github.io/atom.xml" rel="self"/>
   
   <link href="https://acloudyh.github.io/"/>
-  <updated>2025-07-17T06:57:42.943Z</updated>
+  <updated>2025-07-17T07:05:45.779Z</updated>
   <id>https://acloudyh.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://acloudyh.github.io/2025/07/17/%E8%A7%A3%E5%86%B3github%E4%B8%AD%E4%BD%BF%E7%94%A8ssh-key%E4%B8%8D%E5%85%81%E8%AE%B8%E8%AE%BF%E9%97%AE/"/>
     <id>https://acloudyh.github.io/2025/07/17/%E8%A7%A3%E5%86%B3github%E4%B8%AD%E4%BD%BF%E7%94%A8ssh-key%E4%B8%8D%E5%85%81%E8%AE%B8%E8%AE%BF%E9%97%AE/</id>
     <published>2025-07-17T06:48:02.000Z</published>
-    <updated>2025-07-17T06:57:42.943Z</updated>
+    <updated>2025-07-17T07:05:45.779Z</updated>
     
     
     <summary type="html">&lt;p&gt;本地配置了ssh key，测试访问github权限拒绝。附上解决方案&lt;/p&gt;</summary>
@@ -66,7 +66,7 @@
     <link href="https://acloudyh.github.io/2021/04/25/SpringBoot%20%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D%E5%8E%9F%E7%90%86/"/>
     <id>https://acloudyh.github.io/2021/04/25/SpringBoot%20%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D%E5%8E%9F%E7%90%86/</id>
     <published>2021-04-25T08:15:50.000Z</published>
-    <updated>2025-07-17T07:02:25.953Z</updated>
+    <updated>2025-07-17T07:04:08.318Z</updated>
     
     
     <summary type="html">&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;使用过 &lt;code&gt;Spring&lt;/code&gt; 的小伙伴，一定有被 XML 配置统治的恐惧。即使 Spring 后面引入了基于注解的配置，我们在开启某些 &lt;code&gt;Spring&lt;/code&gt; 特性或者引入第三方依赖的时候，还是需要用 XML 或 Java 进行显式配置。&lt;/p&gt;

@@ -879,16 +879,15 @@
     <content><![CDATA[<p>本地配置了ssh key，测试访问github权限拒绝。附上解决方案</p>
 <span id="more"></span>
 
-<p>本地执行测试连接 ssh -T <a href="mailto:&#103;&#x69;&#116;&#x40;&#103;&#105;&#116;&#x68;&#x75;&#98;&#46;&#x63;&#x6f;&#x6d;">&#103;&#x69;&#116;&#x40;&#103;&#105;&#116;&#x68;&#x75;&#98;&#46;&#x63;&#x6f;&#x6d;</a></p>
+<p>本地执行测试连接 ssh -T <a href="mailto:&#x67;&#x69;&#x74;&#x40;&#x67;&#105;&#x74;&#x68;&#x75;&#98;&#x2e;&#99;&#x6f;&#x6d;">&#x67;&#x69;&#x74;&#x40;&#x67;&#105;&#x74;&#x68;&#x75;&#98;&#x2e;&#99;&#x6f;&#x6d;</a></p>
 <p><img src="/2020/08/06/BeyondCompare%20%E6%97%A0%E9%99%90%E8%AF%95%E7%94%A8/%E5%85%81%E8%AE%B8%E8%AE%BF%E9%97%AE/permission-denied.png" alt="permission-denied"></p>
 <p><strong>解决方案</strong> </p>
 <ol>
-<li><p>添加ssh key至ssh-agent</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">eval ssh-agent</span><br></pre></td></tr></table></figure>
-<p>执行成功后显示<br><img src="/2020/08/06/BeyondCompare%20%E6%97%A0%E9%99%90%E8%AF%95%E7%94%A8/%E5%85%81%E8%AE%B8%E8%AE%BF%E9%97%AE/agent.jpg" alt="agent"></p>
-</li>
-<li></li>
+<li>添加ssh key至ssh-agent<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">eval ssh-agent</span><br></pre></td></tr></table></figure>
+执行成功后显示</li>
 </ol>
+<p><img src="/2020/08/06/BeyondCompare%20%E6%97%A0%E9%99%90%E8%AF%95%E7%94%A8/%E5%85%81%E8%AE%B8%E8%AE%BF%E9%97%AE/agent.jpg" alt="agent"><br><img src="/2020/08/06/BeyondCompare%20%E6%97%A0%E9%99%90%E8%AF%95%E7%94%A8/%E5%85%81%E8%AE%B8%E8%AE%BF%E9%97%AE/agent.jpg" alt="agent"></p>
+<p>ddddd</p>
 ]]></content>
       <categories>
         <category>git</category>
