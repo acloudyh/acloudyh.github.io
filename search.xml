@@ -767,30 +767,6 @@
       </tags>
   </entry>
   <entry>
-    <title>解决git ssh key Permission denied (publickey).</title>
-    <url>/2025/07/17/%E8%A7%A3%E5%86%B3git%20ssh%20key%20Permission%20denied%20(publickey)/</url>
-    <content><![CDATA[<p>本地配置了ssh key，测试访问github权限拒绝。附上解决方案</p>
-<span id="more"></span>
-
-<p>本地执行测试连接 ssh -T <a href="mailto:&#x67;&#x69;&#116;&#64;&#x67;&#105;&#x74;&#104;&#117;&#98;&#x2e;&#x63;&#x6f;&#109;">&#x67;&#x69;&#116;&#64;&#x67;&#105;&#x74;&#104;&#117;&#98;&#x2e;&#x63;&#x6f;&#109;</a></p>
-<p><img src="/.io//07/17/%E8%A7%A3%E5%86%B3git%20ssh%20key%20Permission%20denied%20(publickey)/permission-denied.png" alt="permission-denied"></p>
-<p><strong>解决方案</strong> </p>
-<ol>
-<li>添加ssh key至ssh-agent<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">eval ssh-agent</span><br></pre></td></tr></table></figure>
-执行成功后显示</li>
-</ol>
-<p><img src="/.io//eval-ssh-agent.jpg" alt="eval-ssh-agent"></p>
-<p>2. </p>
-]]></content>
-      <categories>
-        <category>git</category>
-        <category>踩坑</category>
-      </categories>
-      <tags>
-        <tag>踩坑</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>HashMap 源码分析</title>
     <url>/2021/02/26/HashMap%20%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</url>
     <content><![CDATA[<p>这一篇文章是关于ConcurrentHashMap 源码分析 <a href="/2021/03/10/ConcurrentHashMap%20%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" title="ConcurrentHashMap 源码分析">ConcurrentHashMap 源码分析</a></p>
@@ -892,6 +868,31 @@
 ]]></content>
       <categories>
         <category>Java</category>
+      </categories>
+      <tags>
+        <tag>踩坑</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解决git ssh key Permission denied (publickey)</title>
+    <url>/2025/07/17/%E8%A7%A3%E5%86%B3github%E4%B8%AD%E4%BD%BF%E7%94%A8ssh-key%E4%B8%8D%E5%85%81%E8%AE%B8%E8%AE%BF%E9%97%AE/</url>
+    <content><![CDATA[<p>本地配置了ssh key，测试访问github权限拒绝。附上解决方案</p>
+<span id="more"></span>
+
+<p>本地执行测试连接 ssh -T <a href="mailto:&#103;&#x69;&#116;&#x40;&#103;&#105;&#116;&#x68;&#x75;&#98;&#46;&#x63;&#x6f;&#x6d;">&#103;&#x69;&#116;&#x40;&#103;&#105;&#116;&#x68;&#x75;&#98;&#46;&#x63;&#x6f;&#x6d;</a></p>
+<p><img src="/2020/08/06/BeyondCompare%20%E6%97%A0%E9%99%90%E8%AF%95%E7%94%A8/%E5%85%81%E8%AE%B8%E8%AE%BF%E9%97%AE/permission-denied.png" alt="permission-denied"></p>
+<p><strong>解决方案</strong> </p>
+<ol>
+<li><p>添加ssh key至ssh-agent</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">eval ssh-agent</span><br></pre></td></tr></table></figure>
+<p>执行成功后显示<br><img src="/2020/08/06/BeyondCompare%20%E6%97%A0%E9%99%90%E8%AF%95%E7%94%A8/%E5%85%81%E8%AE%B8%E8%AE%BF%E9%97%AE/agent.jpg" alt="agent"></p>
+</li>
+<li></li>
+</ol>
+]]></content>
+      <categories>
+        <category>git</category>
+        <category>踩坑</category>
       </categories>
       <tags>
         <tag>踩坑</tag>
