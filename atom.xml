@@ -6,7 +6,7 @@
   <link href="https://acloudyh.github.io/atom.xml" rel="self"/>
   
   <link href="https://acloudyh.github.io/"/>
-  <updated>2025-07-17T03:57:05.121Z</updated>
+  <updated>2025-07-17T06:08:11.924Z</updated>
   <id>https://acloudyh.github.io/</id>
   
   <author>
@@ -21,16 +21,16 @@
     <link href="https://acloudyh.github.io/2025/07/17/%E8%A7%A3%E5%86%B3git%20ssh%20key%20Permission%20denied%20(publickey)/"/>
     <id>https://acloudyh.github.io/2025/07/17/%E8%A7%A3%E5%86%B3git%20ssh%20key%20Permission%20denied%20(publickey)/</id>
     <published>2025-07-17T02:51:53.000Z</published>
-    <updated>2025-07-17T03:57:05.121Z</updated>
+    <updated>2025-07-17T06:08:11.924Z</updated>
     
     
     <summary type="html">&lt;p&gt;本地配置了ssh key，测试访问github权限拒绝。附上解决方案&lt;/p&gt;</summary>
     
     
     
-    <category term="踩坑" scheme="https://acloudyh.github.io/categories/%E8%B8%A9%E5%9D%91/"/>
-    
     <category term="git" scheme="https://acloudyh.github.io/categories/git/"/>
+    
+    <category term="踩坑" scheme="https://acloudyh.github.io/categories/%E8%B8%A9%E5%9D%91/"/>
     
     
     <category term="踩坑" scheme="https://acloudyh.github.io/tags/%E8%B8%A9%E5%9D%91/"/>
