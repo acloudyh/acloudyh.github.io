@@ -744,7 +744,7 @@
 
 
 <p>将数据目录路径<code>/usr/local/var/mongodb</code>目录赋值权限777<code>sudo chmod -R 777 /usr/local/var/mongodb</code></p>
-<p>  <img src="https://img-blog.csdnimg.cn/20200413155504590.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmdoYW85MzcxNzA=,size_16,color_FFFFFF,t_70" alt="ddd"></p>
+<p> <img src="https://img-blog.csdnimg.cn/20200413155504590.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmdoYW85MzcxNzA=,size_16,color_FFFFFF,t_70" alt="ddd"></p>
 <h3 id="报错-2"><a href="#报错-2" class="headerlink" title="报错 2"></a>报错 2</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Found an invalid featureCompatibilityVersion document   If the current featureCompatibilityVersion is below 4.0, see the documentation on upgrading at http://dochub.mongodb.org/core/4.0-upgrade-fcv.</span><br></pre></td></tr></table></figure>
 
 
