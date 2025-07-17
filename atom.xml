@@ -42,7 +42,7 @@
     <link href="https://acloudyh.github.io/2021/08/21/Springboot-Valid-%E6%B3%A8%E8%A7%A3%E4%B8%8D%E7%94%9F%E6%95%88/"/>
     <id>https://acloudyh.github.io/2021/08/21/Springboot-Valid-%E6%B3%A8%E8%A7%A3%E4%B8%8D%E7%94%9F%E6%95%88/</id>
     <published>2021-08-21T05:56:33.000Z</published>
-    <updated>2025-07-17T03:42:57.198Z</updated>
+    <updated>2025-07-17T07:07:54.180Z</updated>
     
     
     <summary type="html">&lt;h3 id=&quot;踩坑记录&quot;&gt;&lt;a href=&quot;#踩坑记录&quot; class=&quot;headerlink&quot; title=&quot;踩坑记录&quot;&gt;&lt;/a&gt;踩坑记录&lt;/h3&gt;&lt;p&gt;&lt;code&gt;SpringBoot&lt;/code&gt; 使用&lt;code&gt;@Valid&lt;/code&gt;注解 参数校验不生效的问题&lt;/p&gt;
@@ -89,7 +89,7 @@
     <link href="https://acloudyh.github.io/2021/04/24/ThreadLocal%20%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2/"/>
     <id>https://acloudyh.github.io/2021/04/24/ThreadLocal%20%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2/</id>
     <published>2021-04-24T07:23:46.000Z</published>
-    <updated>2021-04-26T08:46:05.151Z</updated>
+    <updated>2025-07-17T07:07:58.087Z</updated>
     
     
     <summary type="html">&lt;h2 id=&quot;ThreadLocal-简介&quot;&gt;&lt;a href=&quot;#ThreadLocal-简介&quot; class=&quot;headerlink&quot; title=&quot;ThreadLocal 简介&quot;&gt;&lt;/a&gt;ThreadLocal 简介&lt;/h2&gt;&lt;p&gt;&lt;code&gt;ThreadLocal&lt;/code&gt;提供了线程的局部变量，每个线程都可以通过&lt;code&gt;set()&lt;/code&gt;和&lt;code&gt;get()&lt;/code&gt;来对这个局部变量进行操作，但不会和其他线程的局部变量进行冲突，从而避免了线程安全问题。&lt;/p&gt;
@@ -162,7 +162,7 @@
     <link href="https://acloudyh.github.io/2021/01/28/fasterxml%E4%B8%ADstring%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E5%AF%B9%E8%B1%A1json%E6%A0%BC%E5%BC%8F%E5%8D%95%E5%BC%95%E5%8F%B7%E9%94%99%E8%AF%AF/"/>
     <id>https://acloudyh.github.io/2021/01/28/fasterxml%E4%B8%ADstring%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E5%AF%B9%E8%B1%A1json%E6%A0%BC%E5%BC%8F%E5%8D%95%E5%BC%95%E5%8F%B7%E9%94%99%E8%AF%AF/</id>
     <published>2021-01-28T06:38:54.000Z</published>
-    <updated>2021-06-02T09:26:07.032Z</updated>
+    <updated>2025-07-17T07:06:54.976Z</updated>
     
     
     <summary type="html">&lt;p&gt;在处理fasterxml中string字符串转对象json格式，标准的json都是双引号 （” “）;由于数据是单引号(‘ ‘)格式。导致了如下报错，特此记录&lt;/p&gt;
@@ -182,7 +182,7 @@
     <link href="https://acloudyh.github.io/2021/01/11/MySQL%205.7%20%E8%BF%94%E5%9B%9Ejson%E6%95%B0%E6%8D%AE-%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/"/>
     <id>https://acloudyh.github.io/2021/01/11/MySQL%205.7%20%E8%BF%94%E5%9B%9Ejson%E6%95%B0%E6%8D%AE-%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/</id>
     <published>2021-01-11T06:38:35.000Z</published>
-    <updated>2021-06-02T09:25:32.170Z</updated>
+    <updated>2025-07-17T07:07:28.124Z</updated>
     
     
     <summary type="html">&lt;p&gt;mysql版本为5.7，通过navicat查看json格式的数据是正常显示，但是查询出来是乱码， 读取其他字段都是正常的，也没有特殊设置json格式的字符集&lt;/p&gt;</summary>
@@ -203,7 +203,7 @@
     <link href="https://acloudyh.github.io/2020/12/27/Ubuntu%20%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BDSD%E5%8D%A1/"/>
     <id>https://acloudyh.github.io/2020/12/27/Ubuntu%20%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BDSD%E5%8D%A1/</id>
     <published>2020-12-27T13:27:55.000Z</published>
-    <updated>2021-06-02T06:29:33.906Z</updated>
+    <updated>2025-07-17T07:08:22.259Z</updated>
     
     
     <summary type="html">&lt;p&gt;最近开发过程中遇见了一个问题，Ubuntu 16.04 自动挂载SD卡报错，&lt;code&gt;mounted filesystem with ordered data mode. Opts: (null)&lt;/code&gt;以此记录一下&lt;/p&gt;</summary>
@@ -222,7 +222,7 @@
     <link href="https://acloudyh.github.io/2020/12/14/lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%88%86%E7%BB%84%E5%B9%B6%E6%B1%82%E5%92%8C-md/"/>
     <id>https://acloudyh.github.io/2020/12/14/lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%88%86%E7%BB%84%E5%B9%B6%E6%B1%82%E5%92%8C-md/</id>
     <published>2020-12-14T10:08:54.000Z</published>
-    <updated>2021-04-26T08:34:13.086Z</updated>
+    <updated>2025-07-17T07:07:17.149Z</updated>
     
     
     <summary type="html">&lt;p&gt;最近业务需求，要求对集合按照多个属性分组，并且对某一个属性求和，利用lambda表达式进行分组求和；示例如下&lt;/p&gt;
@@ -242,7 +242,7 @@
     <link href="https://acloudyh.github.io/2020/12/13/Ubuntu%20server%20%E5%A6%82%E4%BD%95%E5%8D%87%E7%BA%A7%E5%86%85%E6%A0%B8/"/>
     <id>https://acloudyh.github.io/2020/12/13/Ubuntu%20server%20%E5%A6%82%E4%BD%95%E5%8D%87%E7%BA%A7%E5%86%85%E6%A0%B8/</id>
     <published>2020-12-13T06:36:16.000Z</published>
-    <updated>2021-06-02T06:29:20.659Z</updated>
+    <updated>2025-07-17T07:08:29.153Z</updated>
     
     
     <summary type="html">&lt;h3 id=&quot;查看目前内核&quot;&gt;&lt;a href=&quot;#查看目前内核&quot; class=&quot;headerlink&quot; title=&quot;查看目前内核&quot;&gt;&lt;/a&gt;查看目前内核&lt;/h3&gt;&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;root@ubuntu:~# uname -sr&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Linux 4.4.0-142-generic&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
@@ -262,7 +262,7 @@
     <link href="https://acloudyh.github.io/2020/11/29/macOS%20brew%E5%AE%89%E8%A3%85mongo%E9%81%87%E8%A7%81%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9D%91%E5%92%8C%E6%8A%A5%E9%94%99/"/>
     <id>https://acloudyh.github.io/2020/11/29/macOS%20brew%E5%AE%89%E8%A3%85mongo%E9%81%87%E8%A7%81%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9D%91%E5%92%8C%E6%8A%A5%E9%94%99/</id>
     <published>2020-11-29T06:36:33.000Z</published>
-    <updated>2021-06-02T06:29:50.975Z</updated>
+    <updated>2025-07-17T07:07:24.015Z</updated>
     
     
     <summary type="html">&lt;h3 id=&quot;brew-安装mongo&quot;&gt;&lt;a href=&quot;#brew-安装mongo&quot; class=&quot;headerlink&quot; title=&quot;brew 安装mongo&quot;&gt;&lt;/a&gt;brew 安装mongo&lt;/h3&gt;&lt;ul&gt;
@@ -287,7 +287,7 @@
     <link href="https://acloudyh.github.io/2020/11/28/Ubuntu%20%E6%9B%B4%E6%8D%A2apt%E6%BA%90%E3%80%81pip3%E6%BA%90/"/>
     <id>https://acloudyh.github.io/2020/11/28/Ubuntu%20%E6%9B%B4%E6%8D%A2apt%E6%BA%90%E3%80%81pip3%E6%BA%90/</id>
     <published>2020-11-28T06:35:15.000Z</published>
-    <updated>2021-06-02T06:23:22.664Z</updated>
+    <updated>2025-07-17T07:08:17.891Z</updated>
     
     
     <summary type="html">&lt;p&gt;Ubuntu终端下载速度过慢问题&lt;/p&gt;</summary>
@@ -306,7 +306,7 @@
     <link href="https://acloudyh.github.io/2020/11/19/Ubuntu%2016.04%20PPTP%E6%90%AD%E5%BB%BA%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%92%8C%E5%AE%A2%E6%88%B7%E7%AB%AF/"/>
     <id>https://acloudyh.github.io/2020/11/19/Ubuntu%2016.04%20PPTP%E6%90%AD%E5%BB%BA%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%92%8C%E5%AE%A2%E6%88%B7%E7%AB%AF/</id>
     <published>2020-11-19T06:37:35.000Z</published>
-    <updated>2021-06-02T06:35:52.893Z</updated>
+    <updated>2025-07-17T07:08:11.951Z</updated>
     
     
     <summary type="html">&lt;p&gt;本文主要是记录ubuntu 16.04安装pptp 服务端以及客户端的过程&lt;/p&gt;</summary>
@@ -329,7 +329,7 @@
     <link href="https://acloudyh.github.io/2020/10/20/Nacos%E9%9B%86%E7%BE%A4%E9%85%8D%E7%BD%AE%E5%8F%8ANginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/"/>
     <id>https://acloudyh.github.io/2020/10/20/Nacos%E9%9B%86%E7%BE%A4%E9%85%8D%E7%BD%AE%E5%8F%8ANginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/</id>
     <published>2020-10-20T12:57:19.000Z</published>
-    <updated>2021-06-02T06:28:59.855Z</updated>
+    <updated>2025-07-17T07:07:35.462Z</updated>
     
     
     <summary type="html">&lt;p&gt;Nacos集群配置以及Nginx反向代理的一些配置&lt;/p&gt;</summary>
@@ -352,7 +352,7 @@
     <link href="https://acloudyh.github.io/2020/10/20/flask%E7%99%BB%E9%99%86%E4%B9%8B%E5%90%8E%E8%B7%B3%E8%BD%AC%E5%9B%9E%E5%8E%9F%E5%85%88%E7%9A%84%E9%A1%B5%E9%9D%A2/"/>
     <id>https://acloudyh.github.io/2020/10/20/flask%E7%99%BB%E9%99%86%E4%B9%8B%E5%90%8E%E8%B7%B3%E8%BD%AC%E5%9B%9E%E5%8E%9F%E5%85%88%E7%9A%84%E9%A1%B5%E9%9D%A2/</id>
     <published>2020-10-20T06:36:52.000Z</published>
-    <updated>2021-06-02T06:21:28.804Z</updated>
+    <updated>2025-07-17T07:06:42.269Z</updated>
     
     
     <summary type="html">&lt;p&gt;在使用Flask_login，使用装饰器@login_required时，如果没有登录，会跳转登录页面登陆之后不会返回原来的页面&lt;/p&gt;</summary>
@@ -373,7 +373,7 @@
     <link href="https://acloudyh.github.io/2020/10/13/Flask%20%E7%BB%9F%E4%B8%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E4%BB%A5%E5%8F%8A400-500%E9%A1%B5%E9%9D%A2/"/>
     <id>https://acloudyh.github.io/2020/10/13/Flask%20%E7%BB%9F%E4%B8%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E4%BB%A5%E5%8F%8A400-500%E9%A1%B5%E9%9D%A2/</id>
     <published>2020-10-13T06:37:16.000Z</published>
-    <updated>2021-06-02T06:21:21.739Z</updated>
+    <updated>2025-07-17T07:06:51.285Z</updated>
     
     
     <summary type="html">&lt;h3 id=&quot;在flask中如何统一处理异常以及400-500页面&quot;&gt;&lt;a href=&quot;#在flask中如何统一处理异常以及400-500页面&quot; class=&quot;headerlink&quot; title=&quot;在flask中如何统一处理异常以及400 500页面&quot;&gt;&lt;/a&gt;在flask中如何统一处理异常以及400 500页面&lt;/h3&gt;&lt;h4 id=&quot;异常类&quot;&gt;&lt;a href=&quot;#异常类&quot; class=&quot;headerlink&quot; title=&quot;异常类&quot;&gt;&lt;/a&gt;异常类&lt;/h4&gt;</summary>
@@ -392,7 +392,7 @@
     <link href="https://acloudyh.github.io/2020/09/28/Ubuntu%2016.04%20%E4%BD%BF%E7%94%A8root%20ssh%E7%99%BB%E5%BD%95/"/>
     <id>https://acloudyh.github.io/2020/09/28/Ubuntu%2016.04%20%E4%BD%BF%E7%94%A8root%20ssh%E7%99%BB%E5%BD%95/</id>
     <published>2020-09-28T06:36:05.000Z</published>
-    <updated>2021-06-02T06:35:42.238Z</updated>
+    <updated>2025-07-17T07:08:04.180Z</updated>
     
     
     <summary type="html">&lt;p&gt;&lt;strong&gt;如果你只是想登陆别的机器的SSH只需要安装openssh-client（ubuntu有默认安装，如果没有则sudoapt-get install openssh-client），如果要使本机开放SSH服务就需要安装openssh-server。&lt;/strong&gt;&lt;/p&gt;</summary>
@@ -411,12 +411,12 @@
     <link href="https://acloudyh.github.io/2020/09/19/SpringBoot%20Websocket%20%E6%B3%A8%E5%85%A5bean%E5%A4%B1%E8%B4%A5/"/>
     <id>https://acloudyh.github.io/2020/09/19/SpringBoot%20Websocket%20%E6%B3%A8%E5%85%A5bean%E5%A4%B1%E8%B4%A5/</id>
     <published>2020-09-19T06:38:08.000Z</published>
-    <updated>2021-06-02T09:24:41.309Z</updated>
+    <updated>2025-07-17T07:07:44.988Z</updated>
     
     
     <summary type="html">&lt;p&gt;踩坑记录&lt;/p&gt;
 &lt;p&gt;第一种方式：将messageService 注入&lt;/p&gt;
-&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;@ServerEndpoint(value = &amp;quot;/websocket&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;@Component&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;public class WebSocketServer &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    //这里使用静态，让 service 属于类&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    public static MessageServiceImpl messageService;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    /**&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     * 给类的service 注入&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     * spring管理的都是单例（singleton）和 websocket （多对象）相冲突&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     *&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     * @param messageService&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     */&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    @Autowired&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    public void setMessageService(MessageServiceImpl messageService) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        WebSocketServer.messageService = messageService;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</summary>
+&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;@ServerEndpoint(value = &amp;quot;/websocket&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;@Component&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;public class WebSocketServer &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    //这里使用静态，让 service 属于类&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    public static MessageServiceImpl messageService;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    /**&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     * 给类的service 注入&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     * spring管理的都是单例（singleton）和 websocket （多对象）相冲突&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     *&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     * @param messageService&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     */&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    @Autowired&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    public void setMessageService(MessageServiceImpl messageService) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        WebSocketServer.messageService = messageService;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</summary>
     
     
     
@@ -434,7 +434,7 @@
     <link href="https://acloudyh.github.io/2020/08/06/BeyondCompare%20%E6%97%A0%E9%99%90%E8%AF%95%E7%94%A8/"/>
     <id>https://acloudyh.github.io/2020/08/06/BeyondCompare%20%E6%97%A0%E9%99%90%E8%AF%95%E7%94%A8/</id>
     <published>2020-08-06T06:54:49.000Z</published>
-    <updated>2021-06-02T09:23:52.391Z</updated>
+    <updated>2025-07-17T07:07:08.886Z</updated>
     
     
     <summary type="html">&lt;h2 id=&quot;beyondCompare-无限试用&quot;&gt;&lt;a href=&quot;#beyondCompare-无限试用&quot; class=&quot;headerlink&quot; title=&quot;beyondCompare 无限试用&quot;&gt;&lt;/a&gt;beyondCompare 无限试用&lt;/h2&gt;&lt;p&gt;一次设置,一直有效,以后不需要修改,每次打开都是30天&lt;/p&gt;
