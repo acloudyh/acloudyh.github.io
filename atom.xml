@@ -6,7 +6,7 @@
   <link href="https://acloudyh.github.io/atom.xml" rel="self"/>
   
   <link href="https://acloudyh.github.io/"/>
-  <updated>2025-07-17T03:40:21.488Z</updated>
+  <updated>2025-07-17T03:42:20.686Z</updated>
   <id>https://acloudyh.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://acloudyh.github.io/2025/07/17/%E6%B5%8B%E8%AF%95%E5%8D%9A%E5%AE%A2/"/>
     <id>https://acloudyh.github.io/2025/07/17/%E6%B5%8B%E8%AF%95%E5%8D%9A%E5%AE%A2/</id>
     <published>2025-07-17T02:51:53.000Z</published>
-    <updated>2025-07-17T03:40:21.488Z</updated>
+    <updated>2025-07-17T03:42:20.686Z</updated>
     
     
       
@@ -36,7 +36,7 @@
     
     <category term="git" scheme="https://acloudyh.github.io/categories/git/"/>
     
-    <category term="踩坑" scheme="https://acloudyh.github.io/categories/git/%E8%B8%A9%E5%9D%91/"/>
+    <category term="踩坑" scheme="https://acloudyh.github.io/categories/%E8%B8%A9%E5%9D%91/"/>
     
     
     <category term="踩坑" scheme="https://acloudyh.github.io/tags/%E8%B8%A9%E5%9D%91/"/>
@@ -48,7 +48,7 @@
     <link href="https://acloudyh.github.io/2021/08/21/Springboot-Valid-%E6%B3%A8%E8%A7%A3%E4%B8%8D%E7%94%9F%E6%95%88/"/>
     <id>https://acloudyh.github.io/2021/08/21/Springboot-Valid-%E6%B3%A8%E8%A7%A3%E4%B8%8D%E7%94%9F%E6%95%88/</id>
     <published>2021-08-21T05:56:33.000Z</published>
-    <updated>2021-08-21T06:08:08.123Z</updated>
+    <updated>2025-07-17T03:42:57.198Z</updated>
     
     
     <summary type="html">&lt;h3 id=&quot;踩坑记录&quot;&gt;&lt;a href=&quot;#踩坑记录&quot; class=&quot;headerlink&quot; title=&quot;踩坑记录&quot;&gt;&lt;/a&gt;踩坑记录&lt;/h3&gt;&lt;p&gt;&lt;code&gt;SpringBoot&lt;/code&gt; 使用&lt;code&gt;@Valid&lt;/code&gt;注解 参数校验不生效的问题&lt;/p&gt;
@@ -59,6 +59,8 @@
     <category term="Java" scheme="https://acloudyh.github.io/categories/Java/"/>
     
     <category term="SpringBoot" scheme="https://acloudyh.github.io/categories/Java/SpringBoot/"/>
+    
+    <category term="踩坑" scheme="https://acloudyh.github.io/categories/%E8%B8%A9%E5%9D%91/"/>
     
     
     <category term="踩坑" scheme="https://acloudyh.github.io/tags/%E8%B8%A9%E5%9D%91/"/>
