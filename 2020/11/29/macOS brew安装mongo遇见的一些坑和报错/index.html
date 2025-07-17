@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.2.0">
+<meta name="generator" content="Hexo 7.3.0">
 <!--临时解决 https://senorui.top/posts/c33f.html-->
 <meta name="referrer" content="no-referrer-when-downgrade">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
@@ -295,17 +295,19 @@
 <li><p>brew 安装mongo 遇见的一些坑和报错</p>
 <p>  <strong>1. WiredTiger  Permission denied</strong></p>
 <p>  <strong>2. Found an invalid featureCompatibilityVersion document</strong></p>
-<p>   <strong>3. Data directory /data/db not found., terminating</strong></p>
+<p>   <strong>3. Data directory &#x2F;data&#x2F;db not found., terminating</strong></p>
 </li>
 </ul>
-<a id="more"></a>
+<span id="more"></span>
 <ul>
 <li>从2019年9月2日开始 ，HomeBrew 也从核心仓库 (<a target="_blank" rel="noopener" href="https://github.com/Homebrew/homebrew-core/pull/43770">#43770</a>) 当中移除了mongodb 模块 ，MongoDB 已经宣布不再开源;</li>
 <li>若果想继续使用 <code>brew install mongodb</code>，MongoDB 官方提供了一个单独的 HomeBrew 的社区版本安装：<a target="_blank" rel="noopener" href="https://github.com/mongodb/homebrew-brew">https://github.com/mongodb/homebrew-brew</a></li>
 </ul>
 <h3 id="开始安装"><a href="#开始安装" class="headerlink" title="开始安装"></a>开始安装</h3><ul>
-<li><p><code>brew tap mongodb/brew</code><br>很遗憾brew tap 的源无法加速，是从 mongodb.org 官方下载的安装包，等待一会吧</p>
-</li>
+<li><code>brew tap mongodb/brew</code></li>
+</ul>
+<p>很遗憾brew tap 的源无法加速，是从 mongodb.org 官方下载的安装包，等待一会吧</p>
+<ul>
 <li><p><code>brew install mongodb-community@4.2</code></p>
 </li>
 <li><p><code>brew tap mongodb/brew</code></p>
@@ -325,32 +327,27 @@
 <li><p><code>brew services restart mongodb-community@4.2</code></p>
 </li>
 </ul>
-<h3 id="报错-1"><a href="#报错-1" class="headerlink" title="报错 1"></a>报错 1</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wiredtiger_open: __posix_open_file, 667: &#x2F;usr&#x2F;local&#x2F;var&#x2F;mongodb&#x2F;WiredTiger.turtle: handle-open: open: Permission denied</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">2020-04-13T14:20:17.647+0800 I  STORAGE  [initandlisten] Detected data files <span class="keyword">in</span> /usr/<span class="built_in">local</span>/var/mongodb created by the <span class="string">&#x27;wiredTiger&#x27;</span> storage engine, so setting the active storage engine to <span class="string">&#x27;wiredTiger&#x27;</span>.</span><br><span class="line">2020-04-13T14:20:17.647+0800 I  STORAGE  [initandlisten] wiredtiger_open config: create,cache_size=7680M,cache_overflow=(file_max=0M),session_max=33000,eviction=(threads_min=4,threads_max=4),config_base=<span class="literal">false</span>,statistics=(fast),<span class="built_in">log</span>=(enabled=<span class="literal">true</span>,archive=<span class="literal">true</span>,path=journal,compressor=snappy),file_manager=(close_idle_time=100000,close_scan_interval=10,close_handle_minimum=250),statistics_log=(<span class="built_in">wait</span>=0),verbose=[recovery_progress,checkpoint_progress],</span><br><span class="line">2020-04-13T14:20:18.200+0800 E  STORAGE  [initandlisten] WiredTiger error (13) [1586758818:200112][27741:0x109869dc0], wiredtiger_open: __posix_open_file, 667: /usr/<span class="built_in">local</span>/var/mongodb/WiredTiger.turtle: handle-open: open: Permission denied Raw: [1586758818:200112][27741:0x109869dc0], wiredtiger_open: __posix_open_file, 667: /usr/<span class="built_in">local</span>/var/mongodb/WiredTiger.turtle: handle-open: open: Permission denied</span><br><span class="line">2020-04-13T14:20:18.200+0800 E  STORAGE  [initandlisten] WiredTiger error (13) [1586758818:200395][27741:0x109869dc0], wiredtiger_open: __posix_open_file, 667: /usr/<span class="built_in">local</span>/var/mongodb/WiredTiger.turtle: handle-open: open: Permission denied Raw: [1586758818:200395][27741:0x109869dc0], wiredtiger_open: __posix_open_file, 667: /usr/<span class="built_in">local</span>/var/mongodb/WiredTiger.turtle: handle-open: open: Permission denied</span><br><span class="line">2020-04-13T14:20:18.200+0800 E  STORAGE  [initandlisten] WiredTiger error (13) [1586758818:200599][27741:0x109869dc0], wiredtiger_open: __posix_open_file, 667: /usr/<span class="built_in">local</span>/var/mongodb/WiredTiger.turtle: handle-open: open: Permission denied Raw: [1586758818:200599][27741:0x109869dc0], wiredtiger_open: __posix_open_file, 667: /usr/<span class="built_in">local</span>/var/mongodb/WiredTiger.turtle: handle-open: open: Permission denied</span><br><span class="line">2020-04-13T14:20:18.200+0800 W  STORAGE  [initandlisten] Failed to start up WiredTiger under any compatibility version.</span><br><span class="line">2020-04-13T14:20:18.200+0800 F  STORAGE  [initandlisten] Reason: 13: Permission denied</span><br><span class="line">2020-04-13T14:20:18.200+0800 F  -        [initandlisten] Fatal Assertion 28595 at src/mongo/db/storage/wiredtiger/wiredtiger_kv_engine.cpp 860</span><br><span class="line">2020-04-13T14:20:18.200+0800 F  -        [initandlisten]</span><br><span class="line">	</span><br><span class="line">    ***aborting after fassert() failure</span><br></pre></td></tr></table></figure>
+<h3 id="报错-1"><a href="#报错-1" class="headerlink" title="报错 1"></a>报错 1</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wiredtiger_open: __posix_open_file, 667: /usr/local/var/mongodb/WiredTiger.turtle: handle-open: open: Permission denied</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">2020-04-13T14:20:17.647+0800 I  STORAGE  [initandlisten] Detected data files <span class="keyword">in</span> /usr/local/var/mongodb created by the <span class="string">&#x27;wiredTiger&#x27;</span> storage engine, so setting the active storage engine to <span class="string">&#x27;wiredTiger&#x27;</span>.</span><br><span class="line">2020-04-13T14:20:17.647+0800 I  STORAGE  [initandlisten] wiredtiger_open config: create,cache_size=7680M,cache_overflow=(file_max=0M),session_max=33000,eviction=(threads_min=4,threads_max=4),config_base=<span class="literal">false</span>,statistics=(fast),<span class="built_in">log</span>=(enabled=<span class="literal">true</span>,archive=<span class="literal">true</span>,path=journal,compressor=snappy),file_manager=(close_idle_time=100000,close_scan_interval=10,close_handle_minimum=250),statistics_log=(<span class="built_in">wait</span>=0),verbose=[recovery_progress,checkpoint_progress],</span><br><span class="line">2020-04-13T14:20:18.200+0800 E  STORAGE  [initandlisten] WiredTiger error (13) [1586758818:200112][27741:0x109869dc0], wiredtiger_open: __posix_open_file, 667: /usr/local/var/mongodb/WiredTiger.turtle: handle-open: open: Permission denied Raw: [1586758818:200112][27741:0x109869dc0], wiredtiger_open: __posix_open_file, 667: /usr/local/var/mongodb/WiredTiger.turtle: handle-open: open: Permission denied</span><br><span class="line">2020-04-13T14:20:18.200+0800 E  STORAGE  [initandlisten] WiredTiger error (13) [1586758818:200395][27741:0x109869dc0], wiredtiger_open: __posix_open_file, 667: /usr/local/var/mongodb/WiredTiger.turtle: handle-open: open: Permission denied Raw: [1586758818:200395][27741:0x109869dc0], wiredtiger_open: __posix_open_file, 667: /usr/local/var/mongodb/WiredTiger.turtle: handle-open: open: Permission denied</span><br><span class="line">2020-04-13T14:20:18.200+0800 E  STORAGE  [initandlisten] WiredTiger error (13) [1586758818:200599][27741:0x109869dc0], wiredtiger_open: __posix_open_file, 667: /usr/local/var/mongodb/WiredTiger.turtle: handle-open: open: Permission denied Raw: [1586758818:200599][27741:0x109869dc0], wiredtiger_open: __posix_open_file, 667: /usr/local/var/mongodb/WiredTiger.turtle: handle-open: open: Permission denied</span><br><span class="line">2020-04-13T14:20:18.200+0800 W  STORAGE  [initandlisten] Failed to start up WiredTiger under any compatibility version.</span><br><span class="line">2020-04-13T14:20:18.200+0800 F  STORAGE  [initandlisten] Reason: 13: Permission denied</span><br><span class="line">2020-04-13T14:20:18.200+0800 F  -        [initandlisten] Fatal Assertion 28595 at src/mongo/db/storage/wiredtiger/wiredtiger_kv_engine.cpp 860</span><br><span class="line">2020-04-13T14:20:18.200+0800 F  -        [initandlisten]</span><br><span class="line">	</span><br><span class="line">    ***aborting after fassert() failure</span><br></pre></td></tr></table></figure>
 
 
 <p>将数据目录路径<code>/usr/local/var/mongodb</code>目录赋值权限777<code>sudo chmod -R 777 /usr/local/var/mongodb</code></p>
 <p>  <img src="https://img-blog.csdnimg.cn/20200413155504590.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmdoYW85MzcxNzA=,size_16,color_FFFFFF,t_70" alt="ddd"></p>
-<h3 id="报错-2"><a href="#报错-2" class="headerlink" title="报错 2"></a>报错 2</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Found an invalid featureCompatibilityVersion document   If the current featureCompatibilityVersion is below 4.0, see the documentation on upgrading at http:&#x2F;&#x2F;dochub.mongodb.org&#x2F;core&#x2F;4.0-upgrade-fcv.</span><br></pre></td></tr></table></figure>
+<h3 id="报错-2"><a href="#报错-2" class="headerlink" title="报错 2"></a>报错 2</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Found an invalid featureCompatibilityVersion document   If the current featureCompatibilityVersion is below 4.0, see the documentation on upgrading at http://dochub.mongodb.org/core/4.0-upgrade-fcv.</span><br></pre></td></tr></table></figure>
 
 
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">2020-04-13T15:16:24.375+0800 F  CONTROL  [initandlisten] ** IMPORTANT: UPGRADE PROBLEM: Found an invalid featureCompatibilityVersion document (ERROR: BadValue: Invalid value <span class="keyword">for</span> version, found 3.6, expected <span class="string">&#x27;4.2&#x27;</span> or <span class="string">&#x27;4.0&#x27;</span>. Contents of featureCompatibilityVersion document <span class="keyword">in</span> admin.system.version: &#123; _id: <span class="string">&quot;featureCompatibilityVersion&quot;</span>, version: <span class="string">&quot;3.6&quot;</span> &#125;. See http://dochub.mongodb.org/core/4.0-feature-compatibility.). If the current featureCompatibilityVersion is below 4.0, see the documentation on upgrading at http://dochub.mongodb.org/core/4.0-upgrade-fcv.</span><br><span class="line">2020-04-13T15:16:24.375+0800 I  NETWORK  [initandlisten] shutdown: going to close listening sockets...</span><br></pre></td></tr></table></figure>
-
-
 <p><img src="https://img-blog.csdnimg.cn/20200413160717917.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmdoYW85MzcxNzA=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <p><strong>只需将数据目录路径<code>/usr/local/var/mongodb</code>里面内容清空在重新启动mongo即可</strong></p>
 <h3 id="其他错误"><a href="#其他错误" class="headerlink" title="其他错误"></a>其他错误</h3><ol>
 <li><p>以mongod 启动，报错<code>/data/db</code>文件夹不存在</p>
  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">2020-04-13T15:16:24.375+0800 F STORAGE  [initandlisten] exception <span class="keyword">in</span> initAndListen: 29 Data directory /data/db not found., terminating</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p> 原因是：macOS 10.15版本不能创建<code>/data/db</code></p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir -p /data/db</span><br><span class="line">mkdir: /data/db: Read-only file system</span><br></pre></td></tr></table></figure></li>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">mkdir</span> -p /data/db</span><br><span class="line"><span class="built_in">mkdir</span>: /data/db: Read-only file system</span><br></pre></td></tr></table></figure></li>
 <li><p>可以mongod指定数据目录启动<code>mongod --dbpath &#39;/Users/neo/data/db&#39;</code></p>
 </li>
 <li><p>可以编辑配置文件<code>vim ~/.zshrc</code><br>在末尾添加以下内容，以后使用mongod启动</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">alias</span> mongod=<span class="string">&quot;mongod --dbpath &#x27;/Users/neo/data/db&#x27;&quot;</span></span><br></pre></td></tr></table></figure>
-
-</li>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">alias</span> mongod=<span class="string">&quot;mongod --dbpath &#x27;/Users/neo/data/db&#x27;&quot;</span></span><br></pre></td></tr></table></figure></li>
 </ol>
 
     </div>
@@ -549,13 +546,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">56k</span>
+    <span title="站点总字数">55k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">51 分钟</span>
+    <span title="站点阅读时长">50 分钟</span>
 </div>
 
 <span id="busuanzi_container_site_uv">

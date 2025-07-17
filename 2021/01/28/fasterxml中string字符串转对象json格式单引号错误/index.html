@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.2.0">
+<meta name="generator" content="Hexo 7.3.0">
 <!--临时解决 https://senorui.top/posts/c33f.html-->
 <meta name="referrer" content="no-referrer-when-downgrade">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
@@ -269,7 +269,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>473</span>
+              <span>448</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -290,9 +290,9 @@
       
         <p>在处理fasterxml中string字符串转对象json格式，标准的json都是双引号 （” “）;由于数据是单引号(‘ ‘)格式。导致了如下报错，特此记录</p>
 <p><strong>com.fasterxml.jackson.core.JsonParseException:  Unexpected character (‘s’ (code 115)): was     expecting double-quote to start field name</strong></p>
-<a id="more"></a>
+<span id="more"></span>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">com.fasterxml.jackson.databind.ObjectMapper </span><br><span class="line">mapper &#x3D; new ObjectMapper();</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;增加这行配置</span><br><span class="line">&#x2F;&#x2F;允许使用单引号，默认是false </span><br><span class="line">mapper.configure(Feature.ALLOW_SINGLE_QUOTES, true);</span><br><span class="line"></span><br><span class="line">mapper.readValue(payload, bean.class);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">com.fasterxml.jackson.databind.ObjectMapper </span><br><span class="line">mapper = new ObjectMapper();</span><br><span class="line"></span><br><span class="line">//增加这行配置</span><br><span class="line">//允许使用单引号，默认是false </span><br><span class="line">mapper.configure(Feature.ALLOW_SINGLE_QUOTES, true);</span><br><span class="line"></span><br><span class="line">mapper.readValue(payload, bean.class);</span><br></pre></td></tr></table></figure>
 
 <p>除了<strong>ALLOW_UNQUOTED_FIELD_NAMES，ALLOW_SINGLE_QUOTES</strong>还有其它的设置，有用到试试。</p>
 
@@ -491,13 +491,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">56k</span>
+    <span title="站点总字数">55k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">51 分钟</span>
+    <span title="站点阅读时长">50 分钟</span>
 </div>
 
 <span id="busuanzi_container_site_uv">
