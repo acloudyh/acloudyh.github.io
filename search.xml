@@ -1,180 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Nacos集群配置及Nginx反向代理</title>
-    <url>/2020/10/20/Nacos%E9%9B%86%E7%BE%A4%E9%85%8D%E7%BD%AE%E5%8F%8ANginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/</url>
-    <content><![CDATA[<p>Nacos集群配置以及Nginx反向代理的一些配置</p>
+    <title>BeyondCompare 无限试用</title>
+    <url>/2020/08/06/BeyondCompare%20%E6%97%A0%E9%99%90%E8%AF%95%E7%94%A8/</url>
+    <content><![CDATA[<h2 id="beyondCompare-无限试用"><a href="#beyondCompare-无限试用" class="headerlink" title="beyondCompare 无限试用"></a>beyondCompare 无限试用</h2><p>一次设置,一直有效,以后不需要修改,每次打开都是30天</p>
+<h3 id="找到安装的目录"><a href="#找到安装的目录" class="headerlink" title="找到安装的目录"></a>找到安装的目录</h3><p>我的安装目录是在这个下面</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /Applications/Beyond\ Compare.app/Contents/MacOS/</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
-<h2 id="安装Nacos"><a href="#安装Nacos" class="headerlink" title="安装Nacos"></a>安装Nacos</h2><p><strong>前提是需要一个虚拟机，本文基于CentOS 7</strong></p>
-<ol>
-<li><p>下载Nacos</p>
-<p> <a href="https://github.com/alibaba/nacos/releases/tag/1.3.2">下载地址</a></p>
-</li>
-<li><p>配置Nacos</p>
-<ul>
-<li><p>创建mynacos文件夹；将tar包解压到mynacos文件夹中</p>
-</li>
-<li><p>配置cluster.conf</p>
-  <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cp</span> cluster.conf.example cluster.conf</span><br><span class="line">vim cluster.conf</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>添加以下内容(根据自己的<strong>主机ip</strong>来填</p>
-  <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="number">192.168</span>.<span class="number">81.129</span>:<span class="number">3333</span></span><br><span class="line"><span class="number">192.168</span>.<span class="number">81.129</span>:<span class="number">4444</span></span><br><span class="line"><span class="number">192.168</span>.<span class="number">81.129</span>:<span class="number">5555</span></span><br></pre></td></tr></table></figure>
-<!-- more --></li>
-<li><p>修改数据库文件,<strong>vim application.properties</strong></p>
-  <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">spring.datasource.platform=mysql</span><br><span class="line">db.num=<span class="number">1</span></span><br><span class="line">db.url.<span class="number">0</span>=jdbc:mysql://<span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">3306</span>/nacos_config?characterEncoding=utf8&amp;connectTimeout=<span class="number">1000</span>&amp;socketTimeout=<span class="number">3000</span>&amp;autoReconnect=true</span><br><span class="line">db.user=root</span><br><span class="line">db.password=<span class="number">6</span>yhn^YHN</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>关闭防火墙或者开放端口（为了省事，我关闭了和防火墙）</p>
-  <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">systemctl stop firewalld</span><br></pre></td></tr></table></figure>
+<h3 id="备份-BCompare"><a href="#备份-BCompare" class="headerlink" title="备份 BCompare"></a>备份 <code>BCompare</code></h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mv BCompare BCompare.real </span><br></pre></td></tr></table></figure>
 
+<h3 id="创建并编辑-BCompare"><a href="#创建并编辑-BCompare" class="headerlink" title="创建并编辑 BCompare"></a>创建并编辑 <code>BCompare</code></h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">touch BCompare</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vim BCompare </span><br></pre></td></tr></table></figure>
 
-</li>
-</ul>
-</li>
-</ol>
-<ol start="3">
-<li><p>启动Nacos</p>
-<p> <strong>TIPS：因为是一台机器，所以以多个实例来设置集群，以端口区分，需要启动三个nacos；如果是多台机器那就正常一个机器起一个nacos即可</strong></p>
-<ul>
-<li><p>复制<strong>startup.sh</strong></p>
-  <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cp</span> startup.sh.bak startup<span class="literal">-3333</span>.sh</span><br><span class="line"><span class="built_in">cp</span> startup.sh.bak startup<span class="literal">-4444</span>.sh</span><br><span class="line"><span class="built_in">cp</span> startup.sh.bak startup<span class="literal">-5555</span>.sh</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>修改<strong>vim startup-3333.sh</strong>（一个示例，4444和5555 都按照此修改）,增加-Dserver.port=3333启动时指定端口号</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="comment"># start</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$JAVA</span> <span class="variable">$</span>&#123;JAVA_OPT&#125;&quot;</span> &gt; <span class="variable">$</span>&#123;BASE_DIR&#125;/logs/start.out <span class="number">2</span>&gt;&amp;<span class="number">1</span> &amp;</span><br><span class="line">nohup <span class="variable">$JAVA</span> <span class="literal">-Dserver</span>.port=<span class="number">3333</span> <span class="variable">$</span>&#123;JAVA_OPT&#125; nacos.nacos &gt;&gt; <span class="variable">$</span>&#123;BASE_DIR&#125;/logs/start.out <span class="number">2</span>&gt;&amp;<span class="number">1</span> &amp;</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;nacos is starting，you can check the <span class="variable">$</span>&#123;BASE_DIR&#125;/logs/start.out&quot;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>启动nacos</p>
-  <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">./startup<span class="literal">-3333</span>.sh</span><br><span class="line">./startup<span class="literal">-4444</span>.sh</span><br><span class="line">./startup<span class="literal">-5555</span>.sh</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ol>
-<h2 id="安装Nginx"><a href="#安装Nginx" class="headerlink" title="安装Nginx"></a>安装Nginx</h2><p>贴个安装nginx教程，并且配置stream负载均衡 <a href="http://xiaohost.com/2754.html">转向网址</a></p>
-<ol>
-<li><p>配置Nginx</p>
-<p> 由于我是yum安装的Nginx 配置文件 <strong>vim /etc/nginx/nginx.confg</strong></p>
-<ul>
-<li><p>设置upstream cluster</p>
-</li>
-<li><p>设置location根路径。<strong>proxy_pass <a href="http://cluster/">http://cluster</a>;</strong></p>
-  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#gzip  on;</span><br><span class="line">upstream cluster&#123;</span><br><span class="line">    server 192.168.81.129:3333;</span><br><span class="line">    server 192.168.81.129:4444;</span><br><span class="line">    server 192.168.81.129:5555;</span><br><span class="line">&#125;</span><br><span class="line">server &#123;</span><br><span class="line">    listen       1111;</span><br><span class="line">    server_name  localhost;</span><br><span class="line"></span><br><span class="line">    #charset koi8-r;</span><br><span class="line"></span><br><span class="line">    #access_log  logs&#x2F;host.access.log  main;</span><br><span class="line"></span><br><span class="line">    location &#x2F; &#123;</span><br><span class="line">        root   html;</span><br><span class="line">        index  index.html index.htm;</span><br><span class="line">        proxy_pass http:&#x2F;&#x2F;cluster;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>启动Nginx</p>
- <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">systemctl start nginx.service</span><br></pre></td></tr></table></figure></li>
-<li><p>登录查看<a href="http://192.168.81.129:1111/nacos/#/login">http://192.168.81.129:1111/nacos/#/login</a></p>
-</li>
-</ol>
-]]></content>
+<h3 id="增加以下内容-无限期试用"><a href="#增加以下内容-无限期试用" class="headerlink" title="增加以下内容 (无限期试用)"></a>增加以下内容 (无限期试用)</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#!&#x2F;bin&#x2F;bash</span><br><span class="line">rm &quot;&#x2F;Users&#x2F;neo&#x2F;Library&#x2F;Application Support&#x2F;Beyond Compare&#x2F;registry.dat&quot;</span><br><span class="line">&quot;&#96;dirname &quot;$0&quot;&#96;&quot;&#x2F;BCompare.real $@</span><br></pre></td></tr></table></figure>
+<h3 id="赋予权限"><a href="#赋予权限" class="headerlink" title="赋予权限"></a>赋予权限</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">chmod a+x BCompare</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
-        <category>Java</category>
-        <category>Nacos集群配置</category>
-      </categories>
-      <tags>
-        <tag>Nacos集群配置</tag>
-        <tag>Nginx反向代理</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Ubuntu 自动挂载SD卡</title>
-    <url>/2020/12/27/Ubuntu%20%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BDSD%E5%8D%A1/</url>
-    <content><![CDATA[<p>最近开发过程中遇见了一个问题，Ubuntu 16.04 自动挂载SD卡报错，<code>mounted filesystem with ordered data mode. Opts: (null)</code>以此记录一下</p>
-<a id="more"></a>
-
-<ol>
-<li><p>查看分区</p>
- <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"> </span><br><span class="line">root@ubuntu16:~<span class="comment"># fdisk -l</span></span><br><span class="line"></span><br><span class="line">中间省略无关东西;主要是为了挂载 /dev/mmcblk0p1</span><br><span class="line"></span><br><span class="line">Disk /dev/mmcblk0: <span class="number">29.7</span> GiB, <span class="number">31914983424</span> bytes, <span class="number">62333952</span> sectors</span><br><span class="line">Units: sectors of <span class="number">1</span> * <span class="number">512</span> = <span class="number">512</span> bytes</span><br><span class="line">Sector size (logical/physical): <span class="number">512</span> bytes / <span class="number">512</span> bytes</span><br><span class="line">I/O size (minimum/optimal): <span class="number">512</span> bytes / <span class="number">512</span> bytes</span><br><span class="line">Disklabel <span class="built_in">type</span>: dos</span><br><span class="line">Disk identifier: <span class="number">0</span>x00000000</span><br><span class="line"></span><br><span class="line">Device         Boot <span class="built_in">Start</span>      <span class="keyword">End</span>  Sectors  Size Id <span class="built_in">Type</span></span><br><span class="line">/dev/mmcblk0p1       <span class="number">2048</span> <span class="number">62333951</span> <span class="number">62331904</span> <span class="number">29.7</span>G <span class="number">83</span> Linux</span><br><span class="line">root@ubuntu16:~<span class="comment"># </span></span><br></pre></td></tr></table></figure>
-<p> sd卡文件格式的原先是fat32位，由于内核是裁剪版，没有fsck.vfat 修复（如果有，可以直接修复），直接将其格式化成ext4 <code>记得备份里面内容</code></p>
-</li>
-<li><p>手动挂载SD卡（ 成功 ）</p>
- <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mount</span> /dev/mmcblk0p1 /mnt/sd/</span><br></pre></td></tr></table></figure>
-<p> <strong>df -h</strong>查看挂载成功</p>
- <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">root@ubuntu16:~<span class="comment"># df -h</span></span><br><span class="line">Filesystem      Size  Used Avail Use% Mounted on</span><br><span class="line">ubi0:rootfs     <span class="number">437</span>M  <span class="number">384</span>M   <span class="number">54</span>M  <span class="number">88</span>% /</span><br><span class="line">devtmpfs        <span class="number">121</span>M     <span class="number">0</span>  <span class="number">121</span>M   <span class="number">0</span>% /dev</span><br><span class="line">tmpfs           <span class="number">122</span>M     <span class="number">0</span>  <span class="number">122</span>M   <span class="number">0</span>% /dev/shm</span><br><span class="line">tmpfs           <span class="number">122</span>M  <span class="number">1.7</span>M  <span class="number">120</span>M   <span class="number">2</span>% /run</span><br><span class="line">tmpfs           <span class="number">5.0</span>M  <span class="number">4.0</span>K  <span class="number">5.0</span>M   <span class="number">1</span>% /run/lock</span><br><span class="line">tmpfs           <span class="number">122</span>M     <span class="number">0</span>  <span class="number">122</span>M   <span class="number">0</span>% /sys/fs/cgroup</span><br><span class="line">/dev/mmcblk0p1   <span class="number">30</span>G  <span class="number">153</span>M   <span class="number">28</span>G   <span class="number">1</span>% /mnt/sd</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p> 手动挂载SD卡可以成功，但是自动挂载却失败了</p>
-</li>
-</ol>
-<h3 id="以下自动挂载过程"><a href="#以下自动挂载过程" class="headerlink" title="以下自动挂载过程"></a>以下自动挂载过程</h3><ol>
-<li><p>修改<code>/etc/fstab</code>文件（ 失败 ）</p>
- <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">root@ubuntu16:~<span class="comment"># vim /etc/fstab </span></span><br><span class="line"><span class="comment"># &lt;file system&gt;   &lt;dir&gt;         &lt;type&gt;    &lt;options&gt;                          &lt;dump&gt; &lt;pass&gt;</span></span><br><span class="line">/dev/mmcblk0p2    /             ext4      defaults,noatime,errors=remount<span class="literal">-ro</span>   <span class="number">0</span>      <span class="number">1</span></span><br><span class="line">/dev/mmcblk0p1    /mnt/sd          ext4      defaults                             <span class="number">0</span>      <span class="number">0</span></span><br><span class="line">~                                                                                            </span><br></pre></td></tr></table></figure>
-
-<p> 查看dmesg日志信息，报错如下（裁剪版，连syslog也没有）</p>
- <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">[<span class="number">24987.953468</span>] EXT4<span class="literal">-fs</span> (mmcblk0p1): mounted filesystem with ordered <span class="keyword">data</span> mode. Opts: (null)</span><br><span class="line">[<span class="number">25051.864722</span>] EXT4<span class="literal">-fs</span> (mmcblk0p1): mounted filesystem with ordered <span class="keyword">data</span> mode. Opts: (null)</span><br><span class="line">[<span class="number">25327.264935</span>] EXT4<span class="literal">-fs</span> (mmcblk0p1): mounted filesystem with ordered <span class="keyword">data</span> mode. Opts: (null)</span><br><span class="line">[<span class="number">25392.234106</span>] EXT4<span class="literal">-fs</span> (mmcblk0p1): mounted filesystem with ordered <span class="keyword">data</span> mode. Opts: (null)</span><br><span class="line">[<span class="number">171378.249554</span>] EXT4<span class="literal">-fs</span> (mmcblk0p1): mounted filesystem with ordered <span class="keyword">data</span> mode. Opts: (null)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>修改<code>/etc/rc.local</code>文件（ 失败 ）<br> 加入以下内容</p>
- <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mount</span> /dev/mmcblk0p1 /mnt/sd</span><br></pre></td></tr></table></figure>
-<p> 重启之后依然报上述错误</p>
-</li>
-<li><p>手动指定挂在文件类型（ 成功 ）</p>
- <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mount</span> <span class="literal">-t</span> ext4 /dev/mmcblk0p1 /mnt/sd</span><br></pre></td></tr></table></figure>
-<p> 重启机器之后，<code>df -h</code>查看挂载成功</p>
-</li>
-</ol>
-<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><ol>
-<li>文件系统有问题，可以使用<code>fsck.XX</code>参数去修复</li>
-<li>期间也尝试了在<code>/etc/fstab</code>使用UUID 来指定，依然报错</li>
-<li>手动指定挂在文件类型<code>mount -t ext4 /dev/mmcblk0p1 /mnt/sd</code></li>
-</ol>
-]]></content>
-      <categories>
-        <category>Ubuntu</category>
-      </categories>
-      <tags>
-        <tag>Ubuntu挂载SD卡</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>fasterxml中string字符串转对象json格式单引号错误</title>
-    <url>/2021/01/28/fasterxml%E4%B8%ADstring%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E5%AF%B9%E8%B1%A1json%E6%A0%BC%E5%BC%8F%E5%8D%95%E5%BC%95%E5%8F%B7%E9%94%99%E8%AF%AF/</url>
-    <content><![CDATA[<p>在处理fasterxml中string字符串转对象json格式，标准的json都是双引号 （” “）;由于数据是单引号(‘ ‘)格式。导致了如下报错，特此记录</p>
-<p><strong>com.fasterxml.jackson.core.JsonParseException:  Unexpected character (‘s’ (code 115)): was     expecting double-quote to start field name</strong></p>
-<a id="more"></a>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">com.fasterxml.jackson.databind.ObjectMapper </span><br><span class="line">mapper &#x3D; new ObjectMapper();</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;增加这行配置</span><br><span class="line">&#x2F;&#x2F;允许使用单引号，默认是false </span><br><span class="line">mapper.configure(Feature.ALLOW_SINGLE_QUOTES, true);</span><br><span class="line"></span><br><span class="line">mapper.readValue(payload, bean.class);</span><br></pre></td></tr></table></figure>
-
-<p>除了<strong>ALLOW_UNQUOTED_FIELD_NAMES，ALLOW_SINGLE_QUOTES</strong>还有其它的设置，有用到试试。</p>
-]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>踩坑</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>flask登陆之后跳转回原先的页面</title>
-    <url>/2020/10/20/flask%E7%99%BB%E9%99%86%E4%B9%8B%E5%90%8E%E8%B7%B3%E8%BD%AC%E5%9B%9E%E5%8E%9F%E5%85%88%E7%9A%84%E9%A1%B5%E9%9D%A2/</url>
-    <content><![CDATA[<p>在使用Flask_login，使用装饰器@login_required时，如果没有登录，会跳转登录页面登陆之后不会返回原来的页面</p>
-<a id="more"></a>
-<ul>
-<li><p>在登录函数中，redirect更换以下代码</p>
-  <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">next_page_url = request.args.get(<span class="string">&#x27;next&#x27;</span>)</span><br><span class="line"> <span class="comment"># 如果 next_page_url 为空，直接返回首页</span></span><br><span class="line"> <span class="keyword">if</span> <span class="keyword">not</span> next_page_url <span class="keyword">or</span> url_parse(next_page_url).netloc != <span class="string">&#x27;&#x27;</span>:</span><br><span class="line">     <span class="keyword">return</span> redirect(next_page_url(<span class="string">&#x27;首页&#x27;</span>))</span><br><span class="line"> <span class="keyword">else</span>:</span><br><span class="line">     <span class="keyword">return</span> redirect(next_page_url)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>html中也需要修改，在url_for中增加<code>next=request.args.next</code></p>
-  <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">&lt;form <span class="string">&quot; method=&quot;</span>POST<span class="string">&quot; action=&quot;</span>&#123;&#123;url_for(<span class="string">&#x27;auth.login&#x27;</span>,<span class="built_in">next</span>=request.args.<span class="built_in">next</span>)&#125;&#125;<span class="string">&quot;&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Python</category>
-        <category>Flask</category>
-      </categories>
-      <tags>
-        <tag>踩坑</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>lambda表达式对对象集合进行分组并求和</title>
-    <url>/2020/12/14/lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%88%86%E7%BB%84%E5%B9%B6%E6%B1%82%E5%92%8C-md/</url>
-    <content><![CDATA[<p>最近业务需求，要求对集合按照多个属性分组，并且对某一个属性求和，利用lambda表达式进行分组求和；示例如下</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">list.parallelStream()</span><br><span class="line">            .collect(Collectors.groupingBy(o -&gt; (o.getName() + o.getAge()), Collectors.toList()))</span><br><span class="line">            .forEach((id, transfer) -&gt; transfer.stream().reduce((a, b) -&gt; new StudentDemo(a.getName(), a.getAge(), a.getScore() + b.getScore())).ifPresent(studentDemoList::add));</span><br></pre></td></tr></table></figure>
-
-<a id="more"></a>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">package com.yang.springboot.lamda.groupBy;</span><br><span class="line"></span><br><span class="line">import java.util.ArrayList;</span><br><span class="line">import java.util.List;</span><br><span class="line">import java.util.stream.Collectors;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * @author Yang Hao</span><br><span class="line"> * @date 2020-11-19 19:41</span><br><span class="line"> *&#x2F;</span><br><span class="line">public class Demo &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line"></span><br><span class="line">        &#x2F;**</span><br><span class="line">         * lambda表达式: 根据姓名和年龄分组之后再求和总分</span><br><span class="line">         *</span><br><span class="line">         * [                                                           [</span><br><span class="line">         *      StudentDemo(name&#x3D;张三, age&#x3D;20, score&#x3D;12),                 StudentDemo(name&#x3D;张三, age&#x3D;20, score&#x3D;92),</span><br><span class="line">         *      StudentDemo(name&#x3D;张三, age&#x3D;20, score&#x3D;80),    &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&gt;   StudentDemo(name&#x3D;王五, age&#x3D;20, score&#x3D;33),</span><br><span class="line">         *      StudentDemo(name&#x3D;王五, age&#x3D;20, score&#x3D;33),    &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&gt;   StudentDemo(name&#x3D;李四, age&#x3D;29, score&#x3D;90),</span><br><span class="line">         *      StudentDemo(name&#x3D;李四, age&#x3D;18, score&#x3D;50),                 StudentDemo(name&#x3D;李四, age&#x3D;18, score&#x3D;50)</span><br><span class="line">         *      StudentDemo(name&#x3D;李四, age&#x3D;29, score&#x3D;90)                ]</span><br><span class="line">         * ]</span><br><span class="line">         *&#x2F;</span><br><span class="line"></span><br><span class="line">        List&lt;StudentDemo&gt; list &#x3D; new ArrayList&lt;&gt;();</span><br><span class="line">        list.add(new StudentDemo(&quot;张三&quot;, &quot;20&quot;, 12));</span><br><span class="line">        list.add(new StudentDemo(&quot;张三&quot;, &quot;20&quot;, 80));</span><br><span class="line">        list.add(new StudentDemo(&quot;王五&quot;, &quot;20&quot;, 33));</span><br><span class="line">        list.add(new StudentDemo(&quot;李四&quot;, &quot;18&quot;, 50));</span><br><span class="line">        list.add(new StudentDemo(&quot;李四&quot;, &quot;29&quot;, 90));</span><br><span class="line">        System.out.println(&quot;分组求和之前 &quot; + list);</span><br><span class="line"></span><br><span class="line">        List&lt;StudentDemo&gt; studentDemoList &#x3D; new ArrayList&lt;&gt;();</span><br><span class="line">        list.parallelStream()</span><br><span class="line">                .collect(Collectors.groupingBy(o -&gt; (o.getName() + o.getAge()), Collectors.toList()))</span><br><span class="line">                .forEach((id, transfer) -&gt; transfer.stream().reduce((a, b) -&gt; new StudentDemo(a.getName(), a.getAge(), a.getScore() + b.getScore())).ifPresent(studentDemoList::add));</span><br><span class="line">        System.out.println(&quot;分组求和之后 &quot; + studentDemoList);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Java</category>
-        <category>lambda</category>
+        <category>工具</category>
       </categories>
   </entry>
   <entry>
@@ -188,7 +29,7 @@
 <p>HashTable容器使用sychronized来保证线程安全，采取锁住整个表结构来达到同步目的，在线程竞争激烈的情况下，当一个线程访问HashTable的同步方法，其他线程也访问同步方法时，会进入阻塞或轮询状态；如线程1使用put方法时，其他线程既不能使用put方法，也不能使用get方法，效率非常低下。</p>
 <p><strong>3. ConcurrentHashMap的锁分段技术可提升并发访问效率</strong></p>
 <p>首先将数据分成一段一段地存储，然后给每一段数据配一把锁，当一个线程占用锁访问其中一个段数据的时候，其他段的数据也能被其他线程访问。</p>
-<h2 id="JDK-1-7"><a href="#JDK-1-7" class="headerlink" title="JDK 1.7"></a>JDK 1.7</h2><h3 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h3><p><img src="ConcurrentHashMap-1.7.jpg"></p>
+<h2 id="JDK-1-7"><a href="#JDK-1-7" class="headerlink" title="JDK 1.7"></a>JDK 1.7</h2><h3 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h3><p><img src="/.io//ConcurrentHashMap-1.7.jpg"></p>
 <p>Java 7 中 <code>ConcurrentHashMap</code> 的存储结构如上图, <code>ConcurrnetHashMap</code> 由很多个 <code>Segment</code>  组合，而每一个 <code>Segment</code> 是一个类似于 <code>HashMap</code> 的结构，所以每一个 <code>HashMap</code> 的内部可以进行扩容。但是 <code>Segment</code> 的个数一旦<strong>初始化就不能改变</strong>，默认 <code>Segment</code> 的个数是 16 个，你也可以认为 <code>ConcurrentHashMap</code> 默认支持最多 16 个线程并发。</p>
 <h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><p>通过 <code>ConcurrentHashMap</code> 的无参构造探寻 <code>ConcurrentHashMap</code> 的初始化流程。</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * Creates a new, empty map with a default initial capacity (16),</span></span><br><span class="line"><span class="comment">    * load factor (0.75) and concurrencyLevel (16).</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ConcurrentHashMap</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>(DEFAULT_INITIAL_CAPACITY, DEFAULT_LOAD_FACTOR, DEFAULT_CONCURRENCY_LEVEL);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -271,7 +112,7 @@
 <p><strong><code>ConcurrentHashMap</code> 的 get 方法是非常高效的，因为整个过程都不需要加锁。</strong></p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> V <span class="title">get</span><span class="params">(Object key)</span> </span>&#123;</span><br><span class="line">    Segment&lt;K,V&gt; s; <span class="comment">// manually integrate access methods to reduce overhead</span></span><br><span class="line">    HashEntry&lt;K,V&gt;[] tab;</span><br><span class="line">    <span class="keyword">int</span> h = hash(key);</span><br><span class="line">    <span class="keyword">long</span> u = (((h &gt;&gt;&gt; segmentShift) &amp; segmentMask) &lt;&lt; SSHIFT) + SBASE;</span><br><span class="line">    <span class="comment">// 计算得到 key 的存放位置</span></span><br><span class="line">    <span class="keyword">if</span> ((s = (Segment&lt;K,V&gt;)UNSAFE.getObjectVolatile(segments, u)) != <span class="keyword">null</span> &amp;&amp;</span><br><span class="line">        (tab = s.table) != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">for</span> (HashEntry&lt;K,V&gt; e = (HashEntry&lt;K,V&gt;) UNSAFE.getObjectVolatile</span><br><span class="line">                 (tab, ((<span class="keyword">long</span>)(((tab.length - <span class="number">1</span>) &amp; h)) &lt;&lt; TSHIFT) + TBASE);</span><br><span class="line">             e != <span class="keyword">null</span>; e = e.next) &#123;</span><br><span class="line">            <span class="comment">// 如果是链表，遍历查找到相同 key 的 value。</span></span><br><span class="line">            K k;</span><br><span class="line">            <span class="keyword">if</span> ((k = e.key) == key || (e.hash == h &amp;&amp; key.equals(k)))</span><br><span class="line">                <span class="keyword">return</span> e.value;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="ConcurrentHashMap-1-8"><a href="#ConcurrentHashMap-1-8" class="headerlink" title="ConcurrentHashMap 1.8"></a>ConcurrentHashMap 1.8</h2><h3 id="存储结构"><a href="#存储结构" class="headerlink" title="存储结构"></a>存储结构</h3><p><img src="ConcurrentHashMap-1.8.jpg" alt="ConcurrentHashMap-1.8"></p>
+<h2 id="ConcurrentHashMap-1-8"><a href="#ConcurrentHashMap-1-8" class="headerlink" title="ConcurrentHashMap 1.8"></a>ConcurrentHashMap 1.8</h2><h3 id="存储结构"><a href="#存储结构" class="headerlink" title="存储结构"></a>存储结构</h3><p><img src="/.io//ConcurrentHashMap-1.8.jpg" alt="ConcurrentHashMap-1.8"></p>
 <p>可以发现 Java8 的 <code>ConcurrentHashMap</code>  相对于 Java7 来说变化比较大，不再是之前的 <strong>Segment 数组 + HashEntry 数组 + 链表</strong>，而是 <strong>Node 数组 + 链表 / 红黑树</strong>。当冲突链表达到一定长度时，链表会转换成红黑树。</p>
 <p>其中抛弃了原有的 <code>Segment</code> 分段锁，而采用了 <code>CAS + synchronized</code> 来保证并发安全性。</p>
 <h3 id="初始化-initTable"><a href="#初始化-initTable" class="headerlink" title="初始化 initTable"></a>初始化 initTable</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Initializes table, using the size recorded in sizeCtl.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Node&lt;K,V&gt;[] initTable() &#123;</span><br><span class="line">    Node&lt;K,V&gt;[] tab; <span class="keyword">int</span> sc;</span><br><span class="line">    <span class="keyword">while</span> ((tab = table) == <span class="keyword">null</span> || tab.length == <span class="number">0</span>) &#123;</span><br><span class="line">        ／／　如果 sizeCtl &lt; <span class="number">0</span> ,说明另外的线程执行CAS 成功，正在进行初始化。</span><br><span class="line">        <span class="keyword">if</span> ((sc = sizeCtl) &lt; <span class="number">0</span>)</span><br><span class="line">            <span class="comment">// 让出 CPU 使用权</span></span><br><span class="line">            Thread.yield(); <span class="comment">// lost initialization race; just spin</span></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (U.compareAndSwapInt(<span class="keyword">this</span>, SIZECTL, sc, -<span class="number">1</span>)) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> ((tab = table) == <span class="keyword">null</span> || tab.length == <span class="number">0</span>) &#123;</span><br><span class="line">                    <span class="keyword">int</span> n = (sc &gt; <span class="number">0</span>) ? sc : DEFAULT_CAPACITY;</span><br><span class="line">                    <span class="meta">@SuppressWarnings(&quot;unchecked&quot;)</span></span><br><span class="line">                    Node&lt;K,V&gt;[] nt = (Node&lt;K,V&gt;[])<span class="keyword">new</span> Node&lt;?,?&gt;[n];</span><br><span class="line">                    table = tab = nt;</span><br><span class="line">                    sc = n - (n &gt;&gt;&gt; <span class="number">2</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                sizeCtl = sc;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> tab;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -314,6 +155,25 @@
       </tags>
   </entry>
   <entry>
+    <title>flask 统一异常处理以及400 500页面</title>
+    <url>/2020/10/13/Flask%20%E7%BB%9F%E4%B8%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E4%BB%A5%E5%8F%8A400-500%E9%A1%B5%E9%9D%A2/</url>
+    <content><![CDATA[<h3 id="在flask中如何统一处理异常以及400-500页面"><a href="#在flask中如何统一处理异常以及400-500页面" class="headerlink" title="在flask中如何统一处理异常以及400 500页面"></a>在flask中如何统一处理异常以及400 500页面</h3><h4 id="异常类"><a href="#异常类" class="headerlink" title="异常类"></a>异常类</h4><a id="more"></a>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="comment"># Author  : Yang Hao</span></span><br><span class="line"><span class="comment"># File    : exception_common.py</span></span><br><span class="line"><span class="comment"># Software: PyCharm</span></span><br><span class="line"><span class="comment"># Time    : 2020/3/30 17:35</span></span><br><span class="line"><span class="comment"># Description:</span></span><br><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> jsonify, render_template</span><br><span class="line"><span class="keyword">from</span> app <span class="keyword">import</span> app</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ExceptionCommon</span>(<span class="params">Exception</span>):</span></span><br><span class="line">    <span class="comment"># 默认的返回码</span></span><br><span class="line">    status_code = <span class="number">400</span></span><br><span class="line">    <span class="comment"># 可以自己定义return_code</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, message=<span class="literal">None</span>, status_code=<span class="literal">None</span>, payload=<span class="literal">None</span></span>):</span></span><br><span class="line">        Exception.__init__(self)</span><br><span class="line">        self.message = message</span><br><span class="line">        <span class="keyword">if</span> status_code <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            self.status_code = status_code</span><br><span class="line">        self.payload = payload</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 构造要返回的错误代码和错误信息的 dict</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">to_dict</span>(<span class="params">self</span>):</span></span><br><span class="line">        rv = <span class="built_in">dict</span>(self.payload <span class="keyword">or</span> ())</span><br><span class="line">        rv[<span class="string">&#x27;status_code&#x27;</span>] = self.status_code</span><br><span class="line">        rv[<span class="string">&#x27;message&#x27;</span>] = self.message</span><br><span class="line">        <span class="keyword">return</span> rv</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.errorhandler(ExceptionCommon)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">handle_invalid_usage</span>(<span class="params">error</span>):</span></span><br><span class="line">    response = jsonify(error.to_dict())</span><br><span class="line">    response.status_code = error.status_code</span><br><span class="line">    <span class="keyword">return</span> response</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.errorhandler(500)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">handle_500</span>(<span class="params">e</span>):</span></span><br><span class="line">    <span class="keyword">return</span> render_template(<span class="string">&#x27;500.html&#x27;</span>), <span class="number">404</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.errorhandler(404)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">page_not_found</span>(<span class="params">e</span>):</span></span><br><span class="line">    <span class="keyword">return</span> render_template(<span class="string">&#x27;404.html&#x27;</span>), <span class="number">404</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@auth.route(&#x27;/logout&#x27;, methods=(&#x27;GET&#x27;, &#x27;POST&#x27;))</span></span><br><span class="line"><span class="meta">@login_required</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">logout</span>():</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    注销登录,解除会话 logout_user()</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    xxx</span><br><span class="line">    <span class="keyword">raise</span> ExceptionCommon(<span class="string">&quot;错误原因&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> redirect(url_for(<span class="string">&quot;auth.login&quot;</span>))</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="在整个web项目中使用"><a href="#在整个web项目中使用" class="headerlink" title="在整个web项目中使用"></a>在整个web项目中使用</h4><p>上述<code>@app.errorhandler</code>        这个errorhandler处理器注册在app上，只能对app使用</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">@app.errorhandler(ExceptionCommon)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">handle_invalid_usage</span>(<span class="params">error</span>):</span></span><br><span class="line">    response = jsonify(error.to_dict())</span><br><span class="line">    response.status_code = error.status_code</span><br><span class="line">    <span class="keyword">return</span> response</span><br></pre></td></tr></table></figure>
+
+<p>修改为以下内容<code>@comm.app_errorhandler</code>需要注册comm的蓝本</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">@comm.app_errorhandler(ExceptionCommon)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">handle_invalid_usage</span>(<span class="params">error</span>):</span></span><br><span class="line">    response = jsonify(error.to_dict())</span><br><span class="line">    response.status_code = error.status_code</span><br><span class="line">    <span class="keyword">return</span> response</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Python</category>
+        <category>Flask</category>
+      </categories>
+  </entry>
+  <entry>
     <title>HashMap 源码分析</title>
     <url>/2021/02/26/HashMap%20%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</url>
     <content><![CDATA[<p>这一篇文章是关于ConcurrentHashMap 源码分析 <a href="/2021/03/10/ConcurrentHashMap%20%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" title="ConcurrentHashMap 源码分析">ConcurrentHashMap 源码分析</a></p>
@@ -326,7 +186,7 @@
 <h2 id="HashMap底层数据结构分析"><a href="#HashMap底层数据结构分析" class="headerlink" title="HashMap底层数据结构分析"></a>HashMap底层数据结构分析</h2><h3 id="JDK1-8-之前"><a href="#JDK1-8-之前" class="headerlink" title="JDK1.8 之前"></a>JDK1.8 之前</h3><a id="more"></a>
 
 <p><strong>JDK1.8之前数据结构图</strong></p>
-<p><img src="JDK1.8%E4%B9%8B%E5%89%8D%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.jpg" alt="JDK1.8之前数据结构.jpg"></p>
+<p><img src="/.io//JDK1.8%E4%B9%8B%E5%89%8D%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.jpg" alt="JDK1.8之前数据结构.jpg"></p>
 <p>JDK1.8 之前 <code>HashMap</code> 底层是 <strong>数组和链表</strong> 结合在一起使用也就是 <strong>链表散列</strong>。</p>
 <p><code>HashMap</code> 通过 key 的 <code>hashCode</code> 经过扰动函数处理过后得到 hash 值, 然后通过 <code>(n - 1) &amp; hash</code> 判断当前元素存放的位置(这里的 n 指的是数组的长度), 如果当前位置存在元素的话, 就判断该元素与要存入的元素的 hash 值以及 key 是否相同, 如果相同的话, 直接覆盖, 不相同就通过拉链法解决冲突。</p>
 <p>所谓扰动函数指的就是 <code>HashMap</code> 的 hash 方法。使用 hash 方法也就是扰动函数是为了防止一些实现比较差的 <code>hashCode()</code> 方法 换句话说使用扰动函数之后可以减少碰撞。</p>
@@ -339,7 +199,7 @@
 
 <p>相比于 JDK1.8 的 hash 方法 , JDK 1.7 的 hash 方法的性能会稍差一点点, 因为毕竟扰动了 4 次。</p>
 <p>所谓 <strong>“拉链法”</strong> 就是：将链表和数组相结合。也就是说创建一个链表数组, 数组中每一格就是一个链表。若遇到哈希冲突, 则将冲突的值加到链表中即可。</p>
-<h3 id="JDK1-8-之后"><a href="#JDK1-8-之后" class="headerlink" title="JDK1.8 之后"></a>JDK1.8 之后</h3><p><img src="JDK1.8%E4%B9%8B%E5%90%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9B%BE.jpg" alt="JDK1.8 之后数据结构图"></p>
+<h3 id="JDK1-8-之后"><a href="#JDK1-8-之后" class="headerlink" title="JDK1.8 之后"></a>JDK1.8 之后</h3><p><img src="/.io//JDK1.8%E4%B9%8B%E5%90%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9B%BE.jpg" alt="JDK1.8 之后数据结构图"></p>
 <p><strong>HashMap类</strong></p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HashMap</span>&lt;<span class="title">K</span>, <span class="title">V</span>&gt; <span class="keyword">extends</span> <span class="title">AbstractMap</span>&lt;<span class="title">K</span>, <span class="title">V</span>&gt; <span class="keyword">implements</span> <span class="title">Map</span>&lt;<span class="title">K</span>, <span class="title">V</span>&gt;,  <span class="title">Cloneable</span>,  <span class="title">Serializable</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 序列号</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">362498820763181265L</span>;</span><br><span class="line">    <span class="comment">// 默认的初始桶容量是16</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> DEFAULT_INITIAL_CAPACITY = <span class="number">1</span> &lt;&lt; <span class="number">4</span>;</span><br><span class="line">    <span class="comment">// 桶最大值</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MAXIMUM_CAPACITY = <span class="number">1</span> &lt;&lt; <span class="number">30</span>;</span><br><span class="line">    <span class="comment">// 默认的负载因子(0.75)</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">float</span> DEFAULT_LOAD_FACTOR = <span class="number">0.75f</span>;</span><br><span class="line">    <span class="comment">// 当桶(bucket)上的结点数大于这个值时会转成红黑树</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> TREEIFY_THRESHOLD = <span class="number">8</span>;</span><br><span class="line">    <span class="comment">// 当桶(bucket)上的结点数小于这个值时树转链表</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> UNTREEIFY_THRESHOLD = <span class="number">6</span>;</span><br><span class="line">    <span class="comment">// 桶中结构转化为红黑树对应的table的最小大小</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MIN_TREEIFY_CAPACITY = <span class="number">64</span>;</span><br><span class="line">    <span class="comment">// table 真正存放数据的数组, 总是2的幂次倍</span></span><br><span class="line">    <span class="keyword">transient</span> Node&lt;k, v&gt;[] table;</span><br><span class="line">    <span class="comment">// 存放具体元素的集</span></span><br><span class="line">    <span class="keyword">transient</span> Set&lt;map.entry&lt;k, v&gt;&gt; entrySet;</span><br><span class="line">    <span class="comment">// 存放元素的个数, 注意这个不等于数组的长度</span></span><br><span class="line">    <span class="keyword">transient</span> <span class="keyword">int</span> size;</span><br><span class="line">    <span class="comment">// 每次扩容和更改map结构的计数器</span></span><br><span class="line">    <span class="keyword">transient</span> <span class="keyword">int</span> modCount;</span><br><span class="line">    <span class="comment">// 临界值 当实际大小(容量*填充因子)超过临界值时, 会进行扩容, 可在初始化时显式指定</span></span><br><span class="line">    <span class="keyword">int</span> threshold;</span><br><span class="line">    <span class="comment">// 负载因子, 可在初始化时显式指定</span></span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">float</span> loadFactor;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -403,35 +263,119 @@
       </tags>
   </entry>
   <entry>
-    <title>ThreadLocal 内存泄露</title>
-    <url>/2021/04/24/ThreadLocal%20%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2/</url>
-    <content><![CDATA[<h2 id="ThreadLocal-简介"><a href="#ThreadLocal-简介" class="headerlink" title="ThreadLocal 简介"></a>ThreadLocal 简介</h2><p><code>ThreadLocal</code>提供了线程的局部变量，每个线程都可以通过<code>set()</code>和<code>get()</code>来对这个局部变量进行操作，但不会和其他线程的局部变量进行冲突，从而避免了线程安全问题。</p>
-<p>简而言之：<code>ThreadLocal</code>保证了各个线程的数据互不干扰。</p>
+    <title>MySQL 5.7 返回json数据 中文乱码问题</title>
+    <url>/2021/01/11/MySQL%205.7%20%E8%BF%94%E5%9B%9Ejson%E6%95%B0%E6%8D%AE-%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<p>mysql版本为5.7，通过navicat查看json格式的数据是正常显示，但是查询出来是乱码， 读取其他字段都是正常的，也没有特殊设置json格式的字符集</p>
 <a id="more"></a>
+<p>mysql驱动jdbc是这个版本</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">	&lt;groupId&gt;mysql&lt;&#x2F;groupId&gt;</span><br><span class="line">	&lt;artifactId&gt;mysql-connector-java&lt;&#x2F;artifactId&gt;</span><br><span class="line">	&lt;version&gt;5.1.36&lt;&#x2F;version&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br></pre></td></tr></table></figure>
 
-<h2 id="ThreadLocal-原理"><a href="#ThreadLocal-原理" class="headerlink" title="ThreadLocal 原理"></a>ThreadLocal 原理</h2><p>从 <code>Thread</code>类源代码入手。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Thread</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line"> ......</span><br><span class="line"><span class="comment">//与此线程有关的ThreadLocal值。由ThreadLocal类维护</span></span><br><span class="line">ThreadLocal.ThreadLocalMap threadLocals = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//与此线程有关的InheritableThreadLocal值。由InheritableThreadLocal类维护</span></span><br><span class="line">ThreadLocal.ThreadLocalMap inheritableThreadLocals = <span class="keyword">null</span>;</span><br><span class="line"> ......</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>从上面<code>Thread</code>类 源代码可以看出<code>Thread</code> 类中有一个 <code>threadLocals</code> 和 一个 <code>inheritableThreadLocals</code> 变量，它们都是 <code>ThreadLocalMap</code> 类型的变量,我们可以把 <code>ThreadLocalMap</code> 理解为<code>ThreadLocal</code> 类实现的定制化的 <code>HashMap</code>。默认情况下这两个变量都是 null，只有当前线程调用 <code>ThreadLocal</code> 类的 <code>set</code>或<code>get</code>方法时才创建它们，实际上调用这两个方法的时候，我们调用的是<code>ThreadLocalMap</code>类对应的 <code>get()</code>、<code>set()</code>方法。</p>
-<p><code>ThreadLocal</code>类的<code>set()</code>方法</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">set</span><span class="params">(T value)</span> </span>&#123;</span><br><span class="line">    Thread t = Thread.currentThread();</span><br><span class="line">    ThreadLocalMap map = getMap(t);</span><br><span class="line">    <span class="keyword">if</span> (map != <span class="keyword">null</span>)</span><br><span class="line">        map.set(<span class="keyword">this</span>, value);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        createMap(t, value);</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line"><span class="function">ThreadLocalMap <span class="title">getMap</span><span class="params">(Thread t)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> t.threadLocals;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>最终的变量是放在了当前线程的 <code>ThreadLocalMap</code> 中，并不是存在 <code>ThreadLocal</code> 上，<code>ThreadLocal</code> 可以理解为只是<code>ThreadLocalMap</code>的封装，传递了变量值。 <code>ThrealLocal</code> 类中可以通过<code>Thread.currentThread()</code>获取到当前线程对象后，直接通过<code>getMap(Thread t)</code>可以访问到该线程的<code>ThreadLocalMap</code>对象。</p>
-<p><strong>每个<code>Thread</code>中都有一个<code>ThreadLocalMap</code>，而<code>ThreadLocalMap</code>可以存储以<code>ThreadLocal</code>为 key ，Object 对象为 value 的键值对；采用类似hashmap机制</strong></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ThreadLocalMap(ThreadLocal&lt;?&gt; firstKey, Object firstValue) &#123;</span><br><span class="line"> ......</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="ThreadLocal-内存泄露原因"><a href="#ThreadLocal-内存泄露原因" class="headerlink" title="ThreadLocal 内存泄露原因"></a>ThreadLocal 内存泄露原因</h2><p>ThreadLocal可能导致内存泄漏，为什么？</p>
-<p>先看看Entry的实现：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Entry</span> <span class="keyword">extends</span> <span class="title">WeakReference</span>&lt;<span class="title">ThreadLocal</span>&lt;?&gt;&gt; </span>&#123;</span><br><span class="line">    <span class="comment">/** The value associated with this ThreadLocal. */</span></span><br><span class="line">    Object value;</span><br><span class="line"></span><br><span class="line">    Entry(ThreadLocal&lt;?&gt; k, Object v) &#123;</span><br><span class="line">        <span class="keyword">super</span>(k);</span><br><span class="line">        value = v;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong><code>ThreadLocalMap</code> 中使用的 key 为 <code>ThreadLocal</code> 的弱引用,而 value 是强引用。所以，如果 <code>ThreadLocal</code> 没有被外部强引用的情况下，在垃圾回收的时候，key 会被清理掉，而 value 不会被清理掉。这样一来，<code>ThreadLocalMap</code> 中就会出现 key 为 null 的 <code>Entry</code>。假如我们不做任何措施的话，value 永远无法被 GC 回收，这个时候就可能会产生内存泄露</strong></p>
-<h2 id="如何避免-ThreadLocal-内存泄露"><a href="#如何避免-ThreadLocal-内存泄露" class="headerlink" title="如何避免 ThreadLocal 内存泄露"></a>如何避免 ThreadLocal 内存泄露</h2><p>如果使用ThreadLocal的set方法之后，记得调用<code>remove()</code>方法</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ThreadLocal&lt;String&gt; localName = <span class="keyword">new</span> ThreadLocal();</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    localName.set(<span class="string">&quot;xxx&quot;</span>);</span><br><span class="line">    <span class="comment">// 业务逻辑</span></span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    <span class="comment">//调用remove()</span></span><br><span class="line">    localName.remove();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+<p>查资料才发现要jdbc 5.1.40以上，<br>更新依赖解决</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;mysql&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;mysql-connector-java&lt;&#x2F;artifactId&gt;</span><br><span class="line">    &lt;version&gt;5.1.40&lt;&#x2F;version&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br></pre></td></tr></table></figure>
+]]></content>
       <categories>
         <category>Java</category>
-        <category>并发</category>
+        <category>Mysql</category>
       </categories>
       <tags>
-        <tag>并发</tag>
+        <tag>踩坑</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Nacos集群配置及Nginx反向代理</title>
+    <url>/2020/10/20/Nacos%E9%9B%86%E7%BE%A4%E9%85%8D%E7%BD%AE%E5%8F%8ANginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/</url>
+    <content><![CDATA[<p>Nacos集群配置以及Nginx反向代理的一些配置</p>
+<a id="more"></a>
+<h2 id="安装Nacos"><a href="#安装Nacos" class="headerlink" title="安装Nacos"></a>安装Nacos</h2><p><strong>前提是需要一个虚拟机，本文基于CentOS 7</strong></p>
+<ol>
+<li><p>下载Nacos</p>
+<p> <a href="https://github.com/alibaba/nacos/releases/tag/1.3.2">下载地址</a></p>
+</li>
+<li><p>配置Nacos</p>
+<ul>
+<li><p>创建mynacos文件夹；将tar包解压到mynacos文件夹中</p>
+</li>
+<li><p>配置cluster.conf</p>
+  <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cp</span> cluster.conf.example cluster.conf</span><br><span class="line">vim cluster.conf</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加以下内容(根据自己的<strong>主机ip</strong>来填</p>
+  <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="number">192.168</span>.<span class="number">81.129</span>:<span class="number">3333</span></span><br><span class="line"><span class="number">192.168</span>.<span class="number">81.129</span>:<span class="number">4444</span></span><br><span class="line"><span class="number">192.168</span>.<span class="number">81.129</span>:<span class="number">5555</span></span><br></pre></td></tr></table></figure>
+<!-- more --></li>
+<li><p>修改数据库文件,<strong>vim application.properties</strong></p>
+  <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">spring.datasource.platform=mysql</span><br><span class="line">db.num=<span class="number">1</span></span><br><span class="line">db.url.<span class="number">0</span>=jdbc:mysql://<span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">3306</span>/nacos_config?characterEncoding=utf8&amp;connectTimeout=<span class="number">1000</span>&amp;socketTimeout=<span class="number">3000</span>&amp;autoReconnect=true</span><br><span class="line">db.user=root</span><br><span class="line">db.password=<span class="number">6</span>yhn^YHN</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>关闭防火墙或者开放端口（为了省事，我关闭了和防火墙）</p>
+  <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">systemctl stop firewalld</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+</li>
+</ol>
+<ol start="3">
+<li><p>启动Nacos</p>
+<p> <strong>TIPS：因为是一台机器，所以以多个实例来设置集群，以端口区分，需要启动三个nacos；如果是多台机器那就正常一个机器起一个nacos即可</strong></p>
+<ul>
+<li><p>复制<strong>startup.sh</strong></p>
+  <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cp</span> startup.sh.bak startup<span class="literal">-3333</span>.sh</span><br><span class="line"><span class="built_in">cp</span> startup.sh.bak startup<span class="literal">-4444</span>.sh</span><br><span class="line"><span class="built_in">cp</span> startup.sh.bak startup<span class="literal">-5555</span>.sh</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改<strong>vim startup-3333.sh</strong>（一个示例，4444和5555 都按照此修改）,增加-Dserver.port=3333启动时指定端口号</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="comment"># start</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$JAVA</span> <span class="variable">$</span>&#123;JAVA_OPT&#125;&quot;</span> &gt; <span class="variable">$</span>&#123;BASE_DIR&#125;/logs/start.out <span class="number">2</span>&gt;&amp;<span class="number">1</span> &amp;</span><br><span class="line">nohup <span class="variable">$JAVA</span> <span class="literal">-Dserver</span>.port=<span class="number">3333</span> <span class="variable">$</span>&#123;JAVA_OPT&#125; nacos.nacos &gt;&gt; <span class="variable">$</span>&#123;BASE_DIR&#125;/logs/start.out <span class="number">2</span>&gt;&amp;<span class="number">1</span> &amp;</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;nacos is starting，you can check the <span class="variable">$</span>&#123;BASE_DIR&#125;/logs/start.out&quot;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动nacos</p>
+  <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">./startup<span class="literal">-3333</span>.sh</span><br><span class="line">./startup<span class="literal">-4444</span>.sh</span><br><span class="line">./startup<span class="literal">-5555</span>.sh</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="安装Nginx"><a href="#安装Nginx" class="headerlink" title="安装Nginx"></a>安装Nginx</h2><p>贴个安装nginx教程，并且配置stream负载均衡 <a href="http://xiaohost.com/2754.html">转向网址</a></p>
+<ol>
+<li><p>配置Nginx</p>
+<p> 由于我是yum安装的Nginx 配置文件 <strong>vim /etc/nginx/nginx.confg</strong></p>
+<ul>
+<li><p>设置upstream cluster</p>
+</li>
+<li><p>设置location根路径。<strong>proxy_pass <a href="http://cluster/">http://cluster</a>;</strong></p>
+  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#gzip  on;</span><br><span class="line">upstream cluster&#123;</span><br><span class="line">    server 192.168.81.129:3333;</span><br><span class="line">    server 192.168.81.129:4444;</span><br><span class="line">    server 192.168.81.129:5555;</span><br><span class="line">&#125;</span><br><span class="line">server &#123;</span><br><span class="line">    listen       1111;</span><br><span class="line">    server_name  localhost;</span><br><span class="line"></span><br><span class="line">    #charset koi8-r;</span><br><span class="line"></span><br><span class="line">    #access_log  logs&#x2F;host.access.log  main;</span><br><span class="line"></span><br><span class="line">    location &#x2F; &#123;</span><br><span class="line">        root   html;</span><br><span class="line">        index  index.html index.htm;</span><br><span class="line">        proxy_pass http:&#x2F;&#x2F;cluster;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>启动Nginx</p>
+ <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">systemctl start nginx.service</span><br></pre></td></tr></table></figure></li>
+<li><p>登录查看<a href="http://192.168.81.129:1111/nacos/#/login">http://192.168.81.129:1111/nacos/#/login</a></p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Java</category>
+        <category>Nacos集群配置</category>
+      </categories>
+      <tags>
+        <tag>Nacos集群配置</tag>
+        <tag>Nginx反向代理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SpringBoot Websocket 注入bean失败</title>
+    <url>/2020/09/19/SpringBoot%20Websocket%20%E6%B3%A8%E5%85%A5bean%E5%A4%B1%E8%B4%A5/</url>
+    <content><![CDATA[<p>踩坑记录</p>
+<p>第一种方式：将messageService 注入</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@ServerEndpoint(value &#x3D; &quot;&#x2F;websocket&quot;)</span><br><span class="line">@Component</span><br><span class="line">public class WebSocketServer &#123;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;这里使用静态，让 service 属于类</span><br><span class="line">    public static MessageServiceImpl messageService;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 给类的service 注入</span><br><span class="line">     * spring管理的都是单例（singleton）和 websocket （多对象）相冲突</span><br><span class="line">     *</span><br><span class="line">     * @param messageService</span><br><span class="line">     *&#x2F;</span><br><span class="line">    @Autowired</span><br><span class="line">    public void setMessageService(MessageServiceImpl messageService) &#123;</span><br><span class="line">        WebSocketServer.messageService &#x3D; messageService;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+
+<p>第二种方式<br>或者将</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@Autowired</span><br><span class="line">    public void setMessageService(MessageServiceImpl messageService) &#123;</span><br><span class="line">        WebSocketServer.messageService &#x3D; messageService;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>写在<strong>websocketConfig</strong>中</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@Configuration</span><br><span class="line">public class WebSocketConfig &#123;</span><br><span class="line"></span><br><span class="line">    @Bean</span><br><span class="line">    public ServerEndpointExporter serverEndpointExporter() &#123;</span><br><span class="line">        return new ServerEndpointExporter();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     *手动注入一个全局变量</span><br><span class="line">     * @param messageService</span><br><span class="line">     *&#x2F;</span><br><span class="line">    @Autowired</span><br><span class="line">    public void setMessageService(MessageServiceImpl messageService) &#123;</span><br><span class="line">        WebSocketServer.messageService &#x3D; messageService;</span><br><span class="line">    &#125;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Java</category>
+        <category>SpringBoot</category>
+      </categories>
+      <tags>
+        <tag>踩坑</tag>
       </tags>
   </entry>
   <entry>
@@ -465,7 +409,7 @@
 <p><strong><code>@EnableAutoConfiguration</code>：</strong> 启用 <code>SpringBoot</code> 的自动配置机制</p>
 <p><strong><code>@Configuration</code>：</strong> 允许在上下文中注册额外的 bean 或导入其他配置类</p>
 <p><strong><code>@ComponentScan</code>：</strong> 扫描被<code>@Component (@Service,@Controller)</code>注解的 bean，注解默认会扫描启动类所在的包下所有的类 ，可以自定义不扫描某些 bean。如下图所示，容器中将排除 <code>TypeExcludeFilter</code> 和 <code>AutoConfigurationExcludeFilter</code>。</p>
-<p><img src="SpringBootApplication%E6%B3%A8%E8%A7%A3.jpeg" alt="SpringBootApplication注解"></p>
+<p><img src="/.io//SpringBootApplication%E6%B3%A8%E8%A7%A3.jpeg" alt="SpringBootApplication注解"></p>
 <p><code>@EnableAutoConfiguration</code> 是实现自动装配的重要注解，我们以这个注解入手。</p>
 <p><strong><code>@EnableAutoConfiguration</code>: 实现自动装配的核心注解</strong></p>
 <p><code>EnableAutoConfiguration</code> 只是一个简单地注解，自动装配核心功能的实现实际是通过 <code>AutoConfigurationImportSelector</code> 类。</p>
@@ -478,30 +422,30 @@
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String[] NO_IMPORTS = <span class="keyword">new</span> String[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> String[] selectImports(AnnotationMetadata annotationMetadata) &#123;</span><br><span class="line">        <span class="comment">// &lt;1&gt;.判断自动装配开关是否打开</span></span><br><span class="line">        <span class="keyword">if</span> (!<span class="keyword">this</span>.isEnabled(annotationMetadata)) &#123;</span><br><span class="line">            <span class="keyword">return</span> NO_IMPORTS;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          <span class="comment">//&lt;2&gt;.获取所有需要装配的bean</span></span><br><span class="line">            AutoConfigurationMetadata autoConfigurationMetadata = AutoConfigurationMetadataLoader.loadMetadata(<span class="keyword">this</span>.beanClassLoader);</span><br><span class="line">            AutoConfigurationImportSelector.AutoConfigurationEntry autoConfigurationEntry = <span class="keyword">this</span>.getAutoConfigurationEntry(autoConfigurationMetadata, annotationMetadata);</span><br><span class="line">            <span class="keyword">return</span> StringUtils.toStringArray(autoConfigurationEntry.getConfigurations());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <p>这里我们需要重点关注一下<code>getAutoConfigurationEntry()</code>方法，这个方法主要负责加载自动配置类的。</p>
 <p>该方法调用链如下：</p>
-<p><img src="getAutoConfigurationEntry%E8%B0%83%E7%94%A8%E9%93%BE.jpeg" alt="getAutoConfigurationEntry调用链"></p>
+<p><img src="/.io//getAutoConfigurationEntry%E8%B0%83%E7%94%A8%E9%93%BE.jpeg" alt="getAutoConfigurationEntry调用链"></p>
 <p>现在我们结合<code>getAutoConfigurationEntry()</code>的源码来详细分析一下：</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> AutoConfigurationEntry EMPTY_ENTRY = <span class="keyword">new</span> AutoConfigurationEntry();</span><br><span class="line"></span><br><span class="line"><span class="function">AutoConfigurationEntry <span class="title">getAutoConfigurationEntry</span><span class="params">(AutoConfigurationMetadata autoConfigurationMetadata, AnnotationMetadata annotationMetadata)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//&lt;1&gt;.</span></span><br><span class="line">        <span class="keyword">if</span> (!<span class="keyword">this</span>.isEnabled(annotationMetadata)) &#123;</span><br><span class="line">            <span class="keyword">return</span> EMPTY_ENTRY;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">//&lt;2&gt;.</span></span><br><span class="line">            AnnotationAttributes attributes = <span class="keyword">this</span>.getAttributes(annotationMetadata);</span><br><span class="line">            <span class="comment">//&lt;3&gt;.</span></span><br><span class="line">            List&lt;String&gt; configurations = <span class="keyword">this</span>.getCandidateConfigurations(annotationMetadata, attributes);</span><br><span class="line">            <span class="comment">//&lt;4&gt;.</span></span><br><span class="line">            configurations = <span class="keyword">this</span>.removeDuplicates(configurations);</span><br><span class="line">            Set&lt;String&gt; exclusions = <span class="keyword">this</span>.getExclusions(annotationMetadata, attributes);</span><br><span class="line">            <span class="keyword">this</span>.checkExcludedClasses(configurations, exclusions);</span><br><span class="line">            configurations.removeAll(exclusions);</span><br><span class="line">            configurations = <span class="keyword">this</span>.filter(configurations, autoConfigurationMetadata);</span><br><span class="line">            <span class="keyword">this</span>.fireAutoConfigurationImportEvents(configurations, exclusions);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> AutoConfigurationImportSelector.AutoConfigurationEntry(configurations, exclusions);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <p><strong>第 1 步:</strong></p>
 <p>判断自动装配开关是否打开。默认<code>spring.boot.enableautoconfiguration=true</code>，可在 <code>application.properties</code> 或 <code>application.yml</code> 中设置</p>
-<p><img src="%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D%E5%BC%80%E5%85%B3.jpeg" alt="自动装配开关"></p>
+<p><img src="/.io//%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D%E5%BC%80%E5%85%B3.jpeg" alt="自动装配开关"></p>
 <p><strong>第 2 步 ：</strong></p>
 <p>用于获取<code>EnableAutoConfiguration</code>注解中的 <code>exclude</code> 和 <code>excludeName。</code></p>
-<p><img src="EnableAutoConfiguration%E8%8E%B7%E5%8F%96exclude%E5%92%8CexcludeName.jpeg" alt="EnableAutoConfiguration获取exclude和excludeName"></p>
+<p><img src="/.io//EnableAutoConfiguration%E8%8E%B7%E5%8F%96exclude%E5%92%8CexcludeName.jpeg" alt="EnableAutoConfiguration获取exclude和excludeName"></p>
 <p><strong>第 3 步</strong></p>
 <p>获取需要自动装配的所有配置类，读取<code>META-INF/spring.factories</code></p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">spring-boot&#x2F;spring-boot-project&#x2F;spring-boot-autoconfigure&#x2F;src&#x2F;main&#x2F;resources&#x2F;META-INF&#x2F;spring.factories</span><br></pre></td></tr></table></figure>
 
-<p><img src="%E8%8E%B7%E5%8F%96%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D%E7%9A%84%E6%89%80%E6%9C%89%E9%85%8D%E7%BD%AE%E7%B1%BB.jpeg" alt="获取自动装配的所有配置类"></p>
+<p><img src="/.io//%E8%8E%B7%E5%8F%96%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D%E7%9A%84%E6%89%80%E6%9C%89%E9%85%8D%E7%BD%AE%E7%B1%BB.jpeg" alt="获取自动装配的所有配置类"></p>
 <p>从下图可以看到这个文件的配置内容都被我们读取到了。<code>XXXAutoConfiguration</code>的作用就是按需加载组件。</p>
-<p><img src="spring.factories.jpeg" alt="spring.factories.jpeg"></p>
+<p><img src="/.io//spring.factories.jpeg" alt="spring.factories.jpeg"></p>
 <p>不光是这个依赖下的<code>META-INF/spring.factories</code>被读取到，所有 <code>Spring Boot Starter</code> 下的<code>META-INF/spring.factories</code>都会被读取到。</p>
 <p>所以，你可以清楚滴看到， druid 数据库连接池的 <code>Spring Boot Starter</code> 就创建了<code>META-INF/spring.factories</code>文件。</p>
 <p>如果，我们自己要创建一个 <code>Spring Boot Starter</code>，这一步是必不可少的。</p>
-<p><img src="ceshi.jpeg" alt="ceshi"></p>
+<p><img src="/.io//ceshi.jpeg" alt="ceshi"></p>
 <p><strong>第 4 步 ：</strong></p>
 <p>到这里可能面试官会问你:“<code>spring.factories</code>中这么多配置，每次启动都要全部加载么？”。</p>
 <p>很明显，这是不现实的。我们 debug 到后面你会发现，<code>configurations</code> 的值变小了。</p>
-<p><img src="ConditionalOnXXX%E7%AD%9B%E9%80%89.jpeg" alt="ConditionalOnXXX筛选"></p>
+<p><img src="/.io//ConditionalOnXXX%E7%AD%9B%E9%80%89.jpeg" alt="ConditionalOnXXX筛选"></p>
 <p>因为，这一步有经历了一遍筛选，<code>@ConditionalOnXXX</code> 中的所有条件都满足，该类才会生效。</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="comment">// 检查相关的类：RabbitTemplate 和 Channel是否存在</span></span><br><span class="line"><span class="comment">// 存在才会加载</span></span><br><span class="line"><span class="meta">@ConditionalOnClass(&#123; RabbitTemplate.class, Channel.class &#125;)</span></span><br><span class="line"><span class="meta">@EnableConfigurationProperties(RabbitProperties.class)</span></span><br><span class="line"><span class="meta">@Import(RabbitAnnotationDrivenConfiguration.class)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RabbitAutoConfiguration</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>有兴趣的童鞋可以详细了解下 Spring Boot 提供的条件注解</p>
@@ -531,63 +475,59 @@
       </tags>
   </entry>
   <entry>
-    <title>flask 统一异常处理以及400 500页面</title>
-    <url>/2020/10/13/Flask%20%E7%BB%9F%E4%B8%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E4%BB%A5%E5%8F%8A400-500%E9%A1%B5%E9%9D%A2/</url>
-    <content><![CDATA[<h3 id="在flask中如何统一处理异常以及400-500页面"><a href="#在flask中如何统一处理异常以及400-500页面" class="headerlink" title="在flask中如何统一处理异常以及400 500页面"></a>在flask中如何统一处理异常以及400 500页面</h3><h4 id="异常类"><a href="#异常类" class="headerlink" title="异常类"></a>异常类</h4><a id="more"></a>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="comment"># Author  : Yang Hao</span></span><br><span class="line"><span class="comment"># File    : exception_common.py</span></span><br><span class="line"><span class="comment"># Software: PyCharm</span></span><br><span class="line"><span class="comment"># Time    : 2020/3/30 17:35</span></span><br><span class="line"><span class="comment"># Description:</span></span><br><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> jsonify, render_template</span><br><span class="line"><span class="keyword">from</span> app <span class="keyword">import</span> app</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ExceptionCommon</span>(<span class="params">Exception</span>):</span></span><br><span class="line">    <span class="comment"># 默认的返回码</span></span><br><span class="line">    status_code = <span class="number">400</span></span><br><span class="line">    <span class="comment"># 可以自己定义return_code</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, message=<span class="literal">None</span>, status_code=<span class="literal">None</span>, payload=<span class="literal">None</span></span>):</span></span><br><span class="line">        Exception.__init__(self)</span><br><span class="line">        self.message = message</span><br><span class="line">        <span class="keyword">if</span> status_code <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            self.status_code = status_code</span><br><span class="line">        self.payload = payload</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 构造要返回的错误代码和错误信息的 dict</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">to_dict</span>(<span class="params">self</span>):</span></span><br><span class="line">        rv = <span class="built_in">dict</span>(self.payload <span class="keyword">or</span> ())</span><br><span class="line">        rv[<span class="string">&#x27;status_code&#x27;</span>] = self.status_code</span><br><span class="line">        rv[<span class="string">&#x27;message&#x27;</span>] = self.message</span><br><span class="line">        <span class="keyword">return</span> rv</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.errorhandler(ExceptionCommon)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">handle_invalid_usage</span>(<span class="params">error</span>):</span></span><br><span class="line">    response = jsonify(error.to_dict())</span><br><span class="line">    response.status_code = error.status_code</span><br><span class="line">    <span class="keyword">return</span> response</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.errorhandler(500)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">handle_500</span>(<span class="params">e</span>):</span></span><br><span class="line">    <span class="keyword">return</span> render_template(<span class="string">&#x27;500.html&#x27;</span>), <span class="number">404</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.errorhandler(404)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">page_not_found</span>(<span class="params">e</span>):</span></span><br><span class="line">    <span class="keyword">return</span> render_template(<span class="string">&#x27;404.html&#x27;</span>), <span class="number">404</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@auth.route(&#x27;/logout&#x27;, methods=(&#x27;GET&#x27;, &#x27;POST&#x27;))</span></span><br><span class="line"><span class="meta">@login_required</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">logout</span>():</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    注销登录,解除会话 logout_user()</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    xxx</span><br><span class="line">    <span class="keyword">raise</span> ExceptionCommon(<span class="string">&quot;错误原因&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> redirect(url_for(<span class="string">&quot;auth.login&quot;</span>))</span><br></pre></td></tr></table></figure>
-
-
-<h4 id="在整个web项目中使用"><a href="#在整个web项目中使用" class="headerlink" title="在整个web项目中使用"></a>在整个web项目中使用</h4><p>上述<code>@app.errorhandler</code>        这个errorhandler处理器注册在app上，只能对app使用</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">@app.errorhandler(ExceptionCommon)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">handle_invalid_usage</span>(<span class="params">error</span>):</span></span><br><span class="line">    response = jsonify(error.to_dict())</span><br><span class="line">    response.status_code = error.status_code</span><br><span class="line">    <span class="keyword">return</span> response</span><br></pre></td></tr></table></figure>
-
-<p>修改为以下内容<code>@comm.app_errorhandler</code>需要注册comm的蓝本</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">@comm.app_errorhandler(ExceptionCommon)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">handle_invalid_usage</span>(<span class="params">error</span>):</span></span><br><span class="line">    response = jsonify(error.to_dict())</span><br><span class="line">    response.status_code = error.status_code</span><br><span class="line">    <span class="keyword">return</span> response</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Python</category>
-        <category>Flask</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>SpringBoot Websocket 注入bean失败</title>
-    <url>/2020/09/19/SpringBoot%20Websocket%20%E6%B3%A8%E5%85%A5bean%E5%A4%B1%E8%B4%A5/</url>
-    <content><![CDATA[<p>踩坑记录</p>
-<p>第一种方式：将messageService 注入</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@ServerEndpoint(value &#x3D; &quot;&#x2F;websocket&quot;)</span><br><span class="line">@Component</span><br><span class="line">public class WebSocketServer &#123;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;这里使用静态，让 service 属于类</span><br><span class="line">    public static MessageServiceImpl messageService;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 给类的service 注入</span><br><span class="line">     * spring管理的都是单例（singleton）和 websocket （多对象）相冲突</span><br><span class="line">     *</span><br><span class="line">     * @param messageService</span><br><span class="line">     *&#x2F;</span><br><span class="line">    @Autowired</span><br><span class="line">    public void setMessageService(MessageServiceImpl messageService) &#123;</span><br><span class="line">        WebSocketServer.messageService &#x3D; messageService;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    <title>SpringBoot @Valid 注解不生效</title>
+    <url>/2021/08/21/Springboot-Valid-%E6%B3%A8%E8%A7%A3%E4%B8%8D%E7%94%9F%E6%95%88/</url>
+    <content><![CDATA[<h3 id="踩坑记录"><a href="#踩坑记录" class="headerlink" title="踩坑记录"></a>踩坑记录</h3><p><code>SpringBoot</code> 使用<code>@Valid</code>注解 参数校验不生效的问题</p>
+<p>代码省略, 直接看解决方案</p>
 <a id="more"></a>
 
-<p>第二种方式<br>或者将</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@Autowired</span><br><span class="line">    public void setMessageService(MessageServiceImpl messageService) &#123;</span><br><span class="line">        WebSocketServer.messageService &#x3D; messageService;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><p><code>springboot-2.3.x</code>之前的版本只需要引入 web 依赖就可以</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-web&lt;&#x2F;artifactId&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br></pre></td></tr></table></figure>
 
-<p>写在<strong>websocketConfig</strong>中</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@Configuration</span><br><span class="line">public class WebSocketConfig &#123;</span><br><span class="line"></span><br><span class="line">    @Bean</span><br><span class="line">    public ServerEndpointExporter serverEndpointExporter() &#123;</span><br><span class="line">        return new ServerEndpointExporter();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     *手动注入一个全局变量</span><br><span class="line">     * @param messageService</span><br><span class="line">     *&#x2F;</span><br><span class="line">    @Autowired</span><br><span class="line">    public void setMessageService(MessageServiceImpl messageService) &#123;</span><br><span class="line">        WebSocketServer.messageService &#x3D; messageService;</span><br><span class="line">    &#125;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+<p>但是从<code>springboot-2.3.x</code>版本开始，校验包被独立成了一个<code>starter</code>组件，所以需要引入如下<code>validation</code>依赖( <strong><em>参见官方文档</em></strong> <a href="https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.3-Release-Notes#validation-starter-no-longer-included-in-web-starters">Validation Starter no longer included in web starters</a> )</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-validation&lt;&#x2F;artifactId&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-web&lt;&#x2F;artifactId&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br></pre></td></tr></table></figure>
+
+<p>完事收工…</p>
 ]]></content>
       <categories>
         <category>Java</category>
         <category>SpringBoot</category>
+        <category>踩坑</category>
       </categories>
       <tags>
         <tag>踩坑</tag>
       </tags>
   </entry>
   <entry>
-    <title>MySQL 5.7 返回json数据 中文乱码问题</title>
-    <url>/2021/01/11/MySQL%205.7%20%E8%BF%94%E5%9B%9Ejson%E6%95%B0%E6%8D%AE-%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<p>mysql版本为5.7，通过navicat查看json格式的数据是正常显示，但是查询出来是乱码， 读取其他字段都是正常的，也没有特殊设置json格式的字符集</p>
+    <title>ThreadLocal 内存泄露</title>
+    <url>/2021/04/24/ThreadLocal%20%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2/</url>
+    <content><![CDATA[<h2 id="ThreadLocal-简介"><a href="#ThreadLocal-简介" class="headerlink" title="ThreadLocal 简介"></a>ThreadLocal 简介</h2><p><code>ThreadLocal</code>提供了线程的局部变量，每个线程都可以通过<code>set()</code>和<code>get()</code>来对这个局部变量进行操作，但不会和其他线程的局部变量进行冲突，从而避免了线程安全问题。</p>
+<p>简而言之：<code>ThreadLocal</code>保证了各个线程的数据互不干扰。</p>
 <a id="more"></a>
-<p>mysql驱动jdbc是这个版本</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">	&lt;groupId&gt;mysql&lt;&#x2F;groupId&gt;</span><br><span class="line">	&lt;artifactId&gt;mysql-connector-java&lt;&#x2F;artifactId&gt;</span><br><span class="line">	&lt;version&gt;5.1.36&lt;&#x2F;version&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br></pre></td></tr></table></figure>
 
-<p>查资料才发现要jdbc 5.1.40以上，<br>更新依赖解决</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;mysql&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;mysql-connector-java&lt;&#x2F;artifactId&gt;</span><br><span class="line">    &lt;version&gt;5.1.40&lt;&#x2F;version&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br></pre></td></tr></table></figure>
-]]></content>
+<h2 id="ThreadLocal-原理"><a href="#ThreadLocal-原理" class="headerlink" title="ThreadLocal 原理"></a>ThreadLocal 原理</h2><p>从 <code>Thread</code>类源代码入手。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Thread</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line"> ......</span><br><span class="line"><span class="comment">//与此线程有关的ThreadLocal值。由ThreadLocal类维护</span></span><br><span class="line">ThreadLocal.ThreadLocalMap threadLocals = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//与此线程有关的InheritableThreadLocal值。由InheritableThreadLocal类维护</span></span><br><span class="line">ThreadLocal.ThreadLocalMap inheritableThreadLocals = <span class="keyword">null</span>;</span><br><span class="line"> ......</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>从上面<code>Thread</code>类 源代码可以看出<code>Thread</code> 类中有一个 <code>threadLocals</code> 和 一个 <code>inheritableThreadLocals</code> 变量，它们都是 <code>ThreadLocalMap</code> 类型的变量,我们可以把 <code>ThreadLocalMap</code> 理解为<code>ThreadLocal</code> 类实现的定制化的 <code>HashMap</code>。默认情况下这两个变量都是 null，只有当前线程调用 <code>ThreadLocal</code> 类的 <code>set</code>或<code>get</code>方法时才创建它们，实际上调用这两个方法的时候，我们调用的是<code>ThreadLocalMap</code>类对应的 <code>get()</code>、<code>set()</code>方法。</p>
+<p><code>ThreadLocal</code>类的<code>set()</code>方法</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">set</span><span class="params">(T value)</span> </span>&#123;</span><br><span class="line">    Thread t = Thread.currentThread();</span><br><span class="line">    ThreadLocalMap map = getMap(t);</span><br><span class="line">    <span class="keyword">if</span> (map != <span class="keyword">null</span>)</span><br><span class="line">        map.set(<span class="keyword">this</span>, value);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        createMap(t, value);</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line"><span class="function">ThreadLocalMap <span class="title">getMap</span><span class="params">(Thread t)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> t.threadLocals;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最终的变量是放在了当前线程的 <code>ThreadLocalMap</code> 中，并不是存在 <code>ThreadLocal</code> 上，<code>ThreadLocal</code> 可以理解为只是<code>ThreadLocalMap</code>的封装，传递了变量值。 <code>ThrealLocal</code> 类中可以通过<code>Thread.currentThread()</code>获取到当前线程对象后，直接通过<code>getMap(Thread t)</code>可以访问到该线程的<code>ThreadLocalMap</code>对象。</p>
+<p><strong>每个<code>Thread</code>中都有一个<code>ThreadLocalMap</code>，而<code>ThreadLocalMap</code>可以存储以<code>ThreadLocal</code>为 key ，Object 对象为 value 的键值对；采用类似hashmap机制</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ThreadLocalMap(ThreadLocal&lt;?&gt; firstKey, Object firstValue) &#123;</span><br><span class="line"> ......</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="ThreadLocal-内存泄露原因"><a href="#ThreadLocal-内存泄露原因" class="headerlink" title="ThreadLocal 内存泄露原因"></a>ThreadLocal 内存泄露原因</h2><p>ThreadLocal可能导致内存泄漏，为什么？</p>
+<p>先看看Entry的实现：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Entry</span> <span class="keyword">extends</span> <span class="title">WeakReference</span>&lt;<span class="title">ThreadLocal</span>&lt;?&gt;&gt; </span>&#123;</span><br><span class="line">    <span class="comment">/** The value associated with this ThreadLocal. */</span></span><br><span class="line">    Object value;</span><br><span class="line"></span><br><span class="line">    Entry(ThreadLocal&lt;?&gt; k, Object v) &#123;</span><br><span class="line">        <span class="keyword">super</span>(k);</span><br><span class="line">        value = v;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong><code>ThreadLocalMap</code> 中使用的 key 为 <code>ThreadLocal</code> 的弱引用,而 value 是强引用。所以，如果 <code>ThreadLocal</code> 没有被外部强引用的情况下，在垃圾回收的时候，key 会被清理掉，而 value 不会被清理掉。这样一来，<code>ThreadLocalMap</code> 中就会出现 key 为 null 的 <code>Entry</code>。假如我们不做任何措施的话，value 永远无法被 GC 回收，这个时候就可能会产生内存泄露</strong></p>
+<h2 id="如何避免-ThreadLocal-内存泄露"><a href="#如何避免-ThreadLocal-内存泄露" class="headerlink" title="如何避免 ThreadLocal 内存泄露"></a>如何避免 ThreadLocal 内存泄露</h2><p>如果使用ThreadLocal的set方法之后，记得调用<code>remove()</code>方法</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ThreadLocal&lt;String&gt; localName = <span class="keyword">new</span> ThreadLocal();</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    localName.set(<span class="string">&quot;xxx&quot;</span>);</span><br><span class="line">    <span class="comment">// 业务逻辑</span></span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    <span class="comment">//调用remove()</span></span><br><span class="line">    localName.remove();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>Java</category>
-        <category>Mysql</category>
+        <category>并发</category>
       </categories>
       <tags>
-        <tag>踩坑</tag>
+        <tag>并发</tag>
       </tags>
   </entry>
   <entry>
@@ -778,6 +718,108 @@
       </tags>
   </entry>
   <entry>
+    <title>Ubuntu 自动挂载SD卡</title>
+    <url>/2020/12/27/Ubuntu%20%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BDSD%E5%8D%A1/</url>
+    <content><![CDATA[<p>最近开发过程中遇见了一个问题，Ubuntu 16.04 自动挂载SD卡报错，<code>mounted filesystem with ordered data mode. Opts: (null)</code>以此记录一下</p>
+<a id="more"></a>
+
+<ol>
+<li><p>查看分区</p>
+ <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"> </span><br><span class="line">root@ubuntu16:~<span class="comment"># fdisk -l</span></span><br><span class="line"></span><br><span class="line">中间省略无关东西;主要是为了挂载 /dev/mmcblk0p1</span><br><span class="line"></span><br><span class="line">Disk /dev/mmcblk0: <span class="number">29.7</span> GiB, <span class="number">31914983424</span> bytes, <span class="number">62333952</span> sectors</span><br><span class="line">Units: sectors of <span class="number">1</span> * <span class="number">512</span> = <span class="number">512</span> bytes</span><br><span class="line">Sector size (logical/physical): <span class="number">512</span> bytes / <span class="number">512</span> bytes</span><br><span class="line">I/O size (minimum/optimal): <span class="number">512</span> bytes / <span class="number">512</span> bytes</span><br><span class="line">Disklabel <span class="built_in">type</span>: dos</span><br><span class="line">Disk identifier: <span class="number">0</span>x00000000</span><br><span class="line"></span><br><span class="line">Device         Boot <span class="built_in">Start</span>      <span class="keyword">End</span>  Sectors  Size Id <span class="built_in">Type</span></span><br><span class="line">/dev/mmcblk0p1       <span class="number">2048</span> <span class="number">62333951</span> <span class="number">62331904</span> <span class="number">29.7</span>G <span class="number">83</span> Linux</span><br><span class="line">root@ubuntu16:~<span class="comment"># </span></span><br></pre></td></tr></table></figure>
+<p> sd卡文件格式的原先是fat32位，由于内核是裁剪版，没有fsck.vfat 修复（如果有，可以直接修复），直接将其格式化成ext4 <code>记得备份里面内容</code></p>
+</li>
+<li><p>手动挂载SD卡（ 成功 ）</p>
+ <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mount</span> /dev/mmcblk0p1 /mnt/sd/</span><br></pre></td></tr></table></figure>
+<p> <strong>df -h</strong>查看挂载成功</p>
+ <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">root@ubuntu16:~<span class="comment"># df -h</span></span><br><span class="line">Filesystem      Size  Used Avail Use% Mounted on</span><br><span class="line">ubi0:rootfs     <span class="number">437</span>M  <span class="number">384</span>M   <span class="number">54</span>M  <span class="number">88</span>% /</span><br><span class="line">devtmpfs        <span class="number">121</span>M     <span class="number">0</span>  <span class="number">121</span>M   <span class="number">0</span>% /dev</span><br><span class="line">tmpfs           <span class="number">122</span>M     <span class="number">0</span>  <span class="number">122</span>M   <span class="number">0</span>% /dev/shm</span><br><span class="line">tmpfs           <span class="number">122</span>M  <span class="number">1.7</span>M  <span class="number">120</span>M   <span class="number">2</span>% /run</span><br><span class="line">tmpfs           <span class="number">5.0</span>M  <span class="number">4.0</span>K  <span class="number">5.0</span>M   <span class="number">1</span>% /run/lock</span><br><span class="line">tmpfs           <span class="number">122</span>M     <span class="number">0</span>  <span class="number">122</span>M   <span class="number">0</span>% /sys/fs/cgroup</span><br><span class="line">/dev/mmcblk0p1   <span class="number">30</span>G  <span class="number">153</span>M   <span class="number">28</span>G   <span class="number">1</span>% /mnt/sd</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p> 手动挂载SD卡可以成功，但是自动挂载却失败了</p>
+</li>
+</ol>
+<h3 id="以下自动挂载过程"><a href="#以下自动挂载过程" class="headerlink" title="以下自动挂载过程"></a>以下自动挂载过程</h3><ol>
+<li><p>修改<code>/etc/fstab</code>文件（ 失败 ）</p>
+ <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">root@ubuntu16:~<span class="comment"># vim /etc/fstab </span></span><br><span class="line"><span class="comment"># &lt;file system&gt;   &lt;dir&gt;         &lt;type&gt;    &lt;options&gt;                          &lt;dump&gt; &lt;pass&gt;</span></span><br><span class="line">/dev/mmcblk0p2    /             ext4      defaults,noatime,errors=remount<span class="literal">-ro</span>   <span class="number">0</span>      <span class="number">1</span></span><br><span class="line">/dev/mmcblk0p1    /mnt/sd          ext4      defaults                             <span class="number">0</span>      <span class="number">0</span></span><br><span class="line">~                                                                                            </span><br></pre></td></tr></table></figure>
+
+<p> 查看dmesg日志信息，报错如下（裁剪版，连syslog也没有）</p>
+ <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">[<span class="number">24987.953468</span>] EXT4<span class="literal">-fs</span> (mmcblk0p1): mounted filesystem with ordered <span class="keyword">data</span> mode. Opts: (null)</span><br><span class="line">[<span class="number">25051.864722</span>] EXT4<span class="literal">-fs</span> (mmcblk0p1): mounted filesystem with ordered <span class="keyword">data</span> mode. Opts: (null)</span><br><span class="line">[<span class="number">25327.264935</span>] EXT4<span class="literal">-fs</span> (mmcblk0p1): mounted filesystem with ordered <span class="keyword">data</span> mode. Opts: (null)</span><br><span class="line">[<span class="number">25392.234106</span>] EXT4<span class="literal">-fs</span> (mmcblk0p1): mounted filesystem with ordered <span class="keyword">data</span> mode. Opts: (null)</span><br><span class="line">[<span class="number">171378.249554</span>] EXT4<span class="literal">-fs</span> (mmcblk0p1): mounted filesystem with ordered <span class="keyword">data</span> mode. Opts: (null)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改<code>/etc/rc.local</code>文件（ 失败 ）<br> 加入以下内容</p>
+ <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mount</span> /dev/mmcblk0p1 /mnt/sd</span><br></pre></td></tr></table></figure>
+<p> 重启之后依然报上述错误</p>
+</li>
+<li><p>手动指定挂在文件类型（ 成功 ）</p>
+ <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mount</span> <span class="literal">-t</span> ext4 /dev/mmcblk0p1 /mnt/sd</span><br></pre></td></tr></table></figure>
+<p> 重启机器之后，<code>df -h</code>查看挂载成功</p>
+</li>
+</ol>
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><ol>
+<li>文件系统有问题，可以使用<code>fsck.XX</code>参数去修复</li>
+<li>期间也尝试了在<code>/etc/fstab</code>使用UUID 来指定，依然报错</li>
+<li>手动指定挂在文件类型<code>mount -t ext4 /dev/mmcblk0p1 /mnt/sd</code></li>
+</ol>
+]]></content>
+      <categories>
+        <category>Ubuntu</category>
+      </categories>
+      <tags>
+        <tag>Ubuntu挂载SD卡</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>fasterxml中string字符串转对象json格式单引号错误</title>
+    <url>/2021/01/28/fasterxml%E4%B8%ADstring%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E5%AF%B9%E8%B1%A1json%E6%A0%BC%E5%BC%8F%E5%8D%95%E5%BC%95%E5%8F%B7%E9%94%99%E8%AF%AF/</url>
+    <content><![CDATA[<p>在处理fasterxml中string字符串转对象json格式，标准的json都是双引号 （” “）;由于数据是单引号(‘ ‘)格式。导致了如下报错，特此记录</p>
+<p><strong>com.fasterxml.jackson.core.JsonParseException:  Unexpected character (‘s’ (code 115)): was     expecting double-quote to start field name</strong></p>
+<a id="more"></a>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">com.fasterxml.jackson.databind.ObjectMapper </span><br><span class="line">mapper &#x3D; new ObjectMapper();</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;增加这行配置</span><br><span class="line">&#x2F;&#x2F;允许使用单引号，默认是false </span><br><span class="line">mapper.configure(Feature.ALLOW_SINGLE_QUOTES, true);</span><br><span class="line"></span><br><span class="line">mapper.readValue(payload, bean.class);</span><br></pre></td></tr></table></figure>
+
+<p>除了<strong>ALLOW_UNQUOTED_FIELD_NAMES，ALLOW_SINGLE_QUOTES</strong>还有其它的设置，有用到试试。</p>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>踩坑</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>lambda表达式对对象集合进行分组并求和</title>
+    <url>/2020/12/14/lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%88%86%E7%BB%84%E5%B9%B6%E6%B1%82%E5%92%8C-md/</url>
+    <content><![CDATA[<p>最近业务需求，要求对集合按照多个属性分组，并且对某一个属性求和，利用lambda表达式进行分组求和；示例如下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">list.parallelStream()</span><br><span class="line">            .collect(Collectors.groupingBy(o -&gt; (o.getName() + o.getAge()), Collectors.toList()))</span><br><span class="line">            .forEach((id, transfer) -&gt; transfer.stream().reduce((a, b) -&gt; new StudentDemo(a.getName(), a.getAge(), a.getScore() + b.getScore())).ifPresent(studentDemoList::add));</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">package com.yang.springboot.lamda.groupBy;</span><br><span class="line"></span><br><span class="line">import java.util.ArrayList;</span><br><span class="line">import java.util.List;</span><br><span class="line">import java.util.stream.Collectors;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * @author Yang Hao</span><br><span class="line"> * @date 2020-11-19 19:41</span><br><span class="line"> *&#x2F;</span><br><span class="line">public class Demo &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line"></span><br><span class="line">        &#x2F;**</span><br><span class="line">         * lambda表达式: 根据姓名和年龄分组之后再求和总分</span><br><span class="line">         *</span><br><span class="line">         * [                                                           [</span><br><span class="line">         *      StudentDemo(name&#x3D;张三, age&#x3D;20, score&#x3D;12),                 StudentDemo(name&#x3D;张三, age&#x3D;20, score&#x3D;92),</span><br><span class="line">         *      StudentDemo(name&#x3D;张三, age&#x3D;20, score&#x3D;80),    &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&gt;   StudentDemo(name&#x3D;王五, age&#x3D;20, score&#x3D;33),</span><br><span class="line">         *      StudentDemo(name&#x3D;王五, age&#x3D;20, score&#x3D;33),    &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&gt;   StudentDemo(name&#x3D;李四, age&#x3D;29, score&#x3D;90),</span><br><span class="line">         *      StudentDemo(name&#x3D;李四, age&#x3D;18, score&#x3D;50),                 StudentDemo(name&#x3D;李四, age&#x3D;18, score&#x3D;50)</span><br><span class="line">         *      StudentDemo(name&#x3D;李四, age&#x3D;29, score&#x3D;90)                ]</span><br><span class="line">         * ]</span><br><span class="line">         *&#x2F;</span><br><span class="line"></span><br><span class="line">        List&lt;StudentDemo&gt; list &#x3D; new ArrayList&lt;&gt;();</span><br><span class="line">        list.add(new StudentDemo(&quot;张三&quot;, &quot;20&quot;, 12));</span><br><span class="line">        list.add(new StudentDemo(&quot;张三&quot;, &quot;20&quot;, 80));</span><br><span class="line">        list.add(new StudentDemo(&quot;王五&quot;, &quot;20&quot;, 33));</span><br><span class="line">        list.add(new StudentDemo(&quot;李四&quot;, &quot;18&quot;, 50));</span><br><span class="line">        list.add(new StudentDemo(&quot;李四&quot;, &quot;29&quot;, 90));</span><br><span class="line">        System.out.println(&quot;分组求和之前 &quot; + list);</span><br><span class="line"></span><br><span class="line">        List&lt;StudentDemo&gt; studentDemoList &#x3D; new ArrayList&lt;&gt;();</span><br><span class="line">        list.parallelStream()</span><br><span class="line">                .collect(Collectors.groupingBy(o -&gt; (o.getName() + o.getAge()), Collectors.toList()))</span><br><span class="line">                .forEach((id, transfer) -&gt; transfer.stream().reduce((a, b) -&gt; new StudentDemo(a.getName(), a.getAge(), a.getScore() + b.getScore())).ifPresent(studentDemoList::add));</span><br><span class="line">        System.out.println(&quot;分组求和之后 &quot; + studentDemoList);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Java</category>
+        <category>lambda</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>flask登陆之后跳转回原先的页面</title>
+    <url>/2020/10/20/flask%E7%99%BB%E9%99%86%E4%B9%8B%E5%90%8E%E8%B7%B3%E8%BD%AC%E5%9B%9E%E5%8E%9F%E5%85%88%E7%9A%84%E9%A1%B5%E9%9D%A2/</url>
+    <content><![CDATA[<p>在使用Flask_login，使用装饰器@login_required时，如果没有登录，会跳转登录页面登陆之后不会返回原来的页面</p>
+<a id="more"></a>
+<ul>
+<li><p>在登录函数中，redirect更换以下代码</p>
+  <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">next_page_url = request.args.get(<span class="string">&#x27;next&#x27;</span>)</span><br><span class="line"> <span class="comment"># 如果 next_page_url 为空，直接返回首页</span></span><br><span class="line"> <span class="keyword">if</span> <span class="keyword">not</span> next_page_url <span class="keyword">or</span> url_parse(next_page_url).netloc != <span class="string">&#x27;&#x27;</span>:</span><br><span class="line">     <span class="keyword">return</span> redirect(next_page_url(<span class="string">&#x27;首页&#x27;</span>))</span><br><span class="line"> <span class="keyword">else</span>:</span><br><span class="line">     <span class="keyword">return</span> redirect(next_page_url)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>html中也需要修改，在url_for中增加<code>next=request.args.next</code></p>
+  <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">&lt;form <span class="string">&quot; method=&quot;</span>POST<span class="string">&quot; action=&quot;</span>&#123;&#123;url_for(<span class="string">&#x27;auth.login&#x27;</span>,<span class="built_in">next</span>=request.args.<span class="built_in">next</span>)&#125;&#125;<span class="string">&quot;&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Python</category>
+        <category>Flask</category>
+      </categories>
+      <tags>
+        <tag>踩坑</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>macOS brew安装mongo遇见的一些坑和报错</title>
     <url>/2020/11/29/macOS%20brew%E5%AE%89%E8%A3%85mongo%E9%81%87%E8%A7%81%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9D%91%E5%92%8C%E6%8A%A5%E9%94%99/</url>
     <content><![CDATA[<h3 id="brew-安装mongo"><a href="#brew-安装mongo" class="headerlink" title="brew 安装mongo"></a>brew 安装mongo</h3><ul>
@@ -850,54 +892,12 @@
       </tags>
   </entry>
   <entry>
-    <title>BeyondCompare 无限试用</title>
-    <url>/2020/08/06/BeyondCompare%20%E6%97%A0%E9%99%90%E8%AF%95%E7%94%A8/</url>
-    <content><![CDATA[<h2 id="beyondCompare-无限试用"><a href="#beyondCompare-无限试用" class="headerlink" title="beyondCompare 无限试用"></a>beyondCompare 无限试用</h2><p>一次设置,一直有效,以后不需要修改,每次打开都是30天</p>
-<h3 id="找到安装的目录"><a href="#找到安装的目录" class="headerlink" title="找到安装的目录"></a>找到安装的目录</h3><p>我的安装目录是在这个下面</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /Applications/Beyond\ Compare.app/Contents/MacOS/</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
-<h3 id="备份-BCompare"><a href="#备份-BCompare" class="headerlink" title="备份 BCompare"></a>备份 <code>BCompare</code></h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mv BCompare BCompare.real </span><br></pre></td></tr></table></figure>
-
-<h3 id="创建并编辑-BCompare"><a href="#创建并编辑-BCompare" class="headerlink" title="创建并编辑 BCompare"></a>创建并编辑 <code>BCompare</code></h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">touch BCompare</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vim BCompare </span><br></pre></td></tr></table></figure>
-
-<h3 id="增加以下内容-无限期试用"><a href="#增加以下内容-无限期试用" class="headerlink" title="增加以下内容 (无限期试用)"></a>增加以下内容 (无限期试用)</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#!&#x2F;bin&#x2F;bash</span><br><span class="line">rm &quot;&#x2F;Users&#x2F;neo&#x2F;Library&#x2F;Application Support&#x2F;Beyond Compare&#x2F;registry.dat&quot;</span><br><span class="line">&quot;&#96;dirname &quot;$0&quot;&#96;&quot;&#x2F;BCompare.real $@</span><br></pre></td></tr></table></figure>
-<h3 id="赋予权限"><a href="#赋予权限" class="headerlink" title="赋予权限"></a>赋予权限</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">chmod a+x BCompare</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>工具</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>SpringBoot @Valid 注解不生效</title>
-    <url>/2021/08/21/Springboot-Valid-%E6%B3%A8%E8%A7%A3%E4%B8%8D%E7%94%9F%E6%95%88/</url>
-    <content><![CDATA[<h3 id="踩坑记录"><a href="#踩坑记录" class="headerlink" title="踩坑记录"></a>踩坑记录</h3><p><code>SpringBoot</code> 使用<code>@Valid</code>注解 参数校验不生效的问题</p>
-<p>代码省略, 直接看解决方案</p>
-<a id="more"></a>
-
-<h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><p><code>springboot-2.3.x</code>之前的版本只需要引入 web 依赖就可以</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-web&lt;&#x2F;artifactId&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br></pre></td></tr></table></figure>
-
-<p>但是从<code>springboot-2.3.x</code>版本开始，校验包被独立成了一个<code>starter</code>组件，所以需要引入如下<code>validation</code>依赖( <strong><em>参见官方文档</em></strong> <a href="https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.3-Release-Notes#validation-starter-no-longer-included-in-web-starters">Validation Starter no longer included in web starters</a> )</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-validation&lt;&#x2F;artifactId&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-web&lt;&#x2F;artifactId&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br></pre></td></tr></table></figure>
-
-<p>完事收工…</p>
-]]></content>
-      <categories>
-        <category>Java</category>
-        <category>SpringBoot</category>
-        <category>踩坑</category>
-      </categories>
-      <tags>
-        <tag>踩坑</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>解决git ssh key Permission denied (publickey).</title>
     <url>/2025/07/17/%E8%A7%A3%E5%86%B3git%20ssh%20key%20Permission%20denied%20(publickey)/</url>
     <content><![CDATA[<p>本地配置了ssh key，测试访问github权限拒绝。附上解决方案</p>
 <a id="more"></a>
 
-<p>本地执行测试连接 ssh -T <a href="mailto:&#x67;&#x69;&#116;&#64;&#103;&#105;&#116;&#104;&#x75;&#x62;&#x2e;&#99;&#x6f;&#x6d;">&#x67;&#x69;&#116;&#64;&#103;&#105;&#116;&#104;&#x75;&#x62;&#x2e;&#99;&#x6f;&#x6d;</a></p>
+<p>本地执行测试连接 ssh -T <a href="mailto:&#103;&#x69;&#116;&#x40;&#103;&#105;&#116;&#x68;&#117;&#98;&#x2e;&#99;&#x6f;&#109;">&#103;&#x69;&#116;&#x40;&#103;&#105;&#116;&#x68;&#117;&#98;&#x2e;&#99;&#x6f;&#109;</a></p>
 <p><img src="/.io//permission-denied.png" alt="permission-denied"></p>
 <p><strong>解决方案</strong> </p>
 <ol>
