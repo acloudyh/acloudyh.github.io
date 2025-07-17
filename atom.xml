@@ -66,7 +66,7 @@
     <link href="https://acloudyh.github.io/2021/04/25/SpringBoot%20%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D%E5%8E%9F%E7%90%86/"/>
     <id>https://acloudyh.github.io/2021/04/25/SpringBoot%20%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D%E5%8E%9F%E7%90%86/</id>
     <published>2021-04-25T08:15:50.000Z</published>
-    <updated>2021-04-26T02:31:34.026Z</updated>
+    <updated>2025-07-17T07:02:25.953Z</updated>
     
     
     <summary type="html">&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;使用过 &lt;code&gt;Spring&lt;/code&gt; 的小伙伴，一定有被 XML 配置统治的恐惧。即使 Spring 后面引入了基于注解的配置，我们在开启某些 &lt;code&gt;Spring&lt;/code&gt; 特性或者引入第三方依赖的时候，还是需要用 XML 或 Java 进行显式配置。&lt;/p&gt;
